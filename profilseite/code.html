@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html class="dark" lang="de"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Profilseite - DHubBW</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "dhbw-bg-main": "#121315",
+                        "dhbw-panel": "#1A1C1F",
+                        "dhbw-border": "#2A2D31",
+                        "dhbw-primary": "#C8102E",
+                        "dhbw-primary-muted": "#992029",
+                        "dhbw-text-primary": "#F2F2F5",
+                        "dhbw-text-secondary": "#A8ADB5",
+                        "dhbw-icon": "#5C6068",
+                        "dhbw-hover": "#26292D",
+                        "dhbw-success": "#3EA05B",
+                        "dhbw-warning": "#EBCB70",
+                        "dhbw-error": "#E03140",
+                    },
+                    fontFamily: {
+                        "sans": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "0.75rem",
+                        "xl": "1rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-dhbw-bg-main font-sans text-dhbw-text-primary">
+<main class="flex-1 pb-40">
+<div class="p-4">
+<h1 class="text-2xl font-bold text-dhbw-text-primary mb-6">Mein Profil</h1>
+<div class="flex w-full flex-col items-center gap-4 text-center">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full h-24 w-24 shrink-0" data-alt="User avatar with an abstract gradient background" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC6g_lCsjJ_x5bKqSUt_nUcn6dP2bmfTAmqCveRt9YroTslKvZDEbW0eSHSmSsnDODt3jOO26Xm_aomryd8NZ4Q5bKMfjU5OE5olzxbSSzKGq18tYF5YcI7fgI6juf1LRMrBVwpp55ZEUAVMU34JCiGEnxL-qtx3NZJfIesa60lE3lrFUm99CPAwtL6A0vXbKXgf9AD3p5axdtWihBAyiE9nvDiDZnB46z168eNU2Zu7bsgyljR6aDAO8A89CDJJOwV4VabkP4ezlk");'></div>
+<div class="flex flex-col justify-center">
+<p class="text-dhbw-text-primary text-2xl font-bold">Max Mustermann</p>
+<p class="text-dhbw-text-secondary text-base font-normal">Student</p>
+</div>
+</div>
+</div>
+<section class="px-4">
+<h2 class="text-dhbw-text-primary text-lg font-semibold pb-2 pt-4">Persönliche Informationen</h2>
+<div class="flex flex-col gap-0.5 rounded-lg bg-dhbw-panel overflow-hidden">
+<div class="flex flex-wrap items-center gap-4 p-3">
+<label class="flex flex-col flex-1">
+<p class="text-dhbw-text-secondary text-xs font-medium pb-1.5">Anzeigename</p>
+<div class="flex w-full flex-1 items-stretch">
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md border border-dhbw-border bg-dhbw-bg-main px-3 py-2 text-sm font-normal text-dhbw-text-primary placeholder:text-dhbw-text-secondary focus:border-dhbw-primary focus:outline-0 focus:ring-0" value="Max Mustermann"/>
+</div>
+</label>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-4 px-3 py-2.5 min-h-14 justify-between hover:bg-dhbw-hover">
+<div class="flex items-center gap-3">
+<div class="flex size-8 shrink-0 items-center justify-center text-dhbw-icon">
+<span class="material-symbols-outlined text-2xl">badge</span>
+</div>
+<p class="flex-1 truncate text-sm font-normal text-dhbw-text-primary">Matrikelnummer</p>
+</div>
+<div class="shrink-0">
+<p class="text-sm font-normal text-dhbw-text-secondary">1234567</p>
+</div>
+</div>
+<div class="flex items-center gap-4 px-3 py-2.5 min-h-14 justify-between hover:bg-dhbw-hover">
+<div class="flex items-center gap-3">
+<div class="flex size-8 shrink-0 items-center justify-center text-dhbw-icon">
+<span class="material-symbols-outlined text-2xl">school</span>
+</div>
+<p class="flex-1 truncate text-sm font-normal text-dhbw-text-primary">Studiengang &amp; Kurs</p>
+</div>
+<div class="shrink-0">
+<p class="text-sm font-normal text-dhbw-text-secondary">WWI22B</p>
+</div>
+</div>
+<div class="flex items-center gap-4 px-3 py-2.5 min-h-14 justify-between hover:bg-dhbw-hover">
+<div class="flex items-center gap-3">
+<div class="flex size-8 shrink-0 items-center justify-center text-dhbw-icon">
+<span class="material-symbols-outlined text-2xl">email</span>
+</div>
+<p class="flex-1 truncate text-sm font-normal text-dhbw-text-primary">E-Mail-Adresse</p>
+</div>
+<div class="flex items-center gap-2">
+<p class="text-sm font-normal text-dhbw-text-secondary hidden sm:block">s123456@student.dhbw-karlsruhe.de</p>
+<button class="shrink-0 cursor-pointer text-dhbw-icon hover:text-dhbw-text-secondary">
+<span class="material-symbols-outlined text-xl">content_copy</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="px-4">
+<h2 class="text-dhbw-text-primary text-lg font-semibold pb-2 pt-4">Einstellungen &amp; Datenschutz</h2>
+<div class="flex flex-col gap-0.5 rounded-lg bg-dhbw-panel overflow-hidden">
+<div class="flex items-center gap-4 px-3 py-1.5 min-h-14 justify-between hover:bg-dhbw-hover">
+<div class="flex items-center gap-3">
+<div class="flex size-8 shrink-0 items-center justify-center text-dhbw-icon">
+<span class="material-symbols-outlined text-2xl">notifications</span>
+</div>
+<p class="flex-1 truncate text-sm font-normal text-dhbw-text-primary">Benachrichtigungen</p>
+</div>
+<div class="shrink-0">
+<label class="relative inline-flex cursor-pointer items-center">
+<input checked="" class="peer sr-only" type="checkbox" value=""/>
+<div class="peer h-6 w-11 rounded-full bg-dhbw-border after:absolute after:start-[2px] after:top-[2px] after:h-5 after:w-5 after:rounded-full after:border after:border-dhbw-border after:bg-dhbw-text-secondary after:transition-all after:content-[''] peer-checked:bg-dhbw-primary peer-checked:after:translate-x-full peer-checked:after:border-dhbw-primary peer-checked:after:bg-white peer-focus:outline-none peer-focus:ring-2 peer-focus:ring-dhbw-primary/50"></div>
+</label>
+</div>
+</div>
+<div class="flex items-center gap-4 px-3 py-2.5 min-h-14 justify-between hover:bg-dhbw-hover cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="flex size-8 shrink-0 items-center justify-center text-dhbw-icon">
+<span class="material-symbols-outlined text-2xl">privacy_tip</span>
+</div>
+<p class="flex-1 truncate text-sm font-normal text-dhbw-text-primary">Datenschutzeinstellungen</p>
+</div>
+<div class="shrink-0 text-dhbw-icon">
+<span class="material-symbols-outlined">chevron_right</span>
+</div>
+</div>
+<div class="flex items-center gap-4 px-3 py-2.5 min-h-14 justify-between hover:bg-dhbw-hover cursor-pointer">
+<div class="flex items-center gap-3">
+<div class="flex size-8 shrink-0 items-center justify-center text-dhbw-icon">
+<span class="material-symbols-outlined text-2xl">lock</span>
+</div>
+<p class="flex-1 truncate text-sm font-normal text-dhbw-text-primary">Passwort ändern</p>
+</div>
+<div class="shrink-0 text-dhbw-icon">
+<span class="material-symbols-outlined">chevron_right</span>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="fixed bottom-0 left-0 w-full border-t border-dhbw-border bg-dhbw-bg-main p-4">
+<div class="mx-auto flex max-w-lg flex-col gap-3">
+<button class="flex h-12 w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-dhbw-primary text-base font-semibold text-white hover:bg-opacity-90">Änderungen speichern</button>
+<button class="flex h-12 w-full cursor-pointer items-center justify-center overflow-hidden rounded-lg bg-dhbw-primary-muted text-base font-semibold text-dhbw-text-primary hover:bg-opacity-90">Abmelden</button>
+</div>
+</footer>
+</main>
+
+</body></html>

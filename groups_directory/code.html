@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html class="dark" lang="de"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DHubBW - Gruppen</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<style type="text/tailwindcss">
+        :root {
+          --dhub-bg: #121315;
+          --dhub-surface: #1A1C1F;
+          --dhub-border: #2A2D31;
+          --dhub-primary: #C8102E;
+          --dhub-primary-muted: #992029;
+          --dhub-text-primary: #F2F2F5;
+          --dhub-text-secondary: #A8ADB5;
+          --dhub-icon: #5C6068;
+          --dhub-focus: #26292D;
+          --dhub-success: #3EA05B;
+          --dhub-warning: #EBCB70;
+          --dhub-error: #E03140;
+        }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary": "var(--dhub-primary)",
+              "background-light": "#f6f7f8",
+              "background-dark": "var(--dhub-bg)",
+            },
+            fontFamily: {
+              "display": ["Inter", "Roboto", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', 'Roboto', sans-serif;
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-dark font-display text-sm text-[var(--dhub-text-primary)]">
+<div class="relative flex h-auto min-h-screen w-full flex-col group/design-root overflow-x-hidden">
+<main class="flex flex-1 flex-col lg:flex-row">
+<aside class="w-full lg:w-80 lg:flex-shrink-0 bg-[var(--dhub-surface)] border-b lg:border-b-0 lg:border-r border-[var(--dhub-border)] p-4 lg:p-6">
+<div class="flex items-center pb-4 justify-between">
+<h1 class="text-[var(--dhub-text-primary)] text-xl font-semibold leading-tight">Gruppen</h1>
+<button class="flex lg:hidden items-center justify-center size-10 rounded-md text-white bg-primary hover:bg-[var(--dhub-primary-muted)]">
+<span class="material-symbols-outlined">add</span>
+</button>
+</div>
+<div class="hidden lg:block">
+<button class="w-full text-center bg-primary text-white font-medium py-2.5 px-4 rounded-md hover:bg-[var(--dhub-primary-muted)] transition-colors">Neue Gruppe erstellen</button>
+</div>
+<div class="py-4 mt-4 border-t border-[var(--dhub-border)]">
+<label class="flex flex-col min-w-40 h-11 w-full">
+<div class="flex w-full flex-1 items-stretch rounded-md h-full">
+<div class="text-[var(--dhub-icon)] flex border-r border-[var(--dhub-border)] bg-[var(--dhub-focus)] items-center justify-center pl-3 rounded-l-md">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-r-md text-[var(--dhub-text-primary)] focus:outline-0 focus:ring-1 focus:ring-primary border-none bg-[var(--dhub-focus)] h-full placeholder:text-[var(--dhub-text-secondary)] px-3 text-sm font-normal leading-normal" placeholder="Gruppen suchen" value=""/>
+</div>
+</label>
+</div>
+<div class="space-y-6 pt-4">
+<div>
+<h2 class="text-[var(--dhub-text-primary)] text-base font-semibold leading-tight pb-2">Filtern nach Typ</h2>
+<div class="space-y-1">
+<label class="flex items-center gap-x-3 py-1.5 cursor-pointer">
+<input checked="" class="h-4 w-4 rounded border-[var(--dhub-border)] bg-[var(--dhub-surface)] text-primary checked:bg-primary checked:border-primary focus:ring-primary focus:ring-offset-[var(--dhub-surface)]" type="checkbox"/>
+<p class="text-[var(--dhub-text-primary)] text-sm font-normal leading-normal">Lerngruppen</p>
+</label>
+<label class="flex items-center gap-x-3 py-1.5 cursor-pointer">
+<input class="h-4 w-4 rounded border-[var(--dhub-border)] bg-[var(--dhub-surface)] text-primary checked:bg-primary checked:border-primary focus:ring-primary focus:ring-offset-[var(--dhub-surface)]" type="checkbox"/>
+<p class="text-[var(--dhub-text-primary)] text-sm font-normal leading-normal">Clubs</p>
+</label>
+<label class="flex items-center gap-x-3 py-1.5 cursor-pointer">
+<input class="h-4 w-4 rounded border-[var(--dhub-border)] bg-[var(--dhub-surface)] text-primary checked:bg-primary checked:border-primary focus:ring-primary focus:ring-offset-[var(--dhub-surface)]" type="checkbox"/>
+<p class="text-[var(--dhub-text-primary)] text-sm font-normal leading-normal">Projekte</p>
+</label>
+</div>
+</div>
+<div>
+<label class="flex flex-col min-w-40 flex-1">
+<p class="text-[var(--dhub-text-primary)] text-base font-semibold leading-tight pb-2">Sortieren nach</p>
+<select class="form-select flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-md text-[var(--dhub-text-primary)] focus:outline-0 focus:ring-1 focus:ring-primary border border-[var(--dhub-border)] bg-[var(--dhub-focus)] focus:border-primary h-11 p-2.5 text-sm font-normal leading-normal appearance-none bg-right-center bg-no-repeat" style="background-image: url(&quot;data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23A8ADB5' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e&quot;); background-position: right 0.5rem center; background-size: 1.5em 1.5em;">
+<option>Meiste Mitglieder</option>
+<option>Zuletzt aktiv</option>
+<option>Name (A-Z)</option>
+</select>
+</label>
+</div>
+</div>
+</aside>
+<div class="flex-1 p-4 lg:p-8">
+<h2 class="text-[var(--dhub-text-primary)] text-xl font-semibold leading-tight pb-6">Alle Gruppen</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
+<div class="flex flex-col bg-[var(--dhub-surface)] rounded-lg border border-[var(--dhub-border)] p-4">
+<div class="flex items-start justify-between">
+<h3 class="text-[var(--dhub-text-primary)] text-base font-semibold">Algorithmen &amp; Datenstrukturen</h3>
+<span class="text-xs font-medium text-purple-300 bg-purple-500/20 px-2 py-0.5 rounded-full">Admin</span>
+</div>
+<p class="text-xs font-medium text-orange-300 bg-orange-500/20 px-2 py-0.5 rounded-full self-start mt-2">WWI22B</p>
+<p class="text-[var(--dhub-text-secondary)] text-sm mt-3 flex-grow">Wöchentliche Lernsitzungen, um die Schlüsselkonzepte für die bevorstehende Prüfung zu meistern.</p>
+<div class="flex items-center justify-between mt-4 pt-4 border-t border-[var(--dhub-border)]">
+<div class="flex items-center gap-2 text-[var(--dhub-text-secondary)]">
+<span class="material-symbols-outlined text-lg text-[var(--dhub-icon)]">group</span>
+<span class="text-xs font-medium">42 Mitglieder</span>
+</div>
+<button class="bg-primary/20 text-primary font-medium py-1.5 px-3 rounded-md hover:bg-primary/30 transition-colors text-sm">Ansehen</button>
+</div>
+</div>
+<div class="flex flex-col bg-[var(--dhub-surface)] rounded-lg border border-[var(--dhub-border)] p-4">
+<div class="flex items-start justify-between">
+<h3 class="text-[var(--dhub-text-primary)] text-base font-semibold">Mobile App Dev Projekt</h3>
+<span class="text-xs font-medium text-green-300 bg-green-500/20 px-2 py-0.5 rounded-full">Mitglied</span>
+</div>
+<p class="text-xs font-medium text-blue-300 bg-blue-500/20 px-2 py-0.5 rounded-full self-start mt-2">WWI21A</p>
+<p class="text-[var(--dhub-text-secondary)] text-sm mt-3 flex-grow">Zusammenarbeit am Abschlussprojekt für Mobile Engineering. Erstellung eines Campus-Event-Finders.</p>
+<div class="flex items-center justify-between mt-4 pt-4 border-t border-[var(--dhub-border)]">
+<div class="flex items-center gap-2 text-[var(--dhub-text-secondary)]">
+<span class="material-symbols-outlined text-lg text-[var(--dhub-icon)]">group</span>
+<span class="text-xs font-medium">8 Mitglieder</span>
+</div>
+<button class="bg-primary/20 text-primary font-medium py-1.5 px-3 rounded-md hover:bg-primary/30 transition-colors text-sm">Ansehen</button>
+</div>
+</div>
+<div class="flex flex-col bg-[var(--dhub-surface)] rounded-lg border border-[var(--dhub-border)] p-4">
+<div class="flex items-start justify-between">
+<h3 class="text-[var(--dhub-text-primary)] text-base font-semibold">DHBW Schachclub</h3>
+</div>
+<p class="text-xs font-medium text-red-300 bg-red-500/20 px-2 py-0.5 rounded-full self-start mt-2">Alle Kurse</p>
+<p class="text-[var(--dhub-text-secondary)] text-sm mt-3 flex-grow">Für alle Schachbegeisterten. Wir treffen uns alle zwei Wochen zu lockeren Partien und Turnieren.</p>
+<div class="flex items-center justify-between mt-4 pt-4 border-t border-[var(--dhub-border)]">
+<div class="flex items-center gap-2 text-[var(--dhub-text-secondary)]">
+<span class="material-symbols-outlined text-lg text-[var(--dhub-icon)]">group</span>
+<span class="text-xs font-medium">112 Mitglieder</span>
+</div>
+<button class="bg-primary text-white font-medium py-1.5 px-3 rounded-md hover:bg-[var(--dhub-primary-muted)] transition-colors text-sm">Beitreten</button>
+</div>
+</div>
+<div class="flex flex-col bg-[var(--dhub-surface)] rounded-lg border border-[var(--dhub-border)] p-4">
+<div class="flex items-start justify-between">
+<h3 class="text-[var(--dhub-text-primary)] text-base font-semibold">Semestersprecher</h3>
+<span class="text-xs font-medium text-yellow-300 bg-yellow-500/20 px-2 py-0.5 rounded-full">Sprecher</span>
+</div>
+<p class="text-xs font-medium text-orange-300 bg-orange-500/20 px-2 py-0.5 rounded-full self-start mt-2">WWI22B</p>
+<p class="text-[var(--dhub-text-secondary)] text-sm mt-3 flex-grow">Offizieller Kanal für kursweite Ankündigungen und zur Sammlung von Feedback.</p>
+<div class="flex items-center justify-between mt-4 pt-4 border-t border-[var(--dhub-border)]">
+<div class="flex items-center gap-2 text-[var(--dhub-text-secondary)]">
+<span class="material-symbols-outlined text-lg text-[var(--dhub-icon)]">group</span>
+<span class="text-xs font-medium">2 Mitglieder</span>
+</div>
+<button class="bg-primary/20 text-primary font-medium py-1.5 px-3 rounded-md hover:bg-primary/30 transition-colors text-sm">Ansehen</button>
+</div>
+</div>
+<div class="md:col-span-2 xl:col-span-3 mt-8 flex flex-col items-center justify-center text-center p-10 bg-[var(--dhub-surface)] rounded-lg border border-dashed border-[var(--dhub-border)]">
+<span class="material-symbols-outlined text-5xl text-[var(--dhub-icon)]">search_off</span>
+<h3 class="text-[var(--dhub-text-primary)] text-lg font-semibold mt-4">Keine Gruppen gefunden</h3>
+<p class="text-[var(--dhub-text-secondary)] mt-2 max-w-sm text-sm">Keine Gruppen entsprechen Ihren aktuellen Such- und Filterkriterien. Versuchen Sie, Ihre Suche anzupassen oder eine neue Gruppe zu erstellen.</p>
+<button class="mt-6 bg-primary text-white font-medium py-2 px-4 rounded-md hover:bg-[var(--dhub-primary-muted)] transition-colors text-sm">Neue Gruppe erstellen</button>
+</div>
+</div>
+</div>
+</main>
+</div>
+
+</body></html>

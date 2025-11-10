@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html class="dark" lang="de"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DHubBW - Kalender</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<style type="text/tailwindcss">
+    :root {
+      --dhbw-main-bg: #121315;
+      --dhbw-panel-bg: #1A1C1F;
+      --dhbw-border: #2A2D31;
+      --dhbw-primary-red: #C8102E;
+      --dhbw-secondary-red: #992029;
+      --dhbw-text-primary: #F2F2F5;
+      --dhbw-text-secondary: #A8ADB5;
+      --dhbw-icon-gray: #5C6068;
+      --dhbw-focus-gray: #26292D;
+      --dhbw-success: #3EA05B;
+      --dhbw-warning: #EBCB70;
+      --dhbw-error: #E03140;
+    }
+  </style>
+<script>
+    tailwind.config = {
+        darkMode: "class",
+        theme: {
+            extend: {
+                colors: {
+                  "dhbw-main-bg": "var(--dhbw-main-bg)",
+                  "dhbw-panel-bg": "var(--dhbw-panel-bg)",
+                  "dhbw-border": "var(--dhbw-border)",
+                  "dhbw-primary-red": "var(--dhbw-primary-red)",
+                  "dhbw-secondary-red": "var(--dhbw-secondary-red)",
+                  "dhbw-text-primary": "var(--dhbw-text-primary)",
+                  "dhbw-text-secondary": "var(--dhbw-text-secondary)",
+                  "dhbw-icon-gray": "var(--dhbw-icon-gray)",
+                  "dhbw-focus-gray": "var(--dhbw-focus-gray)",
+                  "dhbw-success": "var(--dhbw-success)",
+                  "dhbw-warning": "var(--dhbw-warning)",
+                  "dhbw-error": "var(--dhbw-error)",
+                },
+                fontFamily: {
+                    "display": ["Inter", "Roboto", "sans-serif"]
+                },
+                borderRadius: {
+                    "DEFAULT": "0.25rem",
+                    "lg": "0.5rem",
+                    "xl": "0.75rem",
+                    "full": "9999px"
+                },
+            },
+        },
+    }
+</script>
+<style>
+    .material-symbols-outlined {
+        font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+    }
+    body {
+        min-height: max(884px, 100dvh);
+    }
+</style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-dhbw-main-bg font-display text-dhbw-text-primary">
+<div class="flex w-full" style="height: 100vh">
+<aside class="w-80 flex-shrink-0 flex-col bg-dhbw-main-bg border-r border-dhbw-border p-6 hidden lg:flex">
+<section class="mb-8">
+<div class="flex items-center justify-between mb-4">
+<p class="font-bold text-dhbw-text-primary">Oktober 2024</p>
+<div class="flex items-center gap-2">
+<button class="text-dhbw-icon-gray hover:text-dhbw-text-primary">
+<span class="material-symbols-outlined text-lg">chevron_left</span>
+</button>
+<button class="text-dhbw-icon-gray hover:text-dhbw-text-primary">
+<span class="material-symbols-outlined text-lg">chevron_right</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-7 gap-y-2 text-center text-sm text-dhbw-text-secondary">
+<span>Mo</span><span>Di</span><span>Mi</span><span>Do</span><span>Fr</span><span>Sa</span><span>So</span>
+<span class="text-dhbw-icon-gray">30</span>
+<span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span>
+<span>7</span><span>8</span><span>9</span><span>10</span><span>11</span><span>12</span><span>13</span>
+<span>14</span><span>15</span><span>16</span><span>17</span><span>18</span><span>19</span><span>20</span>
+<span class="relative flex items-center justify-center font-bold text-white before:absolute before:inset-0 before:-z-10 before:mx-auto before:aspect-square before:w-7 before:rounded-full before:bg-dhbw-primary-red">21</span>
+<span>22</span><span>23</span><span>24</span><span>25</span><span>26</span><span>27</span>
+<span>28</span><span>29</span><span>30</span><span>31</span>
+<span class="text-dhbw-icon-gray">1</span><span class="text-dhbw-icon-gray">2</span><span class="text-dhbw-icon-gray">3</span>
+</div>
+</section>
+<section class="mb-8">
+<h3 class="text-lg font-bold leading-tight tracking-[-0.015em] text-dhbw-text-primary pb-3">Quellen</h3>
+<div class="flex gap-2 flex-wrap">
+<div class="flex h-8 shrink-0 cursor-pointer items-center justify-center gap-x-2 rounded-md bg-dhbw-focus-gray pl-3 pr-3 ring-1 ring-inset ring-dhbw-border hover:bg-[#35383d]">
+<p class="text-dhbw-text-primary text-sm font-medium leading-normal">Rapla</p>
+</div>
+<div class="flex h-8 shrink-0 cursor-pointer items-center justify-center gap-x-2 rounded-md bg-dhbw-panel-bg pl-3 pr-3 ring-1 ring-inset ring-dhbw-border hover:bg-dhbw-focus-gray">
+<p class="text-dhbw-text-secondary text-sm font-medium leading-normal">Kurse</p>
+</div>
+<div class="flex h-8 shrink-0 cursor-pointer items-center justify-center gap-x-2 rounded-md bg-dhbw-panel-bg pl-3 pr-3 ring-1 ring-inset ring-dhbw-border hover:bg-dhbw-focus-gray">
+<p class="text-dhbw-text-secondary text-sm font-medium leading-normal">Persönlich</p>
+</div>
+</div>
+</section>
+<section>
+<h3 class="text-lg font-bold leading-tight tracking-[-0.015em] text-dhbw-text-primary pb-3">ICS/Rapla</h3>
+<div class="flex flex-col gap-3">
+<button class="flex h-10 w-full items-center justify-center gap-2 rounded-md bg-dhbw-panel-bg text-sm font-medium text-dhbw-text-primary hover:bg-dhbw-focus-gray ring-1 ring-inset ring-dhbw-border">
+<span class="material-symbols-outlined text-base">file_upload</span>
+                        ICS Importieren
+                    </button>
+<button class="flex h-10 w-full items-center justify-center gap-2 rounded-md bg-dhbw-panel-bg text-sm font-medium text-dhbw-text-primary hover:bg-dhbw-focus-gray ring-1 ring-inset ring-dhbw-border">
+<span class="material-symbols-outlined text-base">file_download</span>
+                        ICS Exportieren
+                    </button>
+<button class="flex h-10 w-full items-center justify-center gap-2 rounded-md bg-dhbw-panel-bg text-sm font-medium text-dhbw-text-primary hover:bg-dhbw-focus-gray ring-1 ring-inset ring-dhbw-border">
+<span class="material-symbols-outlined text-base">refresh</span>
+                        Aktualisieren
+                    </button>
+<p class="text-xs text-center text-dhbw-text-secondary pt-1">Zuletzt synchronisiert: vor 2 Minuten</p>
+</div>
+</section>
+<div class="flex-grow"></div>
+</aside>
+<main class="flex-1 flex flex-col bg-dhbw-main-bg">
+<header class="flex items-center border-b border-dhbw-border p-4 shrink-0">
+<button class="lg:hidden mr-4 text-dhbw-icon-gray">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<div class="flex items-center gap-2">
+<button class="p-1 rounded-full text-dhbw-icon-gray hover:text-dhbw-text-primary">
+<span class="material-symbols-outlined">chevron_left</span>
+</button>
+<button class="p-1 rounded-full text-dhbw-icon-gray hover:text-dhbw-text-primary">
+<span class="material-symbols-outlined">chevron_right</span>
+</button>
+<h2 class="text-lg font-bold text-dhbw-text-primary">21. - 27. Oktober 2024</h2>
+</div>
+<div class="flex-1"></div>
+<div class="flex items-center gap-4">
+<button class="hidden sm:block h-9 px-4 rounded-md border border-dhbw-border text-sm font-medium text-dhbw-text-primary hover:bg-dhbw-focus-gray">Heute</button>
+<div class="hidden sm:flex h-10 w-auto items-center justify-center rounded-md bg-dhbw-panel-bg p-1 border border-dhbw-border">
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-md px-3 has-[:checked]:bg-dhbw-focus-gray has-[:checked]:text-dhbw-text-primary text-dhbw-text-secondary text-sm font-medium">
+<span class="truncate">Woche</span>
+<input checked="" class="invisible w-0" name="view-switcher" type="radio" value="Week"/>
+</label>
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-md px-3 has-[:checked]:bg-dhbw-focus-gray has-[:checked]:text-dhbw-text-primary text-dhbw-text-secondary text-sm font-medium">
+<span class="truncate">Monat</span>
+<input class="invisible w-0" name="view-switcher" type="radio" value="Month"/>
+</label>
+<label class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-md px-3 has-[:checked]:bg-dhbw-focus-gray has-[:checked]:text-dhbw-text-primary text-dhbw-text-secondary text-sm font-medium">
+<span class="truncate">Agenda</span>
+<input class="invisible w-0" name="view-switcher" type="radio" value="Agenda"/>
+</label>
+</div>
+</div>
+</header>
+<div class="flex-1 overflow-auto p-4 md:p-6 grid grid-cols-1 @container">
+<div class="grid grid-cols-1 @[600px]:grid-cols-2 @[900px]:grid-cols-3 @[1200px]:grid-cols-4 @[1500px]:grid-cols-5 gap-px bg-dhbw-border border-t border-l border-dhbw-border">
+<div class="p-3 bg-dhbw-main-bg border-r border-b border-dhbw-border">
+<p class="font-bold text-center text-dhbw-primary-red">Mo, 21</p>
+</div>
+<div class="p-3 bg-dhbw-main-bg border-r border-b border-dhbw-border">
+<p class="font-bold text-center text-dhbw-text-primary">Di, 22</p>
+</div>
+<div class="p-3 bg-dhbw-main-bg border-r border-b border-dhbw-border">
+<p class="font-bold text-center text-dhbw-text-primary">Mi, 23</p>
+</div>
+<div class="p-3 bg-dhbw-main-bg border-r border-b border-dhbw-border">
+<p class="font-bold text-center text-dhbw-text-primary">Do, 24</p>
+</div>
+<div class="p-3 bg-dhbw-main-bg border-r border-b border-dhbw-border">
+<p class="font-bold text-center text-dhbw-text-primary">Fr, 25</p>
+</div>
+<div class="p-3 bg-dhbw-main-bg border-r border-b border-dhbw-border flex flex-col gap-3">
+<div class="bg-dhbw-panel-bg p-3 rounded-lg border-l-4 border-dhbw-primary-red">
+<p class="font-bold text-sm text-dhbw-primary-red">Software Engineering</p>
+<p class="text-xs text-dhbw-text-primary">09:00 - 12:15</p>
+<p class="text-xs text-dhbw-text-secondary mt-1">C012, Hauptgebäude</p>
+</div>
+<div class="bg-dhbw-panel-bg p-3 rounded-lg border-l-4 border-dhbw-warning">
+<p class="font-bold text-sm text-dhbw-warning">Projekt Deadline</p>
+<p class="text-xs text-dhbw-text-primary">Ganztägig</p>
+<p class="text-xs text-dhbw-text-secondary mt-1">Web App Einreichung</p>
+</div>
+</div>
+<div class="p-3 bg-dhbw-main-bg border-r border-b border-dhbw-border flex flex-col gap-3">
+<div class="bg-dhbw-panel-bg p-3 rounded-lg border-l-4 border-dhbw-success">
+<p class="font-bold text-sm text-dhbw-success">Team Meeting</p>
+<p class="text-xs text-dhbw-text-primary">14:00 - 15:00</p>
+<p class="text-xs text-dhbw-text-secondary mt-1">Online</p>
+</div>
+</div>
+<div class="p-3 bg-dhbw-main-bg border-r border-b border-dhbw-border"></div>
+<div class="p-3 bg-dhbw-main-bg border-r border-b border-dhbw-border flex flex-col gap-3">
+<div class="bg-dhbw-panel-bg p-3 rounded-lg border-l-4 border-dhbw-primary-red">
+<p class="font-bold text-sm text-dhbw-primary-red">Software Engineering</p>
+<p class="text-xs text-dhbw-text-primary">09:00 - 12:15</p>
+<p class="text-xs text-dhbw-text-secondary mt-1">C012, Hauptgebäude</p>
+</div>
+</div>
+<div class="p-3 bg-dhbw-main-bg border-r border-b border-dhbw-border"></div>
+</div>
+</div>
+</main>
+<aside class="w-96 flex-shrink-0 flex-col bg-dhbw-panel-bg border-l border-dhbw-border p-6 hidden xl:flex">
+<div class="flex items-center justify-between mb-6">
+<h3 class="text-lg font-bold text-dhbw-text-primary">Termindetails</h3>
+<button class="text-dhbw-icon-gray hover:text-dhbw-text-primary">
+<span class="material-symbols-outlined">close</span>
+</button>
+</div>
+<div class="flex-1 overflow-y-auto">
+<h2 class="text-xl font-bold text-dhbw-primary-red mb-2">Vorlesung Software Engineering</h2>
+<div class="flex flex-col gap-4 text-sm text-dhbw-text-primary mb-6">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-dhbw-icon-gray text-xl">schedule</span>
+<span>Montag, 21. Oktober 2024<br/>09:00 - 12:15</span>
+</div>
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-dhbw-icon-gray text-xl">location_on</span>
+<span>Raum C012, Hauptgebäude</span>
+</div>
+</div>
+<p class="text-sm text-dhbw-text-secondary leading-relaxed mb-6">
+                     Wöchentliche Vorlesung zu fortgeschrittenen Themen der Software-Architektur und Entwurfsmuster. Diese Sitzung konzentriert sich auf Microservices und Containerisierung.
+                 </p>
+<div class="mb-6">
+<h4 class="font-bold text-dhbw-text-primary mb-2">Zugehöriger Kurs</h4>
+<div class="flex h-8 w-fit items-center justify-center gap-x-2 rounded-md bg-dhbw-secondary-red/20 pl-3 pr-3 cursor-pointer">
+<p class="text-dhbw-primary-red text-sm font-medium leading-normal">TINF22B4 - SWE</p>
+</div>
+</div>
+<div>
+<h4 class="font-bold text-dhbw-text-primary mb-3">Anhänge</h4>
+<ul class="space-y-2">
+<li class="flex items-center gap-3 rounded-lg p-2 bg-dhbw-main-bg">
+<span class="material-symbols-outlined text-dhbw-primary-red">description</span>
+<span class="flex-1 text-sm font-medium text-dhbw-text-primary">Vorlesungsfolien_Woche5.pdf</span>
+<button class="text-dhbw-icon-gray hover:text-dhbw-text-primary">
+<span class="material-symbols-outlined text-lg">download</span>
+</button>
+</li>
+<li class="flex items-center gap-3 rounded-lg p-2 bg-dhbw-main-bg">
+<span class="material-symbols-outlined text-dhbw-primary-red">folder_zip</span>
+<span class="flex-1 text-sm font-medium text-dhbw-text-primary">Code_Beispiele.zip</span>
+<button class="text-dhbw-icon-gray hover:text-dhbw-text-primary">
+<span class="material-symbols-outlined text-lg">download</span>
+</button>
+</li>
+</ul>
+</div>
+</div>
+<div class="mt-auto pt-6 border-t border-dhbw-border">
+<button class="flex h-12 w-full items-center justify-center gap-2 rounded-lg bg-dhbw-primary-red text-white font-bold hover:bg-dhbw-secondary-red">
+<span class="material-symbols-outlined">add</span>
+                    Zum persönlichen Kalender hinzufügen
+                </button>
+</div>
+</aside>
+</div>
+
+</body></html>

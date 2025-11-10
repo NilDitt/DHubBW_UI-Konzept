@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html class="dark" lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Frage &amp; Antwort Plattform - DHubBW</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "dhbw-bg-main": "#121315",
+              "dhbw-bg-panel": "#1A1C1F",
+              "dhbw-border": "#2A2D31",
+              "dhbw-primary": "#C8102E",
+              "dhbw-primary-muted": "#992029",
+              "dhbw-text-primary": "#F2F2F5",
+              "dhbw-text-secondary": "#A8ADB5",
+              "dhbw-icon-gray": "#5C6068",
+              "dhbw-hover": "#26292D",
+              "dhbw-success": "#3EA05B",
+              "dhbw-warning": "#EBCB70",
+              "dhbw-error": "#E03140",
+            },
+            fontFamily: {
+              sans: ["Inter", "Roboto", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+      }
+    </style>
+    <style>
+      body {
+        min-height: max(884px, 100dvh);
+      }
+    </style>
+    <style>
+      body {
+        min-height: max(884px, 100dvh);
+      }
+    </style>
+  </head>
+  <body class="font-sans bg-dhbw-bg-main">
+    <main class="flex-grow px-4">
+      <h2
+        class="text-dhbw-text-primary tracking-tight text-2xl font-bold leading-tight text-left pb-3 pt-6"
+      >
+        Frage &amp; Antwort Plattform
+      </h2>
+      <div class="flex flex-col md:flex-row md:items-center gap-4 py-3">
+        <div class="flex-shrink-0">
+          <button
+            class="flex w-full md:w-auto min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-md h-10 px-5 bg-dhbw-primary text-white text-sm font-semibold leading-normal"
+          >
+            <span class="truncate">Frage stellen</span>
+          </button>
+        </div>
+        <div class="flex-grow">
+          <label class="flex flex-col min-w-40 h-10 w-full">
+            <div class="flex w-full flex-1 items-stretch rounded-md h-full">
+              <div
+                class="text-dhbw-icon-gray flex border border-r-0 border-dhbw-border bg-dhbw-bg-panel items-center justify-center pl-3 rounded-l-md"
+              >
+                <span class="material-symbols-outlined text-xl">search</span>
+              </div>
+              <input
+                class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-r-md text-dhbw-text-primary focus:outline-0 focus:ring-1 focus:ring-dhbw-primary border border-dhbw-border bg-dhbw-bg-panel h-full placeholder:text-dhbw-text-secondary px-3 pl-2 text-sm font-normal leading-normal"
+                placeholder="Fragen filtern..."
+                value=""
+              />
+            </div>
+          </label>
+        </div>
+      </div>
+      <div class="flex px-0 py-3">
+        <div
+          class="flex h-9 w-full items-center justify-center rounded-md bg-dhbw-bg-panel p-1 border border-dhbw-border"
+        >
+          <label
+            class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-[.25rem] px-2 has-[:checked]:bg-dhbw-hover has-[:checked]:text-dhbw-text-primary text-dhbw-text-secondary text-sm font-medium leading-normal"
+          >
+            <span class="truncate">Neueste</span>
+            <input
+              checked=""
+              class="invisible w-0"
+              name="sort-filter"
+              type="radio"
+              value="Neueste"
+            />
+          </label>
+          <label
+            class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-[.25rem] px-2 has-[:checked]:bg-dhbw-hover has-[:checked]:text-dhbw-text-primary text-dhbw-text-secondary text-sm font-medium leading-normal"
+          >
+            <span class="truncate">Beliebteste</span>
+            <input
+              class="invisible w-0"
+              name="sort-filter"
+              type="radio"
+              value="Beliebteste"
+            />
+          </label>
+          <label
+            class="flex cursor-pointer h-full grow items-center justify-center overflow-hidden rounded-[.25rem] px-2 has-[:checked]:bg-dhbw-hover has-[:checked]:text-dhbw-text-primary text-dhbw-text-secondary text-sm font-medium leading-normal"
+          >
+            <span class="truncate">Unbeantwortet</span>
+            <input
+              class="invisible w-0"
+              name="sort-filter"
+              type="radio"
+              value="Unbeantwortet"
+            />
+          </label>
+        </div>
+      </div>
+      <div class="flex flex-col gap-3 py-4">
+        <div
+          class="flex cursor-pointer flex-col gap-3 rounded-lg bg-dhbw-bg-panel p-4 border border-dhbw-border transition-all hover:bg-dhbw-hover hover:border-dhbw-primary/50"
+          onclick="showQuestionDetail()"
+        >
+          <h3 class="text-base font-semibold text-dhbw-text-primary">
+            Wie implementiere ich eine rekursive Funktion in Java, um die
+            Fibonacci-Folge zu berechnen?
+          </h3>
+          <div class="flex flex-wrap items-center gap-2">
+            <span
+              class="rounded-full bg-dhbw-primary-muted/20 px-2.5 py-0.5 text-xs font-medium text-dhbw-primary"
+              >Programmieren 1</span
+            >
+            <span
+              class="rounded-full bg-dhbw-primary-muted/20 px-2.5 py-0.5 text-xs font-medium text-dhbw-primary"
+              >Java</span
+            >
+            <span
+              class="rounded-full bg-dhbw-primary-muted/20 px-2.5 py-0.5 text-xs font-medium text-dhbw-primary"
+              >Algorithmen</span
+            >
+          </div>
+          <div
+            class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-dhbw-text-secondary"
+          >
+            <span>5 Antworten</span>
+            <span>120 Aufrufe</span>
+            <span>vor 2 Tagen</span>
+          </div>
+        </div>
+        <div
+          class="flex cursor-pointer flex-col gap-3 rounded-lg bg-dhbw-bg-panel p-4 border border-dhbw-border transition-all hover:bg-dhbw-hover hover:border-dhbw-primary/50"
+        >
+          <h3 class="text-base font-semibold text-dhbw-text-primary">
+            Was ist der Unterschied zwischen TCP und UDP in Computernetzwerken?
+          </h3>
+          <div class="flex flex-wrap items-center gap-2">
+            <span
+              class="rounded-full bg-dhbw-primary-muted/20 px-2.5 py-0.5 text-xs font-medium text-dhbw-primary"
+              >TGI</span
+            >
+            <span
+              class="rounded-full bg-dhbw-primary-muted/20 px-2.5 py-0.5 text-xs font-medium text-dhbw-primary"
+              >Netzwerke</span
+            >
+          </div>
+          <div
+            class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-dhbw-text-secondary"
+          >
+            <span>2 Antworten</span>
+            <span>88 Aufrufe</span>
+            <span>vor 3 Tagen</span>
+          </div>
+        </div>
+        <div
+          class="flex cursor-pointer flex-col gap-3 rounded-lg bg-dhbw-bg-panel p-4 border border-dhbw-border transition-all hover:bg-dhbw-hover hover:border-dhbw-primary/50"
+        >
+          <h3 class="text-base font-semibold text-dhbw-text-primary">
+            Best Practices für das Stakeholder-Management in agilen Projekten?
+          </h3>
+          <div class="flex flex-wrap items-center gap-2">
+            <span
+              class="rounded-full bg-dhbw-primary-muted/20 px-2.5 py-0.5 text-xs font-medium text-dhbw-primary"
+              >Projektmanagement</span
+            >
+            <span
+              class="rounded-full bg-dhbw-primary-muted/20 px-2.5 py-0.5 text-xs font-medium text-dhbw-primary"
+              >Agil</span
+            >
+            <span
+              class="rounded-full bg-dhbw-primary-muted/20 px-2.5 py-0.5 text-xs font-medium text-dhbw-primary"
+              >Scrum</span
+            >
+          </div>
+          <div
+            class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-dhbw-text-secondary"
+          >
+            <span>0 Antworten</span>
+            <span>15 Aufrufe</span>
+            <span>vor 4 Tagen</span>
+          </div>
+        </div>
+      </div>
+      <div
+        class="flex items-center justify-center gap-2 py-6 text-dhbw-text-primary"
+      >
+        <button
+          class="flex h-8 w-8 items-center justify-center rounded-md bg-dhbw-bg-panel border border-dhbw-border text-dhbw-text-secondary transition-colors hover:bg-dhbw-hover disabled:opacity-50"
+          disabled=""
+        >
+          <span class="material-symbols-outlined text-xl">chevron_left</span>
+        </button>
+        <button
+          class="flex h-8 w-8 items-center justify-center rounded-md bg-dhbw-primary border border-dhbw-primary text-white transition-colors text-sm font-semibold"
+        >
+          1
+        </button>
+        <button
+          class="flex h-8 w-8 items-center justify-center rounded-md bg-dhbw-bg-panel border border-dhbw-border transition-colors hover:bg-dhbw-hover text-sm"
+        >
+          2
+        </button>
+        <button
+          class="flex h-8 w-8 items-center justify-center rounded-md bg-dhbw-bg-panel border border-dhbw-border transition-colors hover:bg-dhbw-hover text-sm"
+        >
+          3
+        </button>
+        <span class="px-1 text-dhbw-text-secondary">...</span>
+        <button
+          class="flex h-8 w-8 items-center justify-center rounded-md bg-dhbw-bg-panel border border-dhbw-border transition-colors hover:bg-dhbw-hover text-sm"
+        >
+          8
+        </button>
+        <button
+          class="flex h-8 w-8 items-center justify-center rounded-md bg-dhbw-bg-panel border border-dhbw-border text-dhbw-text-secondary transition-colors hover:bg-dhbw-hover"
+        >
+          <span class="material-symbols-outlined text-xl">chevron_right</span>
+        </button>
+      </div>
+    </main>
+
+    <script>
+      function showQuestionDetail() {
+        // Get the parent iframe element from the main index page
+        if (parent && parent.document) {
+          const iframe = parent.document.getElementById("content-frame");
+          if (iframe) {
+            iframe.src =
+              "frage_&_antwort_plattform/fragedetailansicht/code.html";
+          }
+        }
+      }
+
+      // Function to be called from the detail view to go back
+      function showQAList() {
+        if (parent && parent.document) {
+          const iframe = parent.document.getElementById("content-frame");
+          if (iframe) {
+            iframe.src = "frage_&_antwort_plattform/code.html";
+          }
+        }
+      }
+
+      // Make the function available to the parent window
+      if (window.parent) {
+        window.parent.showQAList = showQAList;
+      }
+    </script>
+  </body>
+</html>

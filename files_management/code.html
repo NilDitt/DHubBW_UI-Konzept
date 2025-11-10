@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html class="dark" lang="de"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>DHubBW Dateiverwaltung</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<style type="text/tailwindcss">
+    :root {
+      --bg: #121315;
+      --panel: #1A1C1F;
+      --border: #2A2D31;
+      --primary: #C8102E;
+      --primary-muted: #992029;
+      --text-primary: #F2F2F5;
+      --text-secondary: #A8ADB5;
+      --icon: #5C6068;
+      --focus-hover: #26292D;
+      --success: #3EA05B;
+      --warning: #EBCB70;
+      --error: #E03140;
+    }
+    .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+    body {
+      min-height: max(884px, 100dvh);
+    }
+    </style>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "dh-bg": "var(--bg)",
+              "dh-panel": "var(--panel)",
+              "dh-border": "var(--border)",
+              "dh-primary": "var(--primary)",
+              "dh-primary-muted": "var(--primary-muted)",
+              "dh-text-primary": "var(--text-primary)",
+              "dh-text-secondary": "var(--text-secondary)",
+              "dh-icon": "var(--icon)",
+              "dh-focus-hover": "var(--focus-hover)",
+              "dh-success": "var(--success)",
+              "dh-warning": "var(--warning)",
+              "dh-error": "var(--error)",
+            },
+            fontFamily: {
+              "display": ["Inter", "Roboto", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-dh-bg font-display text-dh-text-primary">
+<div class="flex h-screen w-full">
+<aside class="flex-col w-64 bg-dh-panel border-r border-dh-border hidden lg:flex">
+<div class="flex-1 p-2 overflow-y-auto">
+<nav class="flex flex-col gap-1 text-sm">
+<div>
+<button class="flex items-center w-full p-2 text-left rounded hover:bg-dh-focus-hover text-dh-text-primary">
+<span class="material-symbols-outlined text-xl mr-2 text-dh-icon">expand_more</span>
+<span class="font-medium">Kurs ABC</span>
+</button>
+<div class="pl-6 mt-1 flex flex-col gap-1">
+<a class="flex items-center w-full p-2 text-left rounded bg-dh-primary-muted/20 text-dh-primary" href="#">
+<span class="material-symbols-outlined text-xl mr-2">expand_more</span>
+<span class="font-medium">Modul 1</span>
+</a>
+<div class="pl-6 mt-1 flex flex-col gap-1">
+<a class="flex items-center w-full p-2 text-left rounded hover:bg-dh-focus-hover text-dh-text-primary" href="#">
+<span class="material-symbols-outlined text-xl mr-2 invisible"></span>
+<span>Gruppe X</span>
+</a>
+<a class="flex items-center w-full p-2 text-left rounded hover:bg-dh-focus-hover text-dh-text-primary" href="#">
+<span class="material-symbols-outlined text-xl mr-2 invisible"></span>
+<span>Gruppe Y</span>
+</a>
+</div>
+<a class="flex items-center w-full p-2 text-left rounded hover:bg-dh-focus-hover text-dh-text-primary" href="#">
+<span class="material-symbols-outlined text-xl mr-2 text-dh-icon">chevron_right</span>
+<span>Modul 2</span>
+</a>
+</div>
+</div>
+<div>
+<button class="flex items-center w-full p-2 text-left rounded hover:bg-dh-focus-hover text-dh-text-primary">
+<span class="material-symbols-outlined text-xl mr-2 text-dh-icon">chevron_right</span>
+<span class="font-medium">Projektmanagement</span>
+</button>
+</div>
+<div>
+<button class="flex items-center w-full p-2 text-left rounded hover:bg-dh-focus-hover text-dh-text-primary">
+<span class="material-symbols-outlined text-xl mr-2 text-dh-icon">chevron_right</span>
+<span class="font-medium">Advanced UI/UX</span>
+</button>
+</div>
+</nav>
+</div>
+</aside>
+<main class="flex-1 flex flex-col bg-dh-bg">
+<header class="flex items-center justify-between p-3 border-b border-dh-border shrink-0">
+<div class="flex items-center gap-2">
+<button class="p-2 rounded-full hover:bg-dh-focus-hover text-dh-icon lg:hidden">
+<span class="material-symbols-outlined">menu</span>
+</button>
+<nav aria-label="breadcrumb" class="text-sm text-dh-text-secondary">
+<ol class="flex items-center space-x-1">
+<li><span>Kurs ABC</span></li>
+<li><span class="material-symbols-outlined text-base">chevron_right</span></li>
+<li><span>Modul 1</span></li>
+<li><span class="material-symbols-outlined text-base">chevron_right</span></li>
+<li class="font-medium text-dh-text-primary">Gruppe X</li>
+</ol>
+</nav>
+</div>
+<div class="flex items-center gap-2">
+<div class="flex h-9 flex-1 items-center justify-center rounded bg-dh-panel p-0.5 border border-dh-border">
+<label class="flex cursor-pointer h-full grow items-center justify-center rounded-sm px-3 has-[:checked]:bg-dh-focus-hover has-[:checked]:text-dh-text-primary text-dh-icon">
+<span class="material-symbols-outlined text-xl">list</span>
+<input checked="" class="invisible w-0" name="view-toggle" type="radio" value="Listenansicht"/>
+</label>
+<label class="flex cursor-pointer h-full grow items-center justify-center rounded-sm px-3 has-[:checked]:bg-dh-focus-hover has-[:checked]:text-dh-text-primary text-dh-icon">
+<span class="material-symbols-outlined text-xl">grid_view</span>
+<input class="invisible w-0" name="view-toggle" type="radio" value="Rasteransicht"/>
+</label>
+</div>
+<button class="flex items-center justify-center rounded h-9 px-3 bg-dh-panel text-dh-text-primary border border-dh-border text-sm font-medium hover:bg-dh-focus-hover">
+<span class="truncate">Neuer Ordner</span>
+</button>
+<button class="flex items-center justify-center rounded h-9 px-3 bg-dh-primary text-white text-sm font-medium hover:bg-dh-primary-muted">
+<span class="truncate">Hochladen</span>
+</button>
+</div>
+</header>
+<div class="flex-1 p-4 overflow-y-auto">
+<div class="overflow-x-auto bg-dh-panel border border-dh-border rounded-lg">
+<table class="w-full text-sm text-left">
+<thead class="text-xs uppercase text-dh-text-secondary">
+<tr>
+<th class="p-2" scope="col"><input class="rounded bg-dh-bg border-dh-border focus:ring-dh-primary focus:ring-offset-dh-panel" type="checkbox"/></th>
+<th class="px-4 py-2" scope="col">Name</th>
+<th class="px-4 py-2" scope="col">Kurs</th>
+<th class="px-4 py-2" scope="col">Besitzer</th>
+<th class="px-4 py-2" scope="col">Version</th>
+<th class="px-4 py-2" scope="col">Geändert</th>
+<th class="px-4 py-2" scope="col">Größe</th>
+<th class="px-4 py-2" scope="col"><span class="sr-only">Aktionen</span></th>
+</tr>
+</thead>
+<tbody class="text-dh-text-primary">
+<tr class="border-t border-dh-border hover:bg-dh-focus-hover">
+<td class="p-2"><input class="rounded bg-dh-bg border-dh-border focus:ring-dh-primary focus:ring-offset-dh-panel" type="checkbox"/></td>
+<th class="px-4 py-2 font-medium whitespace-nowrap flex items-center gap-3" scope="row">
+<span class="material-symbols-outlined text-dh-warning">folder</span>
+<span>Projektunterlagen</span>
+</th>
+<td class="px-4 py-2 text-dh-text-secondary">Kurs ABC</td>
+<td class="px-4 py-2 text-dh-text-secondary">Sie</td>
+<td class="px-4 py-2"><span class="inline-block py-0.5 px-2 rounded-full bg-dh-icon/30 text-dh-text-secondary text-xs">-</span></td>
+<td class="px-4 py-2 text-dh-text-secondary">20.05.2024</td>
+<td class="px-4 py-2 text-dh-text-secondary">1.2 GB</td>
+<td class="px-4 py-2 text-right"><button class="text-dh-icon hover:text-dh-text-primary"><span class="material-symbols-outlined">more_horiz</span></button></td>
+</tr>
+<tr class="border-t border-dh-border hover:bg-dh-focus-hover bg-dh-primary-muted/10">
+<td class="p-2"><input checked="" class="rounded bg-dh-bg border-dh-border focus:ring-dh-primary focus:ring-offset-dh-panel text-dh-primary" type="checkbox"/></td>
+<th class="px-4 py-2 font-medium whitespace-nowrap flex items-center gap-3" scope="row">
+<span class="material-symbols-outlined text-dh-error">picture_as_pdf</span>
+<span>Usability_Test_Bericht.pdf</span>
+</th>
+<td class="px-4 py-2 text-dh-text-secondary">Kurs ABC</td>
+<td class="px-4 py-2 text-dh-text-secondary">Sarah Miller</td>
+<td class="px-4 py-2"><span class="inline-block py-0.5 px-2 rounded-full bg-blue-500/20 text-blue-300 text-xs">v3</span></td>
+<td class="px-4 py-2 text-dh-text-secondary">21.05.2024</td>
+<td class="px-4 py-2 text-dh-text-secondary">2.5 MB</td>
+<td class="px-4 py-2 text-right"><button class="text-dh-icon hover:text-dh-text-primary"><span class="material-symbols-outlined">more_horiz</span></button></td>
+</tr>
+<tr class="border-t border-dh-border hover:bg-dh-focus-hover">
+<td class="p-2"><input class="rounded bg-dh-bg border-dh-border focus:ring-dh-primary focus:ring-offset-dh-panel" type="checkbox"/></td>
+<th class="px-4 py-2 font-medium whitespace-nowrap flex items-center gap-3" scope="row">
+<span class="material-symbols-outlined text-blue-400">image</span>
+<span>Wireframe_v2.png</span>
+</th>
+<td class="px-4 py-2 text-dh-text-secondary">Kurs ABC</td>
+<td class="px-4 py-2 text-dh-text-secondary">Sie</td>
+<td class="px-4 py-2"><span class="inline-block py-0.5 px-2 rounded-full bg-blue-500/20 text-blue-300 text-xs">v2</span></td>
+<td class="px-4 py-2 text-dh-text-secondary">19.05.2024</td>
+<td class="px-4 py-2 text-dh-text-secondary">850 KB</td>
+<td class="px-4 py-2 text-right"><button class="text-dh-icon hover:text-dh-text-primary"><span class="material-symbols-outlined">more_horiz</span></button></td>
+</tr>
+<tr class="border-t border-dh-border hover:bg-dh-focus-hover">
+<td class="p-2"><input class="rounded bg-dh-bg border-dh-border focus:ring-dh-primary focus:ring-offset-dh-panel" type="checkbox"/></td>
+<th class="px-4 py-2 font-medium whitespace-nowrap flex items-center gap-3" scope="row">
+<span class="material-symbols-outlined text-dh-success">description</span>
+<span>Notizen_Meeting.txt</span>
+</th>
+<td class="px-4 py-2 text-dh-text-secondary">Kurs ABC</td>
+<td class="px-4 py-2 text-dh-text-secondary">John Doe</td>
+<td class="px-4 py-2"><span class="inline-block py-0.5 px-2 rounded-full bg-dh-icon/30 text-dh-text-secondary text-xs">v1</span></td>
+<td class="px-4 py-2 text-dh-text-secondary">18.05.2024</td>
+<td class="px-4 py-2 text-dh-text-secondary">12 KB</td>
+<td class="px-4 py-2 text-right"><button class="text-dh-icon hover:text-dh-text-primary"><span class="material-symbols-outlined">more_horiz</span></button></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</main>
+<aside class="w-96 flex-col bg-dh-panel border-l border-dh-border shrink-0 hidden xl:flex">
+<div class="p-4 border-b border-dh-border h-16 flex items-center justify-between">
+<h3 class="font-semibold text-lg">Dateidetails</h3>
+<button class="p-2 rounded-full hover:bg-dh-focus-hover text-dh-icon">
+<span class="material-symbols-outlined text-xl">close</span>
+</button>
+</div>
+<div class="flex flex-col flex-1 overflow-y-auto">
+<div class="p-4 border-b border-dh-border">
+<div class="bg-dh-bg aspect-video rounded-lg flex items-center justify-center border border-dh-border">
+<span class="material-symbols-outlined text-5xl text-dh-error">picture_as_pdf</span>
+</div>
+<h4 class="mt-4 font-semibold text-base">Usability_Test_Bericht.pdf</h4>
+<p class="text-sm text-dh-text-secondary">2.5 MB · Geändert 21.05.2024</p>
+</div>
+<div class="p-4 border-b border-dh-border">
+<h4 class="font-semibold mb-4">Versionsverlauf</h4>
+<div class="space-y-4 text-sm">
+<div class="relative pl-8">
+<div class="absolute left-3 top-1 size-2 rounded-full bg-dh-primary ring-4 ring-dh-primary/30"></div>
+<div class="absolute left-[15px] top-2 h-full w-px bg-dh-border"></div>
+<p class="font-medium text-dh-text-primary">Version 3 (Aktuell)</p>
+<p class="text-xs text-dh-text-secondary">Aktualisiert von Sarah Miller am 21.05.2024</p>
+<p class="text-sm mt-2 p-2 bg-dh-bg rounded border border-dh-border">"Endgültige Schlussfolgerungen und Empfehlungen hinzugefügt."</p>
+</div>
+<div class="relative pl-8">
+<div class="absolute left-3 top-1 size-2 rounded-full bg-dh-icon"></div>
+<div class="absolute left-[15px] top-2 h-full w-px bg-dh-border"></div>
+<p class="font-medium text-dh-text-primary">Version 2</p>
+<p class="text-xs text-dh-text-secondary">Aktualisiert von Ihnen am 20.05.2024</p>
+<p class="text-sm mt-2 p-2 bg-dh-bg rounded border border-dh-border">"Feedback aus dem Peer-Review eingearbeitet."</p>
+</div>
+<div class="relative pl-8">
+<div class="absolute left-3 top-1 size-2 rounded-full bg-dh-icon"></div>
+<p class="font-medium text-dh-text-primary">Version 1</p>
+<p class="text-xs text-dh-text-secondary">Erstellt von Ihnen am 19.05.2024</p>
+</div>
+</div>
+</div>
+<div class="p-4">
+<h4 class="font-semibold mb-4">Berechtigungen</h4>
+<div class="space-y-3">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<img class="size-8 rounded-full" data-alt="Profile picture of You" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCEz0hHFgTVvhi2TnJM-KihQJMxSUKv3Z8YcR9fzs7ObLbHbjs2wwN4C-SlDg2JUJribe32s90HhxJ1vxMC4osH9o6INcmDl-KrJ3kLvfjoPtaqBiLIzoawikFuBD6LWN73CExjDYPHT1yuzXxvTqTmRaN1ftEm4s8wDZxWdK5qFi2ug5F2Ya_W84GBI22LmHqkBl6STuZrWc8dL4aITXbHJ_lGMXHLyBLzb9ZjqK9_uDibGymZTFzXDE6K4Es5BPhA-R0bZptOwfQ"/>
+<div>
+<p class="font-medium text-sm text-dh-text-primary">Sie</p>
+<p class="text-xs text-dh-text-secondary">alex.schmidt@dhbw.de</p>
+</div>
+</div>
+<span class="text-xs font-semibold py-1 px-2.5 rounded-full bg-dh-success/20 text-dh-success">Eigentümer</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<img class="size-8 rounded-full" data-alt="Profile picture of Sarah Miller" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCbZ-kNNsSVvAmS2AmCYoF83lQA7OlA1fDxjNKTjoIkI7NHpkzWj_ezNynIXsrLHw02CI2JH1BZa3R4mTKiQ9dUp0ZdFaF0DKm1kWPoJq3sl78-ykUjtjcQFcmxNvlu786gXyQP_FmHGEwfGxH6tbopP4zMDlScFghvkktC1kzp9qdX-wEd0cKwl-_tbdf2Mogcg4YPcmz1Wt_d3Luw-a0ea6Jwzb5-sO6X05Bmc2Y_CSLbTe--hu2JKS2hGa-rBoNr2Zd616TkAM0"/>
+<div>
+<p class="font-medium text-sm text-dh-text-primary">Sarah Miller</p>
+<p class="text-xs text-dh-text-secondary">sarah.miller@dhbw.de</p>
+</div>
+</div>
+<span class="text-xs font-semibold py-1 px-2.5 rounded-full bg-blue-500/20 text-blue-300">Bearbeiter</span>
+</div>
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-3">
+<img class="size-8 rounded-full" data-alt="Profile picture of John Doe" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-ZT3J4ZxjjiNDYuc5GiM1aDZcH6kZl3XJM8rF_8C3nhxZvs0rRkWmS_T6aQVhhC6F-eH_zWcMvJ8pSP9oxy8lCTT8Fnrys9NXVNSXP0kVxch818mD7ScTPVMwL4Jz7YaEYm8QrYniPprWA3kAOJEIlSYlO-rFblTNHfaUrMpdpxm5Q3aeTiKrt88PBqrbtKmrl8mgMVuxG-LEn3ePFYQufPBAD9uAWkhlF7H1XqDk53tUc2sVsb40gWETz0cU3rg9c0GEwJYures"/>
+<div>
+<p class="font-medium text-sm text-dh-text-primary">John Doe</p>
+<p class="text-xs text-dh-text-secondary">john.doe@dhbw.de</p>
+</div>
+</div>
+<span class="text-xs font-semibold py-1 px-2.5 rounded-full bg-dh-icon/30 text-dh-text-secondary">Betrachter</span>
+</div>
+</div>
+</div>
+</div>
+<div class="p-4 border-t border-dh-border">
+<button class="flex w-full items-center justify-center gap-2 overflow-hidden rounded h-9 px-4 bg-dh-panel text-dh-text-primary text-sm font-medium hover:bg-dh-focus-hover border border-dh-border">
+<span class="material-symbols-outlined text-base">share</span>
+<span class="truncate">Datei teilen</span>
+</button>
+</div>
+</aside>
+</div>
+</div>
+
+</body></html>

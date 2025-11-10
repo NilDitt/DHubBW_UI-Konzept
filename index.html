@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html class="dark" lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>DHubBW - Dashboard</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              // DHBW Color Palette
+              "dhbw-bg": "#121315",
+              "dhbw-panel": "#1A1C1F",
+              "dhbw-border": "#2A2D31",
+              "dhbw-red": "#C8102E",
+              "dhbw-red-muted": "#992029",
+              "dhbw-text-primary": "#F2F2F5",
+              "dhbw-text-secondary": "#A8ADB5",
+              "dhbw-icon": "#5C6068",
+              "dhbw-focus": "#26292D",
+              "dhbw-success": "#3EA05B",
+              "dhbw-warning": "#EBCB70",
+              "dhbw-error": "#E03140",
+            },
+            fontFamily: {
+              display: ["Inter", "Roboto", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+      }
+      body {
+        min-height: max(884px, 100dvh);
+      }
+    </style>
+  </head>
+  <body class="bg-dhbw-bg font-display text-dhbw-text-primary">
+    <!-- Navigation Header -->
+    <header
+      class="w-full bg-dhbw-panel border-b border-dhbw-border px-4 lg:px-6 h-16 flex items-center justify-between sticky top-0 z-50"
+    >
+      <div class="flex items-center gap-6">
+        <!-- Mobile Menu Button (links vom Logo) -->
+        <button class="md:hidden text-dhbw-icon hover:text-dhbw-text-primary">
+          <span class="material-symbols-outlined">menu</span>
+        </button>
+        
+        <!-- Update Logo (vereinheitlicht, größer) -->
+        <img alt="DHubBW Logo" class="h-10 w-auto" src="UpdateLogo 1.png" />
+
+        <!-- Navigation Menu -->
+        <nav class="hidden md:flex items-center gap-4">
+          <a
+            class="nav-link text-sm font-medium text-dhbw-text-primary bg-dhbw-focus px-3 py-1.5 rounded-md"
+            href="javascript:void(0)"
+            onclick="showPage('dashboard')"
+            >Dashboard</a
+          >
+          <a
+            class="nav-link text-sm font-medium text-dhbw-text-secondary hover:text-dhbw-text-primary"
+            href="javascript:void(0)"
+            onclick="showPage('files')"
+            >Dateien</a
+          >
+          <a
+            class="nav-link text-sm font-medium text-dhbw-text-secondary hover:text-dhbw-text-primary"
+            href="javascript:void(0)"
+            onclick="showPage('calendar')"
+            >Kalender</a
+          >
+          <a
+            class="nav-link text-sm font-medium text-dhbw-text-secondary hover:text-dhbw-text-primary"
+            href="javascript:void(0)"
+            onclick="showPage('mensa')"
+            >Mensa</a
+          >
+          <a
+            class="nav-link text-sm font-medium text-dhbw-text-secondary hover:text-dhbw-text-primary"
+            href="javascript:void(0)"
+            onclick="showPage('polls')"
+            >Umfragen</a
+          >
+          <a
+            class="nav-link text-sm font-medium text-dhbw-text-secondary hover:text-dhbw-text-primary"
+            href="javascript:void(0)"
+            onclick="showPage('groups')"
+            >Gruppen</a
+          >
+          <a
+            class="nav-link text-sm font-medium text-dhbw-text-secondary hover:text-dhbw-text-primary"
+            href="javascript:void(0)"
+            onclick="showPage('qa')"
+            >Q&A</a
+          >
+          <a
+            class="nav-link text-sm font-medium text-dhbw-text-secondary hover:text-dhbw-text-primary"
+            href="javascript:void(0)"
+            onclick="showPage('admin')"
+            >Admin</a
+          >
+        </nav>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <button class="text-dhbw-icon hover:text-dhbw-text-primary">
+          <span class="material-symbols-outlined">search</span>
+        </button>
+        <button class="text-dhbw-icon hover:text-dhbw-text-primary">
+          <span class="material-symbols-outlined">notifications</span>
+        </button>
+        <!-- Profilbild aus calendar_and_deadlines -->
+        <img
+          alt="Profile Avatar"
+          class="h-8 w-8 rounded-full object-cover cursor-pointer"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuChdHtZhjrNnRwmzFIbSthq5njGjE1VSLAcbteBNhzFiAKltSoGBsklJwTyH2cKMLmE4en-qwdid1WwUrBangAVrIA-mzk0cq77DYxuKUojXOZJIggoY4TnVgtLfAChxPVNYeBQckrDvL1gcowGtopbe7D9ZGUoXXXEc2DUwl6UlOUSBf3UQsATpXAFJRThDWtJo9nlzsak7VA1lp0kxkPfocs28_oIVesBXBNHeZBjSV0PzWB-8RC9epbbhd_tM0WKwD1R4Wzcsik"
+          onclick="showPage('profile')"
+        />
+      </div>
+    </header>
+
+    <!-- Content Container -->
+    <div class="min-h-screen bg-dhbw-bg">
+      <iframe
+        id="content-frame"
+        class="w-full h-[calc(100vh-4rem)] border-0"
+        src="dashboard_overview/code.html"
+      ></iframe>
+    </div>
+
+    <script>
+      function showPage(page) {
+        // Remove active state from all nav links
+        document.querySelectorAll(".nav-link").forEach((link) => {
+          link.classList.remove(
+            "text-dhbw-text-primary",
+            "bg-dhbw-focus",
+            "px-3",
+            "py-1.5",
+            "rounded-md"
+          );
+          link.classList.add("text-dhbw-text-secondary");
+        });
+
+        // Determine which nav link (if any) should get the active state
+        let activeLink = null;
+        if (typeof event !== "undefined" && event?.target) {
+          // Only activate if the click originated from within a nav link
+          activeLink = event.target.closest?.(".nav-link") || null;
+        }
+        // If triggered programmatically (e.g., on load) or from non-nav elements (e.g., profile image),
+        // select the link that matches the requested page
+        if (!activeLink) {
+          activeLink = document.querySelector(
+            `.nav-link[onclick="showPage('${page}')"]`
+          );
+        }
+        if (activeLink) {
+          activeLink.classList.remove("text-dhbw-text-secondary");
+          activeLink.classList.add(
+            "text-dhbw-text-primary",
+            "bg-dhbw-focus",
+            "px-3",
+            "py-1.5",
+            "rounded-md"
+          );
+        }
+
+        // Load the appropriate page
+        const iframe = document.getElementById("content-frame");
+        switch (page) {
+          case "dashboard":
+            iframe.src = "dashboard_overview/code.html";
+            break;
+          case "files":
+            iframe.src = "files_management/code.html";
+            break;
+          case "calendar":
+            iframe.src = "calendar_and_deadlines/code.html";
+            break;
+          case "mensa":
+            iframe.src = "mensa-detailansicht/code.html";
+            break;
+          case "polls":
+            iframe.src = "polls_management/code.html";
+            break;
+          case "groups":
+            iframe.src = "groups_directory/code.html";
+            break;
+          case "qa":
+            iframe.src = "frage_&_antwort_plattform/code.html";
+            break;
+          case "admin":
+            iframe.src = "admin/stuv_announcements/code.html";
+            break;
+          case "profile":
+            iframe.src = "profilseite/code.html";
+            break;
+        }
+      }
+
+      // Initialize with dashboard page
+      document.addEventListener("DOMContentLoaded", function () {
+        showPage("dashboard");
+      });
+    </script>
+  </body>
+</html>

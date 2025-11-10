@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html class="dark" lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Fragedetailansicht - DHubBW</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "dhbw-bg": "#121315", // Main background
+              "dhbw-panel": "#1A1C1F", // Panels / cards
+              "dhbw-border": "#2A2D31", // Borders & dividers
+              "dhbw-primary": "#C8102E", // Primary accent (DHBW red)
+              "dhbw-primary-muted": "#992029", // Secondary muted red
+              "dhbw-text-primary": "#F2F2F5", // Text primary
+              "dhbw-text-secondary": "#A8ADB5", // Text secondary
+              "dhbw-icon": "#5C6068", // Icon / outline gray
+              "dhbw-hover": "#26292D", // Focus/hover gray
+              "dhbw-success": "#3EA05B", // Success
+              "dhbw-warning": "#EBCB70", // Warning
+              "dhbw-error": "#E03140", // Error
+            },
+            fontFamily: {
+              sans: ["Inter", "Roboto", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.5rem", // 8px
+              lg: "0.75rem", // 12px
+              xl: "1rem", // 16px
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24;
+      }
+      body {
+        min-height: max(884px, 100dvh);
+      }
+    </style>
+    <style>
+      body {
+        min-height: max(884px, 100dvh);
+      }
+    </style>
+  </head>
+  <body class="bg-dhbw-bg text-dhbw-text-primary font-sans">
+    <main class="flex-grow p-4 pb-24">
+      <div class="mb-4 flex items-center gap-3">
+        <button
+          onclick="parent.showQAList()"
+          class="flex h-10 w-10 items-center justify-center rounded-full text-dhbw-text-primary hover:bg-dhbw-hover transition-colors"
+        >
+          <span class="material-symbols-outlined">arrow_back</span>
+        </button>
+        <h1 class="text-xl font-bold text-dhbw-text-primary">Fragedetails</h1>
+      </div>
+      <section
+        class="mb-6 overflow-hidden rounded-lg border border-dhbw-border bg-dhbw-panel"
+      >
+        <div class="flex p-4">
+          <div class="flex flex-col items-center gap-1 pr-4">
+            <button
+              class="rounded-full p-1.5 text-dhbw-primary transition-colors hover:bg-dhbw-hover"
+            >
+              <span class="material-symbols-outlined">arrow_upward</span>
+            </button>
+            <p class="text-base font-bold text-dhbw-text-primary">12</p>
+            <button
+              class="rounded-full p-1.5 text-dhbw-text-secondary transition-colors hover:bg-dhbw-hover"
+            >
+              <span class="material-symbols-outlined">arrow_downward</span>
+            </button>
+          </div>
+          <div class="flex-1">
+            <h1
+              class="pb-2 text-xl font-bold leading-tight text-dhbw-text-primary"
+            >
+              Wie implementiere ich eine rekursive Funktion in Java, um die
+              Fibonacci-Folge zu berechnen?
+            </h1>
+            <p class="pb-3 text-sm leading-relaxed text-dhbw-text-secondary">
+              Ich versuche, die Fibonacci-Folge mit einer rekursiven Funktion in
+              Java zu berechnen, stoße aber auf Probleme mit der Leistung bei
+              größeren Zahlen. Hier ist mein bisheriger Code. Gibt es eine
+              Möglichkeit, ihn zu optimieren, möglicherweise mit Memoization?
+            </p>
+            <div class="my-3 rounded-md bg-dhbw-bg p-3">
+              <pre><code class="font-mono text-xs text-dhbw-text-secondary">public int fibonacci(int n) {
+    if (n &lt;= 1) {
+        return n;
+    }
+    return fibonacci(n - 1) + fibonacci(n - 2);
+}</code></pre>
+            </div>
+            <div class="flex flex-wrap gap-2 pt-2 pb-3">
+              <div
+                class="flex h-7 items-center justify-center rounded-full bg-dhbw-primary-muted px-3"
+              >
+                <p class="text-xs font-medium text-dhbw-text-primary">
+                  Programmieren 1
+                </p>
+              </div>
+              <div
+                class="flex h-7 items-center justify-center rounded-full bg-dhbw-primary-muted px-3"
+              >
+                <p class="text-xs font-medium text-dhbw-text-primary">Java</p>
+              </div>
+              <div
+                class="flex h-7 items-center justify-center rounded-full bg-dhbw-primary-muted px-3"
+              >
+                <p class="text-xs font-medium text-dhbw-text-primary">
+                  Algorithmen
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="flex items-center justify-end border-t border-dhbw-border bg-dhbw-hover/30 px-4 py-2.5"
+        >
+          <div class="text-right">
+            <p class="text-sm font-semibold text-dhbw-text-primary">
+              Max Mustermann
+            </p>
+            <p class="text-xs text-dhbw-text-secondary">
+              gefragt am 23. Mai 2024
+            </p>
+          </div>
+          <img
+            alt="User avatar"
+            class="ml-3 h-9 w-9 rounded-full object-cover"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBW52Im2iZtfNcbu4nugzXw8o0WPpY8Bz_zc18Jz82vkzPYWfzkYYrSNtL66ByNkhutbheSbPrclP_ZIJqu3mztw_lycakXPClchgJxMKJcfQHq2C7OnhNtDoxvyfDeTAC5JgA8_r19e9fhrh9IzW9wAtGDpGRxVBIBcTCH87tEg8u1IFp1pnDsF7u2Ebg4Lj4I0Y8sVIPZGoupNmyTbCLiBv9VZaSfVcZaHkFvTDtU27mx7eDWJkIh2fx-_H7eZrxo4OA0Y1caJAw"
+          />
+        </div>
+      </section>
+      <section>
+        <div class="mb-4 flex items-baseline justify-between">
+          <h2 class="text-lg font-bold text-dhbw-text-primary">2 Antworten</h2>
+        </div>
+        <div
+          class="mb-4 overflow-hidden rounded-lg border border-dhbw-border bg-dhbw-panel"
+        >
+          <div class="flex p-4">
+            <div class="flex flex-col items-center gap-1 pr-4">
+              <button
+                class="rounded-full p-1.5 text-dhbw-text-secondary transition-colors hover:bg-dhbw-hover"
+              >
+                <span class="material-symbols-outlined">arrow_upward</span>
+              </button>
+              <p class="text-base font-bold text-dhbw-success">8</p>
+              <button
+                class="rounded-full p-1.5 text-dhbw-text-secondary transition-colors hover:bg-dhbw-hover"
+              >
+                <span class="material-symbols-outlined">arrow_downward</span>
+              </button>
+            </div>
+            <div class="flex-1">
+              <p class="pb-3 text-sm leading-relaxed text-dhbw-text-secondary">
+                Ja, du kannst Memoization verwenden, um die Leistung drastisch
+                zu verbessern. Die Idee ist, die Ergebnisse der Fibonacci-Zahlen
+                zu speichern, sobald sie berechnet wurden, damit du sie nicht
+                erneut berechnen musst.
+              </p>
+              <div class="my-2 rounded-md bg-dhbw-bg p-3">
+                <pre><code class="font-mono text-xs text-dhbw-text-secondary">private Map&lt;Integer, Integer&gt; memo = new HashMap&lt;&gt;();
+public int fibonacci(int n) {
+    if (n &lt;= 1) {
+        return n;
+    }
+    if (memo.containsKey(n)) {
+        return memo.get(n);
+    }
+    int result = fibonacci(n - 1) + fibonacci(n - 2);
+    memo.put(n, result);
+    return result;
+}</code></pre>
+              </div>
+            </div>
+          </div>
+          <div
+            class="flex items-center justify-end border-t border-dhbw-border bg-dhbw-hover/30 px-4 py-2.5"
+          >
+            <div class="text-right">
+              <p class="text-sm font-semibold text-dhbw-text-primary">
+                Erika Mustermann
+              </p>
+              <p class="text-xs text-dhbw-text-secondary">
+                geantwortet am 23. Mai 2024
+              </p>
+            </div>
+            <img
+              alt="User avatar"
+              class="ml-3 h-9 w-9 rounded-full object-cover"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDotDUM2nTMC6qROWtBZihB48sCPQuXlyTY_T7lwZIM3UBAa6UaNfsdgJtl2uyMxAJ-uV6l_MgeCLlXQc5mcRKneJ8rgP_MwHSFVUB_3b4ipSgCWkCATD9G6-qWcbnKJFY1uxI_5QFUe8VTx902flfO7w9Ue-8a4iruZ9KMCxzREHwq-IVZaxqRHRjPTHraVR4VaEK2ssPF1MV4KmF6qGp7P6jkbHdvDbLv3cYsBK99YV8_Cq0CruD5tZexf1suUBdwiAh9265xhxc"
+            />
+          </div>
+        </div>
+        <div
+          class="mb-6 overflow-hidden rounded-lg border border-dhbw-border bg-dhbw-panel"
+        >
+          <div class="flex p-4">
+            <div class="flex flex-col items-center gap-1 pr-4">
+              <button
+                class="rounded-full p-1.5 text-dhbw-text-secondary transition-colors hover:bg-dhbw-hover"
+              >
+                <span class="material-symbols-outlined">arrow_upward</span>
+              </button>
+              <p class="text-base font-bold text-dhbw-error">-2</p>
+              <button
+                class="rounded-full p-1.5 text-dhbw-text-secondary transition-colors hover:bg-dhbw-hover"
+              >
+                <span class="material-symbols-outlined">arrow_downward</span>
+              </button>
+            </div>
+            <div class="flex-1">
+              <p class="text-sm leading-relaxed text-dhbw-text-secondary">
+                Eine iterative Lösung ist oft noch effizienter und vermeidet
+                Stack-Overflow-Fehler bei sehr großen Zahlen.
+              </p>
+            </div>
+          </div>
+          <div
+            class="flex items-center justify-end border-t border-dhbw-border bg-dhbw-hover/30 px-4 py-2.5"
+          >
+            <div class="text-right">
+              <p class="text-sm font-semibold text-dhbw-text-primary">
+                Peter Schmidt
+              </p>
+              <p class="text-xs text-dhbw-text-secondary">
+                geantwortet am 24. Mai 2024
+              </p>
+            </div>
+            <img
+              alt="User avatar"
+              class="ml-3 h-9 w-9 rounded-full object-cover"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCn7z6jmD1Xp7TaKDgde-1F8oszv8-7FPODlhEFXqapydFtaRsResRy0Z6HbNIx_OW6X1fXcQqHYmvoxUjkMWwt9GJkfoETMWqQrgN9dUzjrT6sgoH5QyDswJmqgRuUmcLPTW9i-4u9Vif-UTCjlndrGPcvkz83SziP8J1BSTKLtiaFdDCa5QCJjdq9VYKXIpnc3s46czuQjGYI_YOopDk1ggJVGdodN6Z8S3fXgrHl9mABAGRoD53fD9NDkbdlYdozF9VohAasbAE"
+            />
+          </div>
+        </div>
+      </section>
+      <section
+        class="fixed bottom-0 left-0 right-0 border-t border-dhbw-border bg-dhbw-panel p-4"
+      >
+        <h2 class="mb-3 text-lg font-bold text-dhbw-text-primary">
+          Deine Antwort
+        </h2>
+        <div class="flex items-start gap-3">
+          <textarea
+            class="h-12 min-h-[48px] flex-1 resize-none rounded-lg border border-dhbw-border bg-dhbw-bg p-3 text-sm text-dhbw-text-primary placeholder:text-dhbw-text-secondary focus:border-dhbw-primary focus:ring-1 focus:ring-dhbw-primary"
+            placeholder="Schreibe deine Antwort..."
+          ></textarea>
+          <button
+            class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-dhbw-primary text-white transition-colors hover:bg-dhbw-primary-muted focus:outline-none focus:ring-2 focus:ring-dhbw-primary/50 focus:ring-offset-2 focus:ring-offset-dhbw-panel"
+          >
+            <span class="material-symbols-outlined">send</span>
+          </button>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
