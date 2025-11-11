@@ -170,6 +170,24 @@
         </div>
         <div
           class="flex cursor-pointer flex-col gap-3 rounded-lg bg-dhbw-bg-panel p-4 border border-dhbw-border transition-all hover:bg-dhbw-hover hover:border-dhbw-primary/50"
+          onclick="showPumpingDetail()"
+        >
+          <h3 class="text-base font-semibold text-dhbw-text-primary">
+            Ist das Pumping-Lemma für kontextfreie Sprachen klausurrelevant für die Theoretische Informatik 3 Klausur?
+          </h3>
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="rounded-full bg-dhbw-primary-muted/20 px-2.5 py-0.5 text-xs font-medium text-dhbw-primary">TI 3</span>
+            <span class="rounded-full bg-dhbw-primary-muted/20 px-2.5 py-0.5 text-xs font-medium text-dhbw-primary">Formale Sprachen</span>
+            <span class="rounded-full bg-dhbw-primary-muted/20 px-2.5 py-0.5 text-xs font-medium text-dhbw-primary">Klausur</span>
+          </div>
+          <div class="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-dhbw-text-secondary">
+            <span>1 Antwort</span>
+            <span>42 Aufrufe</span>
+            <span>Heute</span>
+          </div>
+        </div>
+        <div
+          class="flex cursor-pointer flex-col gap-3 rounded-lg bg-dhbw-bg-panel p-4 border border-dhbw-border transition-all hover:bg-dhbw-hover hover:border-dhbw-primary/50"
         >
           <h3 class="text-base font-semibold text-dhbw-text-primary">
             Was ist der Unterschied zwischen TCP und UDP in Computernetzwerken?
@@ -267,6 +285,14 @@
           if (iframe) {
             iframe.src =
               "frage_&_antwort_plattform/fragedetailansicht/code.html";
+          }
+        }
+      }
+      function showPumpingDetail() {
+        if (parent && parent.document) {
+          const iframe = parent.document.getElementById("content-frame");
+          if (iframe) {
+            iframe.src = "frage_&_antwort_plattform/fragedetailansicht_pumping/code.html";
           }
         }
       }

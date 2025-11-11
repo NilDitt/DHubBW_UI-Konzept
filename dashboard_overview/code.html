@@ -73,7 +73,9 @@
           Mein Arbeitsbereich
         </h1>
         <div
-          class="w-full bg-dhbw-panel border border-dhbw-border rounded-lg mb-6 @container"
+          class="w-full bg-dhbw-panel border border-dhbw-border rounded-lg mb-6 @container cursor-pointer hover:border-dhbw-red/60 transition-colors"
+          onclick="parent?.showPage && parent.showPage('calendar')"
+          title="Zum Kalender"
         >
           <div
             class="flex flex-col @2xl:flex-row divide-y @2xl:divide-y-0 @2xl:divide-x divide-dhbw-border"
@@ -159,7 +161,11 @@
           <!-- Calendar & Files (Left Column) -->
           <div class="lg:col-span-2 space-y-6">
             <!-- Calendar Widget -->
-            <div class="bg-dhbw-panel p-4 rounded-lg border border-dhbw-border">
+            <div
+              class="bg-dhbw-panel p-4 rounded-lg border border-dhbw-border cursor-pointer hover:border-dhbw-red/60 transition-colors"
+              onclick="parent?.showPage && parent.showPage('calendar')"
+              title="Kalender öffnen"
+            >
               <div class="flex justify-between items-center mb-4">
                 <h3 class="text-base font-bold text-dhbw-text-primary">
                   Mein Kalender
@@ -248,7 +254,11 @@
               </div>
             </div>
             <!-- Recent Files Widget -->
-            <div class="bg-dhbw-panel p-4 rounded-lg border border-dhbw-border">
+            <div
+              class="bg-dhbw-panel p-4 rounded-lg border border-dhbw-border cursor-pointer hover:border-dhbw-red/60 transition-colors"
+              onclick="parent?.showPage && parent.showPage('files')"
+              title="Dateien öffnen"
+            >
               <div class="flex justify-between items-center mb-3">
                 <h3 class="text-base font-bold text-dhbw-text-primary">
                   Neueste Dateien
@@ -332,7 +342,11 @@
           <!-- Right Column -->
           <div class="lg:col-span-1 space-y-6">
             <!-- Mensa Widget -->
-            <div class="bg-dhbw-panel p-4 rounded-lg border border-dhbw-border">
+            <div
+              class="bg-dhbw-panel p-4 rounded-lg border border-dhbw-border cursor-pointer hover:border-dhbw-red/60 transition-colors"
+              onclick="parent?.showPage && parent.showPage('mensa')"
+              title="Mensa öffnen"
+            >
               <div class="flex justify-between items-center mb-3">
                 <h3 class="text-base font-bold text-dhbw-text-primary">
                   Mensa Heute
@@ -340,24 +354,24 @@
                 <div
                   class="flex items-center bg-dhbw-bg rounded-full p-0.5 text-xs border border-dhbw-border"
                 >
-                  <button
-                    class="px-2 py-1 rounded-full bg-dhbw-red text-dhbw-text-primary"
+                  <button data-day="heute" aria-pressed="true"
+                    class="mensa-mini-day px-2 py-1 rounded-full bg-dhbw-red text-dhbw-text-primary"
                   >
                     Heute
                   </button>
-                  <button
-                    class="px-2 py-1 rounded-full text-dhbw-text-secondary hover:bg-dhbw-focus"
+                  <button data-day="mi" aria-pressed="false"
+                    class="mensa-mini-day px-2 py-1 rounded-full text-dhbw-text-secondary hover:bg-dhbw-focus"
                   >
                     Mi
                   </button>
-                  <button
-                    class="px-2 py-1 rounded-full text-dhbw-text-secondary hover:bg-dhbw-focus"
+                  <button data-day="do" aria-pressed="false"
+                    class="mensa-mini-day px-2 py-1 rounded-full text-dhbw-text-secondary hover:bg-dhbw-focus"
                   >
                     Do
                   </button>
                 </div>
               </div>
-              <div class="space-y-2">
+              <div id="mensa-widget-list" class="space-y-2">
                 <div class="flex justify-between items-center">
                   <div>
                     <p class="text-dhbw-text-primary text-sm">
@@ -390,7 +404,11 @@
               </div>
             </div>
             <!-- Announcements Widget -->
-            <div class="bg-dhbw-panel p-4 rounded-lg border border-dhbw-border">
+            <div
+              class="bg-dhbw-panel p-4 rounded-lg border border-dhbw-border cursor-pointer hover:border-dhbw-red/60 transition-colors"
+              onclick="parent?.showPage && parent.showPage('admin')"
+              title="Admin / Ankündigungen öffnen"
+            >
               <div class="flex justify-between items-center mb-3">
                 <h3 class="text-base font-bold text-dhbw-text-primary">
                   Ankündigungen
@@ -422,4 +440,57 @@
       </main>
     </div>
   </body>
+<script>
+  // Simple hardcoded switching for Mensa widget (Heute / Mi / Do)
+  (function(){
+    const DATA = {
+      heute: [
+        { title: 'Schnitzel "Wiener Art"', desc: 'mit Pommes', price: '€5.20' },
+        { title: 'Pasta al Pesto', desc: 'Vegan', price: '€4.50' },
+        { title: 'Currywurst', desc: 'mit Brot', price: '€3.80' },
+      ],
+      mi: [
+        { title: 'Schnitzel "Wiener Art"', desc: 'mit Pommes Frites', price: '€5.20' },
+        { title: 'Kichererbsen-Curry', desc: 'mit Basmatireis', price: '€4.20' },
+        { title: 'Beilagensalat', desc: 'klein', price: '€0.80' },
+      ],
+      do: [
+        { title: 'Rindergulasch', desc: 'mit Spätzle', price: '€6.10' },
+        { title: 'Gemüsepfanne', desc: 'mit Reis (vegan)', price: '€4.90' },
+        { title: 'Pommes Frites', desc: '', price: '€1.80' },
+      ]
+    };
+    function render(items){
+      return items.map(it => `
+        <div class="flex justify-between items-center">
+          <div>
+            <p class="text-dhbw-text-primary text-sm">${it.title}</p>
+            ${it.desc ? `<p class="text-dhbw-text-secondary text-xs">${it.desc}</p>` : ''}
+          </div>
+          <p class="text-dhbw-text-primary font-medium text-sm">${it.price}</p>
+        </div>
+      `).join('');
+    }
+    function setDay(day){
+      const list = document.getElementById('mensa-widget-list');
+      if (!list || !DATA[day]) return;
+      list.innerHTML = render(DATA[day]);
+      document.querySelectorAll('.mensa-mini-day').forEach(btn => {
+        const isActive = btn.getAttribute('data-day') === day;
+        btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        btn.classList.toggle('bg-dhbw-red', isActive);
+        btn.classList.toggle('text-dhbw-text-primary', isActive);
+        btn.classList.toggle('text-dhbw-text-secondary', !isActive);
+      });
+    }
+    document.querySelectorAll('.mensa-mini-day').forEach(btn => {
+      btn.addEventListener('click', (ev) => {
+        ev.stopPropagation(); // prevent navigating to Mensa page
+        setDay(btn.getAttribute('data-day'));
+      });
+    });
+    // init
+    setDay('heute');
+  })();
+</script>
 </html>

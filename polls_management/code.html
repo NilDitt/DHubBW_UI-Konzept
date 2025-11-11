@@ -1,236 +1,454 @@
 <!DOCTYPE html>
-<html class="dark" lang="de"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Umfragen</title>
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;display=swap" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
-<style type="text/tailwindcss">
-        @layer base {
-            :root {
-                --dhub-bg: #121315;
-                --dhub-panel: #1A1C1F;
-                --dhub-border: #2A2D31;
-                --dhub-primary: #C8102E;
-                --dhub-secondary-red: #992029;
-                --dhub-text-primary: #F2F2F5;
-                --dhub-text-secondary: #A8ADB5;
-                --dhub-icon-gray: #5C6068;
-                --dhub-focus: #26292D;
-                --dhub-success: #3EA05B;
-                --dhub-warning: #EBCB70;
-                --dhub-error: #E03140;
-            }
+<html class="dark" lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Umfragen</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <style type="text/tailwindcss">
+      @layer base {
+        :root {
+          --dhub-bg: #121315;
+          --dhub-panel: #1a1c1f;
+          --dhub-border: #2a2d31;
+          --dhub-primary: #c8102e;
+          --dhub-secondary-red: #992029;
+          --dhub-text-primary: #f2f2f5;
+          --dhub-text-secondary: #a8adb5;
+          --dhub-icon-gray: #5c6068;
+          --dhub-focus: #26292d;
+          --dhub-success: #3ea05b;
+          --dhub-warning: #ebcb70;
+          --dhub-error: #e03140;
         }
+      }
     </style>
-<script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        "bg-main": "var(--dhub-bg)",
-                        "panel": "var(--dhub-panel)",
-                        "border-divider": "var(--dhub-border)",
-                        "primary-accent": "var(--dhub-primary)",
-                        "secondary-red": "var(--dhub-secondary-red)",
-                        "text-primary": "var(--dhub-text-primary)",
-                        "text-secondary": "var(--dhub-text-secondary)",
-                        "icon-gray": "var(--dhub-icon-gray)",
-                        "focus-gray": "var(--dhub-focus)",
-                        "success": "var(--dhub-success)",
-                        "warning": "var(--dhub-warning)",
-                        "error": "var(--dhub-error)",
-                    },
-                    fontFamily: {
-                        "display": ["Inter", "Roboto", "sans-serif"]
-                    },
-                    borderRadius: {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                },
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "bg-main": "var(--dhub-bg)",
+              panel: "var(--dhub-panel)",
+              "border-divider": "var(--dhub-border)",
+              "primary-accent": "var(--dhub-primary)",
+              "secondary-red": "var(--dhub-secondary-red)",
+              "text-primary": "var(--dhub-text-primary)",
+              "text-secondary": "var(--dhub-text-secondary)",
+              "icon-gray": "var(--dhub-icon-gray)",
+              "focus-gray": "var(--dhub-focus)",
+              success: "var(--dhub-success)",
+              warning: "var(--dhub-warning)",
+              error: "var(--dhub-error)",
             },
-        }
+            fontFamily: {
+              display: ["Inter", "Roboto", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
     </script>
-<style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-            font-size: 24px;
-        }
-        body {
-            min-height: max(884px, 100dvh);
-        }
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+        font-size: 24px;
+      }
+      body {
+        min-height: max(884px, 100dvh);
+      }
     </style>
-<style>
-    body {
-      min-height: max(884px, 100dvh);
-    }
-  </style>
+    <style>
+      body {
+        min-height: max(884px, 100dvh);
+      }
+    </style>
   </head>
-<body class="bg-bg-main font-display text-text-primary antialiased">
-<div class="flex flex-col min-h-screen w-full">
-<main class="flex-1 p-4 sm:p-6 lg:p-8">
-<div class="w-full max-w-5xl mx-auto">
-<header class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-<h1 class="text-text-primary text-2xl font-bold">Umfragen</h1>
-<button class="w-full sm:w-auto flex items-center justify-center gap-2 rounded-md bg-primary-accent py-2 px-4 text-white text-sm font-bold hover:bg-secondary-red transition-colors duration-200">
-<span class="material-symbols-outlined !text-xl">add</span> Umfrage erstellen
-                    </button>
-</header>
-<div class="mt-6">
-<div class="flex border-b border-border-divider gap-6">
-<a class="flex flex-col items-center justify-center border-b-2 border-b-primary-accent text-text-primary pb-2" href="#">
-<p class="text-sm font-medium">Offene Umfragen</p>
-</a>
-<a class="flex flex-col items-center justify-center border-b-2 border-b-transparent text-text-secondary pb-2 hover:text-text-primary transition-colors duration-200" href="#">
-<p class="text-sm font-medium">Geschlossene Umfragen</p>
-</a>
-</div>
-</div>
-<div class="mt-6">
-<h2 class="text-text-primary text-lg font-bold mb-3">Filter</h2>
-<div class="flex gap-2 flex-wrap">
-<button class="flex h-8 shrink-0 items-center justify-center gap-x-1 rounded-md bg-primary-accent/20 px-3 text-primary-accent text-sm font-medium">
-<span>Alle Kurse</span>
-<span class="material-symbols-outlined !text-[18px]">expand_more</span>
-</button>
-<button class="flex h-8 shrink-0 items-center justify-center gap-x-1 rounded-md bg-panel border border-border-divider px-3 text-text-primary hover:bg-focus-gray transition-colors duration-200 text-sm">
-<span>WWI22B4</span>
-</button>
-<button class="flex h-8 shrink-0 items-center justify-center gap-x-1 rounded-md bg-panel border border-border-divider px-3 text-text-primary hover:bg-focus-gray transition-colors duration-200 text-sm">
-<span>WWI22B2</span>
-</button>
-<button class="flex h-8 shrink-0 items-center justify-center gap-x-1 rounded-md bg-panel border border-border-divider px-3 text-text-primary hover:bg-focus-gray transition-colors duration-200 text-sm">
-<span>TINF22B4</span>
-</button>
-</div>
-</div>
-<div class="mt-8 space-y-4">
-<div class="bg-panel p-4 sm:p-6 rounded-lg border border-border-divider">
-<div class="flex flex-col sm:flex-row justify-between items-start gap-3">
-<h3 class="text-lg font-bold text-text-primary">Beste Programmiersprache für Anfänger?</h3>
-<div class="flex items-center gap-2 bg-success/10 text-success px-2 py-0.5 rounded-full text-xs font-medium">
-<div class="w-2 h-2 rounded-full bg-success"></div> Offen
-                            </div>
-</div>
-<p class="text-xs text-text-secondary mt-1">von Prof. Schmidt • Endet in 3 Tagen</p>
-<div class="flex gap-2 mt-4 flex-wrap">
-<div class="flex items-center justify-center rounded-full bg-focus-gray px-3 py-1 text-xs font-medium text-text-secondary">WWI22B4</div>
-<div class="flex items-center justify-center rounded-full bg-focus-gray px-3 py-1 text-xs font-medium text-text-secondary">TINF22B4</div>
-</div>
-<div class="mt-5 space-y-3">
-<label class="flex items-center gap-3 p-3 rounded-md border border-border-divider hover:bg-focus-gray hover:border-icon-gray cursor-pointer transition-colors duration-200">
-<input class="form-radio bg-panel border-icon-gray text-primary-accent focus:ring-1 focus:ring-offset-0 focus:ring-offset-panel focus:ring-primary-accent" name="poll1" type="radio"/>
-<span class="text-sm text-text-primary">Python</span>
-</label>
-<label class="flex items-center gap-3 p-3 rounded-md border border-border-divider hover:bg-focus-gray hover:border-icon-gray cursor-pointer transition-colors duration-200">
-<input class="form-radio bg-panel border-icon-gray text-primary-accent focus:ring-1 focus:ring-offset-0 focus:ring-offset-panel focus:ring-primary-accent" name="poll1" type="radio"/>
-<span class="text-sm text-text-primary">JavaScript</span>
-</label>
-<label class="flex items-center gap-3 p-3 rounded-md border border-border-divider hover:bg-focus-gray hover:border-icon-gray cursor-pointer transition-colors duration-200">
-<input class="form-radio bg-panel border-icon-gray text-primary-accent focus:ring-1 focus:ring-offset-0 focus:ring-offset-panel focus:ring-primary-accent" name="poll1" type="radio"/>
-<span class="text-sm text-text-primary">Java</span>
-</label>
-</div>
-<button class="mt-5 w-full sm:w-auto rounded-md bg-primary-accent py-2 px-5 text-white text-sm font-bold hover:bg-secondary-red transition-colors duration-200"> Stimme abgeben </button>
-</div>
-<div class="bg-panel p-4 sm:p-6 rounded-lg border border-border-divider">
-<div class="flex flex-col sm:flex-row justify-between items-start gap-3">
-<h3 class="text-lg font-bold text-text-primary">Bevorzugte IDE für die Java-Entwicklung</h3>
-<div class="flex items-center gap-2 bg-icon-gray/20 text-text-secondary px-2 py-0.5 rounded-full text-xs font-medium">
-<div class="w-2 h-2 rounded-full bg-text-secondary"></div> Geschlossen
-                            </div>
-</div>
-<p class="text-xs text-text-secondary mt-1">von Max Mustermann • Endete vor 2 Wochen</p>
-<div class="flex gap-2 mt-4 flex-wrap">
-<div class="flex items-center justify-center rounded-full bg-focus-gray px-3 py-1 text-xs font-medium text-text-secondary">WWI22B2</div>
-</div>
-<div class="mt-5 space-y-4">
-<div class="space-y-1">
-<div class="flex justify-between text-sm font-medium text-text-primary">
-<span>IntelliJ IDEA</span>
-<span>75%</span>
-</div>
-<div class="w-full bg-border-divider rounded-full h-2">
-<div class="bg-primary-accent h-2 rounded-full" style="width: 75%"></div>
-</div>
-</div>
-<div class="space-y-1">
-<div class="flex justify-between text-sm font-medium text-text-primary">
-<span>Eclipse</span>
-<span>20%</span>
-</div>
-<div class="w-full bg-border-divider rounded-full h-2">
-<div class="bg-primary-accent h-2 rounded-full" style="width: 20%"></div>
-</div>
-</div>
-<div class="space-y-1">
-<div class="flex justify-between text-sm font-medium text-text-primary">
-<span>VS Code</span>
-<span>5%</span>
-</div>
-<div class="w-full bg-border-divider rounded-full h-2">
-<div class="bg-primary-accent h-2 rounded-full" style="width: 5%"></div>
-</div>
-</div>
-</div>
-</div>
-<div class="text-center py-12 px-6 bg-panel rounded-lg border border-dashed border-border-divider">
-<span class="material-symbols-outlined !text-5xl text-icon-gray">poll</span>
-<h3 class="mt-4 text-lg font-semibold text-text-primary">Keine weiteren Umfragen</h3>
-<p class="mt-1 text-sm text-text-secondary">Sie haben alle verfügbaren Umfragen gesehen. Erstellen Sie doch eine neue.</p>
-<button class="mt-6 rounded-md bg-primary-accent py-2 px-5 text-white text-sm font-bold hover:bg-secondary-red transition-colors duration-200"> Umfrage erstellen </button>
-</div>
-</div>
-</div>
-</main>
-</div>
-<div class="fixed inset-0 bg-black/70 flex items-center justify-center p-4 z-50">
-<div class="bg-panel rounded-lg w-full max-w-lg p-6 border border-border-divider relative shadow-2xl">
-<button class="absolute top-3 right-3 text-icon-gray hover:text-text-primary transition-colors">
-<span class="material-symbols-outlined">close</span>
-</button>
-<h2 class="text-xl font-bold text-text-primary mb-6">Neue Umfrage erstellen</h2>
-<form class="space-y-4">
-<div>
-<label class="block text-sm font-medium text-text-primary mb-1.5" for="poll-question">Frage</label>
-<input class="w-full bg-bg-main border border-border-divider rounded-md text-text-primary placeholder:text-text-secondary focus:ring-1 focus:ring-primary-accent focus:border-primary-accent text-sm shadow-sm" id="poll-question" placeholder="z.B. Was soll unser nächstes Team-Event sein?" type="text"/>
-</div>
-<div>
-<label class="block text-sm font-medium text-text-primary mb-1.5" for="poll-options">Optionen</label>
-<textarea class="w-full bg-bg-main border border-border-divider rounded-md text-text-primary placeholder:text-text-secondary focus:ring-1 focus:ring-primary-accent focus:border-primary-accent text-sm shadow-sm" id="poll-options" placeholder="Jede Option in eine neue Zeile eingeben" rows="3"></textarea>
-</div>
-<div class="flex gap-4">
-<div class="flex-1">
-<label class="block text-sm font-medium text-text-primary mb-1.5">Umfragetyp</label>
-<div class="flex gap-2 text-sm">
-<label class="flex-1 text-center py-2 px-2 rounded-md border border-primary-accent cursor-pointer bg-primary-accent/20 text-primary-accent font-medium"><input checked="" class="sr-only" name="poll-type" type="radio"/>Einfachauswahl</label>
-<label class="flex-1 text-center py-2 px-2 rounded-md border border-border-divider cursor-pointer hover:bg-focus-gray text-text-primary font-medium"><input class="sr-only" name="poll-type" type="radio"/>Mehrfachauswahl</label>
-</div>
-</div>
-<div class="flex-1">
-<label class="block text-sm font-medium text-text-primary mb-1.5" for="poll-deadline">Frist</label>
-<input class="w-full bg-bg-main border border-border-divider rounded-md text-text-primary focus:ring-1 focus:ring-primary-accent focus:border-primary-accent text-sm shadow-sm" id="poll-deadline" type="date"/>
-</div>
-</div>
-<div class="flex items-center justify-between pt-2">
-<span class="text-sm font-medium text-text-primary">Ergebnisse nach Abstimmung sichtbar</span>
-<label class="relative inline-flex items-center cursor-pointer">
-<input checked="" class="sr-only peer" type="checkbox" value=""/>
-<div class="w-11 h-6 bg-border-divider peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-accent"></div>
-</label>
-</div>
-<div class="flex gap-4 pt-4">
-<button class="flex-1 rounded-md bg-focus-gray py-2.5 text-text-primary font-bold hover:bg-border-divider transition-colors" type="button">Abbrechen</button>
-<button class="flex-1 rounded-md bg-primary-accent py-2.5 text-white font-bold hover:bg-secondary-red transition-colors" type="submit">Umfrage erstellen</button>
-</div>
-</form>
-</div>
-</div>
-
-</body></html>
+  <body class="bg-bg-main font-display text-text-primary antialiased">
+    <div class="flex flex-col min-h-screen w-full">
+      <main class="flex-1 p-4 sm:p-6 lg:p-8">
+        <div class="w-full max-w-5xl mx-auto">
+          <header
+            class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4"
+          >
+            <h1 class="text-text-primary text-2xl font-bold">Umfragen</h1>
+            <button
+              id="open-poll-modal"
+              class="w-full sm:w-auto flex items-center justify-center gap-2 rounded-md bg-primary-accent py-2 px-4 text-white text-sm font-bold hover:bg-secondary-red transition-colors duration-200"
+            >
+              <span class="material-symbols-outlined !text-xl">add</span>
+              Umfrage erstellen
+            </button>
+          </header>
+          <div class="mt-6">
+            <div class="flex border-b border-border-divider gap-6">
+              <a
+                class="flex flex-col items-center justify-center border-b-2 border-b-primary-accent text-text-primary pb-2"
+                href="#"
+              >
+                <p class="text-sm font-medium">Offene Umfragen</p>
+              </a>
+              <a
+                class="flex flex-col items-center justify-center border-b-2 border-b-transparent text-text-secondary pb-2 hover:text-text-primary transition-colors duration-200"
+                href="#"
+              >
+                <p class="text-sm font-medium">Geschlossene Umfragen</p>
+              </a>
+            </div>
+          </div>
+          <div class="mt-6">
+            <h2 class="text-text-primary text-lg font-bold mb-3">Filter</h2>
+            <div class="flex gap-2 flex-wrap">
+              <button
+                class="flex h-8 shrink-0 items-center justify-center gap-x-1 rounded-md bg-primary-accent/20 px-3 text-primary-accent text-sm font-medium"
+              >
+                <span>Alle Kurse</span>
+                <span class="material-symbols-outlined !text-[18px]"
+                  >expand_more</span
+                >
+              </button>
+              <button
+                class="flex h-8 shrink-0 items-center justify-center gap-x-1 rounded-md bg-panel border border-border-divider px-3 text-text-primary hover:bg-focus-gray transition-colors duration-200 text-sm"
+              >
+                <span>WWI22B4</span>
+              </button>
+              <button
+                class="flex h-8 shrink-0 items-center justify-center gap-x-1 rounded-md bg-panel border border-border-divider px-3 text-text-primary hover:bg-focus-gray transition-colors duration-200 text-sm"
+              >
+                <span>WWI22B2</span>
+              </button>
+              <button
+                class="flex h-8 shrink-0 items-center justify-center gap-x-1 rounded-md bg-panel border border-border-divider px-3 text-text-primary hover:bg-focus-gray transition-colors duration-200 text-sm"
+              >
+                <span>TINF22B4</span>
+              </button>
+            </div>
+          </div>
+          <div class="mt-8 space-y-4">
+            <div
+              class="bg-panel p-4 sm:p-6 rounded-lg border border-border-divider"
+            >
+              <div
+                class="flex flex-col sm:flex-row justify-between items-start gap-3"
+              >
+                <h3 class="text-lg font-bold text-text-primary">
+                  Beste Programmiersprache für Anfänger?
+                </h3>
+                <div
+                  class="flex items-center gap-2 bg-success/10 text-success px-2 py-0.5 rounded-full text-xs font-medium"
+                >
+                  <div class="w-2 h-2 rounded-full bg-success"></div>
+                  Offen
+                </div>
+              </div>
+              <p class="text-xs text-text-secondary mt-1">
+                von Prof. Schmidt • Endet in 3 Tagen
+              </p>
+              <div class="flex gap-2 mt-4 flex-wrap">
+                <div
+                  class="flex items-center justify-center rounded-full bg-focus-gray px-3 py-1 text-xs font-medium text-text-secondary"
+                >
+                  WWI22B4
+                </div>
+                <div
+                  class="flex items-center justify-center rounded-full bg-focus-gray px-3 py-1 text-xs font-medium text-text-secondary"
+                >
+                  TINF22B4
+                </div>
+              </div>
+              <div class="mt-5 space-y-3">
+                <label
+                  class="flex items-center gap-3 p-3 rounded-md border border-border-divider hover:bg-focus-gray hover:border-icon-gray cursor-pointer transition-colors duration-200"
+                >
+                  <input
+                    class="form-radio bg-panel border-icon-gray text-primary-accent focus:ring-1 focus:ring-offset-0 focus:ring-offset-panel focus:ring-primary-accent"
+                    name="poll1"
+                    type="radio"
+                  />
+                  <span class="text-sm text-text-primary">Python</span>
+                </label>
+                <label
+                  class="flex items-center gap-3 p-3 rounded-md border border-border-divider hover:bg-focus-gray hover:border-icon-gray cursor-pointer transition-colors duration-200"
+                >
+                  <input
+                    class="form-radio bg-panel border-icon-gray text-primary-accent focus:ring-1 focus:ring-offset-0 focus:ring-offset-panel focus:ring-primary-accent"
+                    name="poll1"
+                    type="radio"
+                  />
+                  <span class="text-sm text-text-primary">JavaScript</span>
+                </label>
+                <label
+                  class="flex items-center gap-3 p-3 rounded-md border border-border-divider hover:bg-focus-gray hover:border-icon-gray cursor-pointer transition-colors duration-200"
+                >
+                  <input
+                    class="form-radio bg-panel border-icon-gray text-primary-accent focus:ring-1 focus:ring-offset-0 focus:ring-offset-panel focus:ring-primary-accent"
+                    name="poll1"
+                    type="radio"
+                  />
+                  <span class="text-sm text-text-primary">Java</span>
+                </label>
+              </div>
+              <button
+                class="mt-5 w-full sm:w-auto rounded-md bg-primary-accent py-2 px-5 text-white text-sm font-bold hover:bg-secondary-red transition-colors duration-200"
+              >
+                Stimme abgeben
+              </button>
+            </div>
+            <div
+              class="bg-panel p-4 sm:p-6 rounded-lg border border-border-divider"
+            >
+              <div
+                class="flex flex-col sm:flex-row justify-between items-start gap-3"
+              >
+                <h3 class="text-lg font-bold text-text-primary">
+                  Bevorzugte IDE für die Java-Entwicklung
+                </h3>
+                <div
+                  class="flex items-center gap-2 bg-icon-gray/20 text-text-secondary px-2 py-0.5 rounded-full text-xs font-medium"
+                >
+                  <div class="w-2 h-2 rounded-full bg-text-secondary"></div>
+                  Geschlossen
+                </div>
+              </div>
+              <p class="text-xs text-text-secondary mt-1">
+                von Max Mustermann • Endete vor 2 Wochen
+              </p>
+              <div class="flex gap-2 mt-4 flex-wrap">
+                <div
+                  class="flex items-center justify-center rounded-full bg-focus-gray px-3 py-1 text-xs font-medium text-text-secondary"
+                >
+                  WWI22B2
+                </div>
+              </div>
+              <div class="mt-5 space-y-4">
+                <div class="space-y-1">
+                  <div
+                    class="flex justify-between text-sm font-medium text-text-primary"
+                  >
+                    <span>IntelliJ IDEA</span>
+                    <span>75%</span>
+                  </div>
+                  <div class="w-full bg-border-divider rounded-full h-2">
+                    <div
+                      class="bg-primary-accent h-2 rounded-full"
+                      style="width: 75%"
+                    ></div>
+                  </div>
+                </div>
+                <div class="space-y-1">
+                  <div
+                    class="flex justify-between text-sm font-medium text-text-primary"
+                  >
+                    <span>Eclipse</span>
+                    <span>20%</span>
+                  </div>
+                  <div class="w-full bg-border-divider rounded-full h-2">
+                    <div
+                      class="bg-primary-accent h-2 rounded-full"
+                      style="width: 20%"
+                    ></div>
+                  </div>
+                </div>
+                <div class="space-y-1">
+                  <div
+                    class="flex justify-between text-sm font-medium text-text-primary"
+                  >
+                    <span>VS Code</span>
+                    <span>5%</span>
+                  </div>
+                  <div class="w-full bg-border-divider rounded-full h-2">
+                    <div
+                      class="bg-primary-accent h-2 rounded-full"
+                      style="width: 5%"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="text-center py-12 px-6 bg-panel rounded-lg border border-dashed border-border-divider"
+            >
+              <span class="material-symbols-outlined !text-5xl text-icon-gray"
+                >poll</span
+              >
+              <h3 class="mt-4 text-lg font-semibold text-text-primary">
+                Keine weiteren Umfragen
+              </h3>
+              <p class="mt-1 text-sm text-text-secondary">
+                Sie haben alle verfügbaren Umfragen gesehen. Erstellen Sie doch
+                eine neue.
+              </p>
+              <button
+                id="open-poll-modal-secondary"
+                class="mt-6 rounded-md bg-primary-accent py-2 px-5 text-white text-sm font-bold hover:bg-secondary-red transition-colors duration-200"
+              >
+                Umfrage erstellen
+              </button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <div
+      id="poll-modal"
+      class="fixed inset-0 bg-black/70 flex items-center justify-center p-4 z-50 hidden"
+    >
+      <div
+        class="bg-panel rounded-lg w-full max-w-lg p-6 border border-border-divider relative shadow-2xl"
+      >
+        <button
+          id="poll-close"
+          class="absolute top-3 right-3 text-icon-gray hover:text-text-primary transition-colors"
+          type="button"
+        >
+          <span class="material-symbols-outlined">close</span>
+        </button>
+        <h2 class="text-xl font-bold text-text-primary mb-6">
+          Neue Umfrage erstellen
+        </h2>
+        <form class="space-y-4">
+          <div>
+            <label
+              class="block text-sm font-medium text-text-primary mb-1.5"
+              for="poll-question"
+              >Frage</label
+            >
+            <input
+              class="w-full bg-bg-main border border-border-divider rounded-md text-text-primary placeholder:text-text-secondary focus:ring-1 focus:ring-primary-accent focus:border-primary-accent text-sm shadow-sm"
+              id="poll-question"
+              placeholder="z.B. Was soll unser nächstes Team-Event sein?"
+              type="text"
+            />
+          </div>
+          <div>
+            <label
+              class="block text-sm font-medium text-text-primary mb-1.5"
+              for="poll-options"
+              >Optionen</label
+            >
+            <textarea
+              class="w-full bg-bg-main border border-border-divider rounded-md text-text-primary placeholder:text-text-secondary focus:ring-1 focus:ring-primary-accent focus:border-primary-accent text-sm shadow-sm"
+              id="poll-options"
+              placeholder="Jede Option in eine neue Zeile eingeben"
+              rows="3"
+            ></textarea>
+          </div>
+          <div class="flex gap-4">
+            <div class="flex-1">
+              <label class="block text-sm font-medium text-text-primary mb-1.5"
+                >Umfragetyp</label
+              >
+              <div class="flex gap-2 text-sm">
+                <label
+                  class="flex-1 text-center py-2 px-2 rounded-md border border-primary-accent cursor-pointer bg-primary-accent/20 text-primary-accent font-medium"
+                  ><input
+                    checked=""
+                    class="sr-only"
+                    name="poll-type"
+                    type="radio"
+                  />Einfachauswahl</label
+                >
+                <label
+                  class="flex-1 text-center py-2 px-2 rounded-md border border-border-divider cursor-pointer hover:bg-focus-gray text-text-primary font-medium"
+                  ><input
+                    class="sr-only"
+                    name="poll-type"
+                    type="radio"
+                  />Mehrfachauswahl</label
+                >
+              </div>
+            </div>
+            <div class="flex-1">
+              <label
+                class="block text-sm font-medium text-text-primary mb-1.5"
+                for="poll-deadline"
+                >Frist</label
+              >
+              <input
+                class="w-full bg-bg-main border border-border-divider rounded-md text-text-primary focus:ring-1 focus:ring-primary-accent focus:border-primary-accent text-sm shadow-sm"
+                id="poll-deadline"
+                type="date"
+              />
+            </div>
+          </div>
+          <div class="flex items-center justify-between pt-2">
+            <span class="text-sm font-medium text-text-primary"
+              >Ergebnisse nach Abstimmung sichtbar</span
+            >
+            <label class="relative inline-flex items-center cursor-pointer">
+              <input checked="" class="sr-only peer" type="checkbox" value="" />
+              <div
+                class="w-11 h-6 bg-border-divider peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary-accent"
+              ></div>
+            </label>
+          </div>
+          <div class="flex gap-4 pt-4">
+            <button
+              id="poll-cancel"
+              class="flex-1 rounded-md bg-focus-gray py-2.5 text-text-primary font-bold hover:bg-border-divider transition-colors"
+              type="button"
+            >
+              Abbrechen
+            </button>
+            <button
+              id="poll-submit"
+              class="flex-1 rounded-md bg-primary-accent py-2.5 text-white font-bold hover:bg-secondary-red transition-colors"
+              type="submit"
+            >
+              Veröffentlichen
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <script>
+      const modal = document.getElementById("poll-modal");
+      function openModal() {
+        modal.classList.remove("hidden");
+      }
+      function closeModal() {
+        modal.classList.add("hidden");
+      }
+      document
+        .getElementById("open-poll-modal")
+        ?.addEventListener("click", openModal);
+      document
+        .getElementById("open-poll-modal-secondary")
+        ?.addEventListener("click", openModal);
+      document
+        .getElementById("poll-close")
+        ?.addEventListener("click", closeModal);
+      document
+        .getElementById("poll-cancel")
+        ?.addEventListener("click", closeModal);
+      document.getElementById("poll-submit")?.addEventListener("click", (e) => {
+        e.preventDefault();
+        // Simple demo feedback
+        const btn = e.target;
+        btn.textContent = "Veröffentlicht (Demo)";
+        setTimeout(() => {
+          btn.textContent = "Veröffentlichen";
+          closeModal();
+        }, 1000);
+      });
+    </script>
+  </body>
+</html>

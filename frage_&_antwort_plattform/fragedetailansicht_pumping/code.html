@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html class="dark" lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Fragedetailansicht - DHubBW</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "dhbw-bg": "#121315",
+              "dhbw-panel": "#1A1C1F",
+              "dhbw-border": "#2A2D31",
+              "dhbw-primary": "#C8102E",
+              "dhbw-primary-muted": "#992029",
+              "dhbw-text-primary": "#F2F2F5",
+              "dhbw-text-secondary": "#A8ADB5",
+              "dhbw-icon": "#5C6068",
+              "dhbw-hover": "#26292D",
+              "dhbw-success": "#3EA05B",
+              "dhbw-warning": "#EBCB70",
+              "dhbw-error": "#E03140",
+            },
+            fontFamily: {
+              sans: ["Inter", "Roboto", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.5rem",
+              lg: "0.75rem",
+              xl: "1rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 300, "GRAD" 0, "opsz" 24;
+      }
+      body { min-height: max(884px, 100dvh); }
+    </style>
+  </head>
+  <body class="bg-dhbw-bg text-dhbw-text-primary font-sans">
+    <main class="flex-grow p-4 pb-24">
+      <div class="mb-4 flex items-center gap-3">
+        <button onclick="parent.showQAList()" class="flex h-10 w-10 items-center justify-center rounded-full text-dhbw-text-primary hover:bg-dhbw-hover transition-colors">
+          <span class="material-symbols-outlined">arrow_back</span>
+        </button>
+        <h1 class="text-xl font-bold text-dhbw-text-primary">Fragedetails</h1>
+      </div>
+
+      <!-- Frage -->
+      <section class="mb-6 overflow-hidden rounded-lg border border-dhbw-border bg-dhbw-panel">
+        <div class="flex p-4">
+          <div class="flex flex-col items-center gap-1 pr-4">
+            <button class="rounded-full p-1.5 text-dhbw-primary transition-colors hover:bg-dhbw-hover">
+              <span class="material-symbols-outlined">arrow_upward</span>
+            </button>
+            <p class="text-base font-bold text-dhbw-text-primary">7</p>
+            <button class="rounded-full p-1.5 text-dhbw-text-secondary transition-colors hover:bg-dhbw-hover">
+              <span class="material-symbols-outlined">arrow_downward</span>
+            </button>
+          </div>
+          <div class="flex-1">
+            <h1 class="pb-2 text-xl font-bold leading-tight text-dhbw-text-primary">
+              Ist das Pumping-Lemma für kontextfreie Sprachen klausurrelevant für die Theoretische Informatik 3 Klausur?
+            </h1>
+            <p class="pb-3 text-sm leading-relaxed text-dhbw-text-secondary">
+              Ich bin mir unsicher, ob das Pumping-Lemma für kontextfreie Sprachen prüfungsrelevant ist. Gibt es dazu eine offizielle Aussage oder Erfahrungen aus vergangenen Semestern?
+            </p>
+            <div class="flex flex-wrap gap-2 pt-2 pb-3">
+              <div class="flex h-7 items-center justify-center rounded-full bg-dhbw-primary-muted px-3">
+                <p class="text-xs font-medium text-dhbw-text-primary">TI 3</p>
+              </div>
+              <div class="flex h-7 items-center justify-center rounded-full bg-dhbw-primary-muted px-3">
+                <p class="text-xs font-medium text-dhbw-text-primary">Formale Sprachen</p>
+              </div>
+              <div class="flex h-7 items-center justify-center rounded-full bg-dhbw-primary-muted px-3">
+                <p class="text-xs font-medium text-dhbw-text-primary">Klausur</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="flex items-center justify-end border-t border-dhbw-border bg-dhbw-hover/30 px-4 py-2.5">
+          <div class="text-right">
+            <p class="text-sm font-semibold text-dhbw-text-primary">Max Mustermann</p>
+            <p class="text-xs text-dhbw-text-secondary">gefragt am 11. Nov 2025</p>
+          </div>
+          <img alt="User avatar" class="ml-3 h-9 w-9 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBW52Im2iZtfNcbu4nugzXw8o0WPpY8Bz_zc18Jz82vkzPYWfzkYYrSNtL66ByNkhutbheSbPrclP_ZIJqu3mztw_lycakXPClchgJxMKJcfQHq2C7OnhNtDoxvyfDeTAC5JgA8_r19e9fhrh9IzW9wAtGDpGRxVBIBcTCH87tEg8u1IFp1pnDsF7u2Ebg4Lj4I0Y8sVIPZGoupNmyTbCLiBv9VZaSfVcZaHkFvTDtU27mx7eDWJkIh2fx-_H7eZrxo4OA0Y1caJAw" />
+        </div>
+      </section>
+
+      <!-- Antworten -->
+      <section>
+        <div class="mb-4 flex items-baseline justify-between">
+          <h2 class="text-lg font-bold text-dhbw-text-primary">1 Antwort</h2>
+        </div>
+        <div class="mb-6 overflow-hidden rounded-lg border border-dhbw-border bg-dhbw-panel">
+          <div class="flex p-4">
+            <div class="flex flex-col items-center gap-1 pr-4">
+              <button class="rounded-full p-1.5 text-dhbw-text-secondary transition-colors hover:bg-dhbw-hover">
+                <span class="material-symbols-outlined">arrow_upward</span>
+              </button>
+              <p class="text-base font-bold text-dhbw-success">5</p>
+              <button class="rounded-full p-1.5 text-dhbw-text-secondary transition-colors hover:bg-dhbw-hover">
+                <span class="material-symbols-outlined">arrow_downward</span>
+              </button>
+            </div>
+            <div class="flex-1">
+              <p class="pb-3 text-sm leading-relaxed text-dhbw-text-secondary">
+                Ja, das Pumping-Lemma für kontextfreie Sprachen war in den letzten Semestern als Konzept prüfungsrelevant. Meistens wird es in konzeptionellen Fragen oder kurzen Nachweisen (z. B. Nicht-Kontextfreiheit) abgefragt.
+              </p>
+              <div class="my-3 rounded-md overflow-hidden border border-dhbw-border">
+                <img src="../Pumping.png" alt="Pumping Lemma Skizze" class="w-full max-h-[420px] object-contain bg-dhbw-bg" />
+              </div>
+              <p class="text-xs text-dhbw-text-secondary">Hinweis: Genaue Themenabdeckung kann je Dozent variieren — prüfe die aktuelle Modulinfo.</p>
+            </div>
+          </div>
+          <div class="flex items-center justify-end border-t border-dhbw-border bg-dhbw-hover/30 px-4 py-2.5">
+            <div class="text-right">
+              <p class="text-sm font-semibold text-dhbw-text-primary">Erika Mustermann</p>
+              <p class="text-xs text-dhbw-text-secondary">geantwortet am 11. Nov 2025</p>
+            </div>
+            <img alt="User avatar" class="ml-3 h-9 w-9 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDotDUM2nTMC6qROWtBZihB48sCPQuXlyTY_T7lwZIM3UBAa6UaNfsdgJtl2uyMxAJ-uV6l_MgeCLlXQc5mcRKneJ8rgP_MwHSFVUB_3b4ipSgCWkCATD9G6-qWcbnKJFY1uxI_5QFUe8VTx902flfO7w9Ue-8a4iruZ9KMCxzREHwq-IVZaxqRHRjPTHraVR4VaEK2ssPF1MV4KmF6qGp7P6jkbHdvDbLv3cYsBK99YV8_Cq0CruD5tZexf1suUBdwiAh9265xhxc" />
+          </div>
+        </div>
+      </section>
+
+      <!-- Antwort schreiben -->
+      <section class="fixed bottom-0 left-0 right-0 border-t border-dhbw-border bg-dhbw-panel p-4">
+        <h2 class="mb-3 text-lg font-bold text-dhbw-text-primary">Deine Antwort</h2>
+        <div class="flex items-start gap-3">
+          <textarea class="h-12 min-h-[48px] flex-1 resize-none rounded-lg border border-dhbw-border bg-dhbw-bg p-3 text-sm text-dhbw-text-primary placeholder:text-dhbw-text-secondary focus:border-dhbw-primary focus:ring-1 focus:ring-dhbw-primary" placeholder="Schreibe deine Antwort..."></textarea>
+          <button class="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-lg bg-dhbw-primary text-white transition-colors hover:bg-dhbw-primary-muted focus:outline-none focus:ring-2 focus:ring-dhbw-primary/50 focus:ring-offset-2 focus:ring-offset-dhbw-panel">
+            <span class="material-symbols-outlined">send</span>
+          </button>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

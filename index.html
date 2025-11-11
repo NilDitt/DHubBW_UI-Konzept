@@ -66,7 +66,14 @@
     >
       <div class="flex items-center gap-6">
         <!-- Mobile Menu Button (links vom Logo) -->
-        <button class="md:hidden text-dhbw-icon hover:text-dhbw-text-primary">
+        <button
+          id="mobile-menu-button"
+          class="md:hidden text-dhbw-icon hover:text-dhbw-text-primary"
+          aria-label="Menü öffnen"
+          aria-controls="mobile-menu"
+          aria-expanded="false"
+          onclick="openMobileMenu()"
+        >
           <span class="material-symbols-outlined">menu</span>
         </button>
 
@@ -143,6 +150,93 @@
       </div>
     </header>
 
+    <!-- Mobile Off-Canvas Navigation -->
+    <div class="md:hidden">
+      <!-- Backdrop -->
+      <div
+        id="mobile-menu-backdrop"
+        class="fixed inset-0 bg-black/50 hidden z-40"
+        onclick="closeMobileMenu()"
+      ></div>
+      <!-- Panel -->
+      <aside
+        id="mobile-menu"
+        class="fixed left-0 top-0 h-full w-72 max-w-[80%] bg-dhbw-panel border-r border-dhbw-border z-50 transform -translate-x-full transition-transform duration-200 ease-out"
+      >
+        <div
+          class="flex items-center justify-between h-16 px-4 border-b border-dhbw-border"
+        >
+          <div class="flex items-center gap-2">
+            <img alt="DHubBW Logo" class="h-8 w-auto" src="UpdateLogo 1.png" />
+            <span class="text-sm font-semibold">Menü</span>
+          </div>
+          <button
+            class="text-dhbw-icon hover:text-dhbw-text-primary"
+            aria-label="Menü schließen"
+            onclick="closeMobileMenu()"
+          >
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+        <nav class="p-2">
+          <a
+            href="javascript:void(0)"
+            class="block rounded-md px-3 py-2 text-sm hover:bg-dhbw-focus"
+            onclick="showPage('dashboard'); closeMobileMenu();"
+            >Dashboard</a
+          >
+          <a
+            href="javascript:void(0)"
+            class="block rounded-md px-3 py-2 text-sm hover:bg-dhbw-focus"
+            onclick="showPage('files'); closeMobileMenu();"
+            >Dateien</a
+          >
+          <a
+            href="javascript:void(0)"
+            class="block rounded-md px-3 py-2 text-sm hover:bg-dhbw-focus"
+            onclick="showPage('calendar'); closeMobileMenu();"
+            >Kalender</a
+          >
+          <a
+            href="javascript:void(0)"
+            class="block rounded-md px-3 py-2 text-sm hover:bg-dhbw-focus"
+            onclick="showPage('mensa'); closeMobileMenu();"
+            >Mensa</a
+          >
+          <a
+            href="javascript:void(0)"
+            class="block rounded-md px-3 py-2 text-sm hover:bg-dhbw-focus"
+            onclick="showPage('polls'); closeMobileMenu();"
+            >Umfragen</a
+          >
+          <a
+            href="javascript:void(0)"
+            class="block rounded-md px-3 py-2 text-sm hover:bg-dhbw-focus"
+            onclick="showPage('groups'); closeMobileMenu();"
+            >Gruppen</a
+          >
+          <a
+            href="javascript:void(0)"
+            class="block rounded-md px-3 py-2 text-sm hover:bg-dhbw-focus"
+            onclick="showPage('qa'); closeMobileMenu();"
+            >Q&amp;A</a
+          >
+          <a
+            href="javascript:void(0)"
+            class="block rounded-md px-3 py-2 text-sm hover:bg-dhbw-focus"
+            onclick="showPage('admin'); closeMobileMenu();"
+            >Admin</a
+          >
+          <!-- <div class="mt-4 border-t border-dhbw-border pt-2">
+            <a href="javascript:void(0)" class="flex items-center gap-3 rounded-md px-3 py-2 text-sm hover:bg-dhbw-focus" onclick="showPage('profile'); closeMobileMenu();">
+              <img alt="Profile Avatar" class="h-6 w-6 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuChdHtZhjrNnRwmzFIbSthq5njGjE1VSLAcbteBNhzFiAKltSoGBsklJwTyH2cKMLmE4en-qwdid1WwUrBangAVrIA-mzk0cq77DYxuKUojXOZJIggoY4TnVgtLfAChxPVNYeBQckrDvL1gcowGtopbe7D9ZGUoXXXEc2DUwl6UlOUSBf3UQsATpXAFJRThDWtJo9nlzsak7VA1lp0kxkPfocs28_oIVesBXBNHeZBjSV0PzWB-8RC9epbbhd_tM0WKwD1R4Wzcsik" />
+              <span>Mein Profil</span>
+            </a>
+          </div> -->
+        </nav>
+      </aside>
+    </div>
+
     <!-- Content Container -->
     <div class="min-h-screen bg-dhbw-bg">
       <iframe
@@ -153,6 +247,29 @@
     </div>
 
     <script>
+      // Mobile menu controls
+      function openMobileMenu() {
+        const panel = document.getElementById("mobile-menu");
+        const backdrop = document.getElementById("mobile-menu-backdrop");
+        const btn = document.getElementById("mobile-menu-button");
+        panel && panel.classList.remove("-translate-x-full");
+        backdrop && backdrop.classList.remove("hidden");
+        btn && btn.setAttribute("aria-expanded", "true");
+        document.body.classList.add("overflow-hidden");
+      }
+      function closeMobileMenu() {
+        const panel = document.getElementById("mobile-menu");
+        const backdrop = document.getElementById("mobile-menu-backdrop");
+        const btn = document.getElementById("mobile-menu-button");
+        panel && panel.classList.add("-translate-x-full");
+        backdrop && backdrop.classList.add("hidden");
+        btn && btn.setAttribute("aria-expanded", "false");
+        document.body.classList.remove("overflow-hidden");
+      }
+      // Close on ESC
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeMobileMenu();
+      });
       function showPage(page) {
         // Remove active state from all nav links
         document.querySelectorAll(".nav-link").forEach((link) => {
