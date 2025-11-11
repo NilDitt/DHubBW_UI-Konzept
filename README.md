@@ -192,3 +192,100 @@ Bitte Issues / Ideen klar markieren als: `idea`, `design`, `scope`, `backend-nee
 **Stand:** Prototyp (Design-Fokus) – Nicht für Produktion geeignet.
 
 **Entwickelt für DHubBW** | _Visuelles Fundament für spätere Umsetzung_
+
+---
+
+## Deployment auf GitHub Pages
+
+Dieses Repository ist ein statischer Prototyp und kann direkt über **GitHub Pages** veröffentlicht werden.
+
+### Variante A: Projektseite (aktuelles Repo)
+
+1. Repository auf GitHub öffnen: `NilDitt/DHubBW_UI-Konzept`.
+2. Settings → Pages.
+3. Source: "Deploy from a branch" wählen.
+4. Branch: `main`, Folder: `/ (root)`.
+5. Speichern – erster Build dauert typischerweise 1–5 Minuten.
+6. URL: `https://nilditt.github.io/DHubBW_UI-Konzept/`.
+
+> Falls nach mehreren Minuten weiterhin 404 erscheint: siehe Troubleshooting.
+
+### Variante B: Benutzer- / Organisationsseite
+
+Erstelle ein neues Repository: `<username>.github.io` (z.B. `nilditt.github.io`). Lege dort eine `index.html` an oder kopiere Inhalte dieses Repos hinein. Diese Benutzerseite liegt direkt unter `https://<username>.github.io/`. Projektseiten (wie dieses Repo) hängen als Unterpfad (`/<RepoName>/`) daran.
+
+### Sonderzeichen-Hinweis
+
+Der Ordner `frage_&_antwort_plattform/` enthält ein `&`. Relative Links funktionieren normal. Direkte Deeplinks sollten das Zeichen in der URL als `%26` kodieren (`frage_%26_antwort_plattform`). Optional kannst du den Ordner konsolidieren (z.B. `frage_und_antwort_plattform`) – dann alle Referenzen anpassen.
+
+### 404-Seite
+
+Eine eigene `404.html` ist vorhanden und verlinkt zurück auf `index.html`.
+
+### `.nojekyll`
+
+Die Datei `.nojekyll` verhindert, dass GitHub Pages versucht, Jekyll zu verarbeiten. Wichtig bei Ordnernamen mit Unterstrichen oder wenn kein Jekyll genutzt wird.
+
+## Troubleshooting (404 / Seite lädt nicht)
+
+| Problem                         | Ursache                          | Lösung                                                                       |
+| ------------------------------- | -------------------------------- | ---------------------------------------------------------------------------- |
+| 404 trotz korrekter URL         | Build noch nicht fertig          | 1–10 Minuten warten, Seite hart neu laden (Strg/Cmd+Shift+R)                 |
+| 404 bleibt bestehen             | Pages nicht korrekt konfiguriert | Settings → Pages prüfen: Branch `main`, Folder `/`                           |
+| Assets laden nicht              | Falsche relative Pfade           | Sicherstellen, dass `index.html` im Root liegt und iframe-Pfade relativ sind |
+| Bild fehlt (z.B. `Pumping.png`) | Falsche Groß-/Kleinschreibung    | Dateiname exakt kontrollieren (GitHub ist case-sensitive)                    |
+| Jekyll verarbeitet Dateien      | Kein `.nojekyll` vorhanden       | `.nojekyll` (leer) hinzufügen (bereits erledigt)                             |
+
+### Manuelle Checks
+
+```text
+index.html         -> Root vorhanden
+.nojekyll          -> vorhanden
+404.html           -> vorhanden
+frage_&_antwort_…  -> Sonderzeichen-Ordner ok
+```
+
+### Lokaler Test vor Push
+
+Einfach `index.html` lokal öffnen. Wenn alles funktioniert und relative Pfade korrekt sind, wird es auch auf Pages laufen.
+
+## Custom Domain konfigurieren (optional)
+
+1. Domain kaufen / besitzen (z.B. `example.dev`).
+2. **Subdomain (empfohlen)**: CNAME-Eintrag `dhubbw.example.dev` → `nilditt.github.io`.
+3. GitHub Settings → Pages → Custom domain: `dhubbw.example.dev` eintragen.
+4. "Enforce HTTPS" aktivieren, sobald Zertifikat erstellt wurde.
+5. Zugriff: `https://dhubbw.example.dev/`.
+
+### Apex Domain (Root)
+
+DNS A-Records setzen auf GitHub Pages IPs:
+
+```
+185.199.108.153
+185.199.109.153
+185.199.110.153
+185.199.111.153
+```
+
+Dann unter Pages die Domain eintragen und HTTPS erzwingen.
+
+## Nützliche Befehle (lokal)
+
+```bash
+# Änderungen committen + push
+git add .
+git commit -m "Deploy static prototype"
+git push origin main
+```
+
+## Deployment-Checkliste
+
+- [ ] `index.html` liegt im Root
+- [ ] `.nojekyll` vorhanden
+- [ ] Optional `404.html` erstellt
+- [ ] Pages: Branch `main` + Root Folder
+- [ ] Warten bis Deployment durch ist
+- [ ] Seite unter Projekt-URL erreichbar
+
+Fertig – der Prototyp ist öffentlich abrufbar.
