@@ -203,25 +203,31 @@
             <span class="material-symbols-outlined">menu</span>
           </button>
           <div class="flex items-center gap-2">
-            <button id="prev-week"
+            <button
+              id="prev-week"
               class="p-1 rounded-full text-dhbw-icon-gray hover:text-dhbw-text-primary"
               title="Vorherige Woche"
             >
               <span class="material-symbols-outlined">chevron_left</span>
             </button>
-            <button id="next-week"
+            <button
+              id="next-week"
               class="p-1 rounded-full text-dhbw-icon-gray hover:text-dhbw-text-primary"
               title="Nächste Woche"
             >
               <span class="material-symbols-outlined">chevron_right</span>
             </button>
-            <h2 id="range-title" class="text-lg font-bold text-dhbw-text-primary">
+            <h2
+              id="range-title"
+              class="text-lg font-bold text-dhbw-text-primary"
+            >
               21. - 27. Oktober 2024
             </h2>
           </div>
           <div class="flex-1"></div>
           <div class="flex items-center gap-4">
-            <button id="today-btn"
+            <button
+              id="today-btn"
               class="hidden sm:block h-9 px-4 rounded-md border border-dhbw-border text-sm font-medium text-dhbw-text-primary hover:bg-dhbw-focus-gray"
             >
               Heute
@@ -279,7 +285,8 @@
 
           <!-- Month View (simple placeholder) -->
           <div id="month-view" class="hidden">
-            <div id="month-grid"
+            <div
+              id="month-grid"
               class="grid grid-cols-7 gap-px bg-dhbw-border border-t border-l border-dhbw-border text-center text-xs"
             >
               <!-- Wird per JS gerendert -->
@@ -429,9 +436,15 @@
 
       // Event details open/close
       const details = document.getElementById("details-panel");
-      function openDetails() { details?.classList.remove("hidden"); }
-      function closeDetails() { details?.classList.add("hidden"); }
-      document.getElementById("details-close")?.addEventListener("click", closeDetails);
+      function openDetails() {
+        details?.classList.remove("hidden");
+      }
+      function closeDetails() {
+        details?.classList.add("hidden");
+      }
+      document
+        .getElementById("details-close")
+        ?.addEventListener("click", closeDetails);
 
       // Week data: 3 Demo-Wochen
       const WEEKS = [
@@ -443,39 +456,107 @@
             { label: "Mi, 23", events: [] },
             { label: "Do, 24", events: [] },
             { label: "Fr, 25", events: [] },
-            { label: "Sa, 26", events: [
-              { id:"swe-mo", color:"primary-red", title:"Software Engineering", time:"09:00 - 12:15", meta:"C012, Hauptgebäude" },
-              { id:"deadline", color:"warning", title:"Projekt Deadline", time:"Ganztägig", meta:"Web App Einreichung" },
-            ] },
-            { label: "So, 27", events: [
-              { id:"meeting", color:"success", title:"Team Meeting", time:"14:00 - 15:00", meta:"Online" }
-            ] },
-          ]
+            {
+              label: "Sa, 26",
+              events: [
+                {
+                  id: "swe-mo",
+                  color: "primary-red",
+                  title: "Software Engineering",
+                  time: "09:00 - 12:15",
+                  meta: "C012, Hauptgebäude",
+                },
+                {
+                  id: "deadline",
+                  color: "warning",
+                  title: "Projekt Deadline",
+                  time: "Ganztägig",
+                  meta: "Web App Einreichung",
+                },
+              ],
+            },
+            {
+              label: "So, 27",
+              events: [
+                {
+                  id: "meeting",
+                  color: "success",
+                  title: "Team Meeting",
+                  time: "14:00 - 15:00",
+                  meta: "Online",
+                },
+              ],
+            },
+          ],
         },
         {
           range: "28. Oktober - 3. November 2024",
           days: [
             { label: "Mo, 28", events: [] },
-            { label: "Di, 29", events: [ { id:"review", color:"warning", title:"Code Review", time:"10:00 - 12:00", meta:"Raum A101" } ] },
+            {
+              label: "Di, 29",
+              events: [
+                {
+                  id: "review",
+                  color: "warning",
+                  title: "Code Review",
+                  time: "10:00 - 12:00",
+                  meta: "Raum A101",
+                },
+              ],
+            },
             { label: "Mi, 30", events: [] },
-            { label: "Do, 31", events: [ { id:"workshop", color:"primary-red", title:"DevOps Workshop", time:"13:00 - 16:00", meta:"Lab 3" } ] },
+            {
+              label: "Do, 31",
+              events: [
+                {
+                  id: "workshop",
+                  color: "primary-red",
+                  title: "DevOps Workshop",
+                  time: "13:00 - 16:00",
+                  meta: "Lab 3",
+                },
+              ],
+            },
             { label: "Fr, 1", events: [] },
             { label: "Sa, 2", events: [] },
             { label: "So, 3", events: [] },
-          ]
+          ],
         },
         {
           range: "4. - 10. November 2024",
           days: [
             { label: "Mo, 4", events: [] },
             { label: "Di, 5", events: [] },
-            { label: "Mi, 6", events: [ { id:"colloq", color:"success", title:"Kollegiumstreffen", time:"09:30 - 10:30", meta:"C201" } ] },
+            {
+              label: "Mi, 6",
+              events: [
+                {
+                  id: "colloq",
+                  color: "success",
+                  title: "Kollegiumstreffen",
+                  time: "09:30 - 10:30",
+                  meta: "C201",
+                },
+              ],
+            },
             { label: "Do, 7", events: [] },
-            { label: "Fr, 8", events: [ { id:"swe-fr", color:"primary-red", title:"Software Engineering", time:"09:00 - 12:15", meta:"C012, Hauptgebäude" } ] },
+            {
+              label: "Fr, 8",
+              events: [
+                {
+                  id: "swe-fr",
+                  color: "primary-red",
+                  title: "Software Engineering",
+                  time: "09:00 - 12:15",
+                  meta: "C012, Hauptgebäude",
+                },
+              ],
+            },
             { label: "Sa, 9", events: [] },
             { label: "So, 10", events: [] },
-          ]
-        }
+          ],
+        },
       ];
 
       let currentWeek = 0; // Start mit erster Demo-Woche
@@ -485,49 +566,75 @@
         if (!container) return;
         const week = WEEKS[currentWeek];
         document.getElementById("range-title").textContent = week.range;
-        container.innerHTML = week.days.map((d, idx) => {
-          const headColor = idx === 0 ? "text-dhbw-primary-red" : "text-dhbw-text-primary";
-          const eventsHtml = (d.events||[]).map(ev => `
-            <div class="bg-dhbw-panel-bg p-3 rounded-lg border-l-4 border-dhbw-${ev.color} cursor-pointer event-entry" data-event="${ev.id}">
+        container.innerHTML = week.days
+          .map((d, idx) => {
+            const headColor =
+              idx === 0 ? "text-dhbw-primary-red" : "text-dhbw-text-primary";
+            const eventsHtml = (d.events || [])
+              .map(
+                (ev) => `
+            <div class="bg-dhbw-panel-bg p-3 rounded-lg border-l-4 border-dhbw-${
+              ev.color
+            } cursor-pointer event-entry" data-event="${ev.id}">
               <p class="font-bold text-sm text-dhbw-${ev.color}">${ev.title}</p>
               <p class="text-xs text-dhbw-text-primary">${ev.time}</p>
-              ${ev.meta ? `<p class="text-xs text-dhbw-text-secondary mt-1">${ev.meta}</p>` : ''}
+              ${
+                ev.meta
+                  ? `<p class="text-xs text-dhbw-text-secondary mt-1">${ev.meta}</p>`
+                  : ""
+              }
             </div>
-          `).join('');
-          const colExtra = (d.events||[]).length ? ' flex flex-col gap-3' : '';
-          return `
+          `
+              )
+              .join("");
+            const colExtra = (d.events || []).length
+              ? " flex flex-col gap-3"
+              : "";
+            return `
             <div class="p-3 bg-dhbw-main-bg border-r border-b border-dhbw-border${colExtra}">
               <p class="font-bold text-center ${headColor}">${d.label}</p>
               ${eventsHtml}
             </div>
           `;
-        }).join('');
+          })
+          .join("");
         // Bind clicks for freshly rendered events
-        container.querySelectorAll(".event-entry").forEach(el => el.addEventListener("click", openDetails));
+        container
+          .querySelectorAll(".event-entry")
+          .forEach((el) => el.addEventListener("click", openDetails));
       }
 
       // Month grid simple 5x7
       function renderMonthGrid() {
-        const grid = document.getElementById('month-grid');
+        const grid = document.getElementById("month-grid");
         if (!grid) return;
-        const headers = ['Mo','Di','Mi','Do','Fr','Sa','So'].map(d=>`<div class="p-2 bg-dhbw-panel-bg text-dhbw-text-secondary">${d}</div>`).join('');
-        const cells = Array.from({length:35}).map((_,i)=>{
-          const ring = i===9 ? ' ring-1 ring-dhbw-primary-red' : '';
-          return `<div class="p-3 bg-dhbw-main-bg border-r border-b border-dhbw-border text-dhbw-text-primary${ring}">${i+1}</div>`;
-        }).join('');
+        const headers = ["Mo", "Di", "Mi", "Do", "Fr", "Sa", "So"]
+          .map(
+            (d) =>
+              `<div class="p-2 bg-dhbw-panel-bg text-dhbw-text-secondary">${d}</div>`
+          )
+          .join("");
+        const cells = Array.from({ length: 35 })
+          .map((_, i) => {
+            const ring = i === 9 ? " ring-1 ring-dhbw-primary-red" : "";
+            return `<div class="p-3 bg-dhbw-main-bg border-r border-b border-dhbw-border text-dhbw-text-primary${ring}">${
+              i + 1
+            }</div>`;
+          })
+          .join("");
         grid.innerHTML = headers + cells;
       }
 
       // Prev/Next/Heute handlers
-      document.getElementById('prev-week')?.addEventListener('click', ()=>{
+      document.getElementById("prev-week")?.addEventListener("click", () => {
         currentWeek = (currentWeek - 1 + WEEKS.length) % WEEKS.length;
         renderWeek();
       });
-      document.getElementById('next-week')?.addEventListener('click', ()=>{
+      document.getElementById("next-week")?.addEventListener("click", () => {
         currentWeek = (currentWeek + 1) % WEEKS.length;
         renderWeek();
       });
-      document.getElementById('today-btn')?.addEventListener('click', ()=>{
+      document.getElementById("today-btn")?.addEventListener("click", () => {
         currentWeek = 0; // Demo: erste Woche als "Heute"
         renderWeek();
       });

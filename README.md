@@ -73,6 +73,7 @@ Dieses Repository ist ein reines **UI / Design Konzept** (Prototyp). Alle Inhalt
 - Einheitliches Logo und Profilbild
 - Saubere Trennung zwischen Navigation und Inhalten
 - Alle Unterseiten ohne doppelte Header
+ - Togglebare Suchleiste im Header (per Klick auf das Such-Icon)
 
 ### 📱 Optimierte Architektur
 
@@ -99,6 +100,7 @@ Dieses Repository ist ein reines **UI / Design Konzept** (Prototyp). Alle Inhalt
 - Tailwind CDN (kein eigenes Build / keine Purge-Konfiguration)
 - Iframe-basierte Seitenintegration anstelle von echtem Routing
 - Layout mittels Flexbox / Grid
+ - Leichte Interaktivität via Inline-JS (z. B. Suche-Input-Toggle)
 
 ## Architektur-Konzept
 
@@ -125,7 +127,7 @@ Einfach `index.html` direkt im Browser öffnen (lokal). Es sind **keine** Instal
 
 1. **Dashboard** – Überblick, Zeitplan, Fälligkeitsboxen
 2. **Dateien** – Beispielhafte Dateiliste (statisch)
-3. **Kalender** – Statisch visualisierter Tagesbereich
+3. **Kalender** – Mehrere Demo-Wochen, Prev/Next/Heute Navigation, Event-Details Panel
 4. **Umfragen** – Dummy-Listen / Platzhalter
 5. **Gruppen** – Layout für Gruppenkacheln
 6. **Admin** – Platzhalter für STUV-Ankündigungen
