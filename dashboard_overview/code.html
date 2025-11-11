@@ -354,17 +354,23 @@
                 <div
                   class="flex items-center bg-dhbw-bg rounded-full p-0.5 text-xs border border-dhbw-border"
                 >
-                  <button data-day="heute" aria-pressed="true"
+                  <button
+                    data-day="heute"
+                    aria-pressed="true"
                     class="mensa-mini-day px-2 py-1 rounded-full bg-dhbw-red text-dhbw-text-primary"
                   >
                     Heute
                   </button>
-                  <button data-day="mi" aria-pressed="false"
+                  <button
+                    data-day="mi"
+                    aria-pressed="false"
                     class="mensa-mini-day px-2 py-1 rounded-full text-dhbw-text-secondary hover:bg-dhbw-focus"
                   >
                     Mi
                   </button>
-                  <button data-day="do" aria-pressed="false"
+                  <button
+                    data-day="do"
+                    aria-pressed="false"
                     class="mensa-mini-day px-2 py-1 rounded-full text-dhbw-text-secondary hover:bg-dhbw-focus"
                   >
                     Do
@@ -440,57 +446,77 @@
       </main>
     </div>
   </body>
-<script>
-  // Simple hardcoded switching for Mensa widget (Heute / Mi / Do)
-  (function(){
-    const DATA = {
-      heute: [
-        { title: 'Schnitzel "Wiener Art"', desc: 'mit Pommes', price: '€5.20' },
-        { title: 'Pasta al Pesto', desc: 'Vegan', price: '€4.50' },
-        { title: 'Currywurst', desc: 'mit Brot', price: '€3.80' },
-      ],
-      mi: [
-        { title: 'Schnitzel "Wiener Art"', desc: 'mit Pommes Frites', price: '€5.20' },
-        { title: 'Kichererbsen-Curry', desc: 'mit Basmatireis', price: '€4.20' },
-        { title: 'Beilagensalat', desc: 'klein', price: '€0.80' },
-      ],
-      do: [
-        { title: 'Rindergulasch', desc: 'mit Spätzle', price: '€6.10' },
-        { title: 'Gemüsepfanne', desc: 'mit Reis (vegan)', price: '€4.90' },
-        { title: 'Pommes Frites', desc: '', price: '€1.80' },
-      ]
-    };
-    function render(items){
-      return items.map(it => `
+  <script>
+    // Simple hardcoded switching for Mensa widget (Heute / Mi / Do)
+    (function () {
+      const DATA = {
+        heute: [
+          {
+            title: 'Schnitzel "Wiener Art"',
+            desc: "mit Pommes",
+            price: "€5.20",
+          },
+          { title: "Pasta al Pesto", desc: "Vegan", price: "€4.50" },
+          { title: "Currywurst", desc: "mit Brot", price: "€3.80" },
+        ],
+        mi: [
+          {
+            title: 'Schnitzel "Wiener Art"',
+            desc: "mit Pommes Frites",
+            price: "€5.20",
+          },
+          {
+            title: "Kichererbsen-Curry",
+            desc: "mit Basmatireis",
+            price: "€4.20",
+          },
+          { title: "Beilagensalat", desc: "klein", price: "€0.80" },
+        ],
+        do: [
+          { title: "Rindergulasch", desc: "mit Spätzle", price: "€6.10" },
+          { title: "Gemüsepfanne", desc: "mit Reis (vegan)", price: "€4.90" },
+          { title: "Pommes Frites", desc: "", price: "€1.80" },
+        ],
+      };
+      function render(items) {
+        return items
+          .map(
+            (it) => `
         <div class="flex justify-between items-center">
           <div>
             <p class="text-dhbw-text-primary text-sm">${it.title}</p>
-            ${it.desc ? `<p class="text-dhbw-text-secondary text-xs">${it.desc}</p>` : ''}
+            ${
+              it.desc
+                ? `<p class="text-dhbw-text-secondary text-xs">${it.desc}</p>`
+                : ""
+            }
           </div>
           <p class="text-dhbw-text-primary font-medium text-sm">${it.price}</p>
         </div>
-      `).join('');
-    }
-    function setDay(day){
-      const list = document.getElementById('mensa-widget-list');
-      if (!list || !DATA[day]) return;
-      list.innerHTML = render(DATA[day]);
-      document.querySelectorAll('.mensa-mini-day').forEach(btn => {
-        const isActive = btn.getAttribute('data-day') === day;
-        btn.setAttribute('aria-pressed', isActive ? 'true' : 'false');
-        btn.classList.toggle('bg-dhbw-red', isActive);
-        btn.classList.toggle('text-dhbw-text-primary', isActive);
-        btn.classList.toggle('text-dhbw-text-secondary', !isActive);
+      `
+          )
+          .join("");
+      }
+      function setDay(day) {
+        const list = document.getElementById("mensa-widget-list");
+        if (!list || !DATA[day]) return;
+        list.innerHTML = render(DATA[day]);
+        document.querySelectorAll(".mensa-mini-day").forEach((btn) => {
+          const isActive = btn.getAttribute("data-day") === day;
+          btn.setAttribute("aria-pressed", isActive ? "true" : "false");
+          btn.classList.toggle("bg-dhbw-red", isActive);
+          btn.classList.toggle("text-dhbw-text-primary", isActive);
+          btn.classList.toggle("text-dhbw-text-secondary", !isActive);
+        });
+      }
+      document.querySelectorAll(".mensa-mini-day").forEach((btn) => {
+        btn.addEventListener("click", (ev) => {
+          ev.stopPropagation(); // prevent navigating to Mensa page
+          setDay(btn.getAttribute("data-day"));
+        });
       });
-    }
-    document.querySelectorAll('.mensa-mini-day').forEach(btn => {
-      btn.addEventListener('click', (ev) => {
-        ev.stopPropagation(); // prevent navigating to Mensa page
-        setDay(btn.getAttribute('data-day'));
-      });
-    });
-    // init
-    setDay('heute');
-  })();
-</script>
+      // init
+      setDay("heute");
+    })();
+  </script>
 </html>
