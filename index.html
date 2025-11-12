@@ -141,7 +141,11 @@
             placeholder="Suchen..."
             class="hidden md:block w-56 mr-2 rounded-md border border-dhbw-border bg-dhbw-panel px-3 py-1.5 text-sm text-dhbw-text-primary placeholder:text-dhbw-text-secondary focus:outline-none focus:ring-1 focus:ring-dhbw-red"
           />
-          <button id="global-search-toggle" class="text-dhbw-icon hover:text-dhbw-text-primary" aria-label="Suche öffnen / schließen">
+          <button
+            id="global-search-toggle"
+            class="text-dhbw-icon hover:text-dhbw-text-primary"
+            aria-label="Suche öffnen / schließen"
+          >
             <span class="material-symbols-outlined">search</span>
           </button>
         </div>
@@ -354,28 +358,32 @@
       });
 
       // Global Search Toggle Logic
-      (function initGlobalSearch(){
-        const toggleBtn = document.getElementById('global-search-toggle');
-        const input = document.getElementById('global-search-input');
+      (function initGlobalSearch() {
+        const toggleBtn = document.getElementById("global-search-toggle");
+        const input = document.getElementById("global-search-input");
         let open = false;
-        function openSearch(){
-          if(open) return;
+        function openSearch() {
+          if (open) return;
           open = true;
-          input.classList.remove('hidden');
+          input.classList.remove("hidden");
           input.focus();
-          toggleBtn.classList.add('text-dhbw-text-primary');
+          toggleBtn.classList.add("text-dhbw-text-primary");
         }
-        function closeSearch(){
-          if(!open) return;
+        function closeSearch() {
+          if (!open) return;
           open = false;
-          input.classList.add('hidden');
-          input.value='';
-          toggleBtn.classList.remove('text-dhbw-text-primary');
+          input.classList.add("hidden");
+          input.value = "";
+          toggleBtn.classList.remove("text-dhbw-text-primary");
         }
-        toggleBtn.addEventListener('click', ()=> open ? closeSearch() : openSearch());
-        document.addEventListener('keydown', (e)=>{ if(e.key==='Escape') closeSearch(); });
-        document.addEventListener('mousedown', (e)=>{
-          if(open && !e.target.closest('#global-search')) closeSearch();
+        toggleBtn.addEventListener("click", () =>
+          open ? closeSearch() : openSearch()
+        );
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") closeSearch();
+        });
+        document.addEventListener("mousedown", (e) => {
+          if (open && !e.target.closest("#global-search")) closeSearch();
         });
       })();
     </script>
