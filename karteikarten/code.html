@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html class="dark" lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Karteikarten – DHubBW</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "dhbw-bg": "#121315",
+              "dhbw-panel": "#1A1C1F",
+              "dhbw-border": "#2A2D31",
+              "dhbw-red": "#C8102E",
+              "dhbw-text-primary": "#F2F2F5",
+              "dhbw-text-secondary": "#A8ADB5",
+              "dhbw-icon": "#5C6068",
+              "dhbw-focus": "#26292D",
+              "dhbw-success": "#3EA05B",
+            },
+            fontFamily: {
+              display: ["Inter", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        min-height: max(884px, 100dvh);
+      }
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+      }
+    </style>
+  </head>
+  <body class="bg-dhbw-bg font-display text-dhbw-text-primary">
+    <main class="p-4 max-w-6xl mx-auto">
+      <div class="flex items-center justify-between mb-4">
+        <h1 class="text-2xl font-bold">Karteikarten</h1>
+        <div class="flex gap-2">
+          <button
+            id="btn-new-set"
+            class="px-3 py-2 rounded-md bg-dhbw-red text-white text-sm"
+          >
+            Neues Set
+          </button>
+          <label
+            class="px-3 py-2 rounded-md bg-dhbw-panel border border-dhbw-border text-sm cursor-pointer"
+          >
+            <input
+              id="file-upload"
+              type="file"
+              accept=".json,.csv"
+              class="hidden"
+            />
+            <span class="inline-flex items-center gap-1 text-dhbw-text-primary"
+              ><span class="material-symbols-outlined text-base">upload</span>
+              Upload</span
+            >
+          </label>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="flex items-center gap-2 mb-4">
+        <button
+          id="tab-mine"
+          class="tab active px-3 py-1.5 rounded-md bg-dhbw-focus text-sm"
+        >
+          Meine Sets
+        </button>
+        <button
+          id="tab-discover"
+          class="tab px-3 py-1.5 rounded-md hover:bg-dhbw-focus text-sm"
+        >
+          Entdecken
+        </button>
+        <div
+          class="ml-auto flex items-center gap-2"
+          id="discover-search-wrap"
+          style="display: none"
+        >
+          <span class="material-symbols-outlined text-dhbw-icon">search</span>
+          <input
+            id="discover-search"
+            type="text"
+            placeholder="Sets suchen"
+            class="w-64 rounded-md border border-dhbw-border bg-dhbw-panel px-3 py-1.5 text-sm text-dhbw-text-primary placeholder:text-dhbw-text-secondary focus:outline-none focus:ring-1 focus:ring-dhbw-red"
+          />
+        </div>
+      </div>
+
+      <!-- Meine Sets Grid -->
+      <section
+        id="mine"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3"
+      >
+        <!-- Filled by JS -->
+      </section>
+
+      <!-- Discover Grid -->
+      <section
+        id="discover"
+        class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3"
+        style="display: none"
+      >
+        <!-- Filled by JS -->
+      </section>
+    </main>
+
+    <!-- New Set Modal -->
+    <div
+      id="modal-backdrop"
+      class="fixed inset-0 bg-black/50 hidden z-40"
+    ></div>
+    <div
+      id="modal-new"
+      class="fixed inset-0 z-50 hidden flex items-center justify-center p-4"
+    >
+      <div
+        class="w-full max-w-lg rounded-lg border border-dhbw-border bg-dhbw-panel"
+      >
+        <div
+          class="flex items-center justify-between p-4 border-b border-dhbw-border"
+        >
+          <h3 class="text-base font-bold">Neues Karteikarten-Set</h3>
+          <button
+            class="text-dhbw-icon hover:text-dhbw-text-primary"
+            onclick="closeNewModal()"
+          >
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+        <div class="p-4 space-y-3">
+          <label class="block text-sm"
+            >Titel
+            <input
+              id="new-title"
+              class="mt-1 w-full rounded-md border border-dhbw-border bg-dhbw-bg px-3 py-2 text-sm"
+              placeholder="z.B. BWL – Grundlagen"
+            />
+          </label>
+          <label class="block text-sm"
+            >Beschreibung
+            <textarea
+              id="new-desc"
+              class="mt-1 w-full rounded-md border border-dhbw-border bg-dhbw-bg px-3 py-2 text-sm"
+              rows="3"
+              placeholder="Kurzbeschreibung"
+            ></textarea>
+          </label>
+          <div class="text-xs text-dhbw-text-secondary">
+            Karten können später im Lernmodus ergänzt werden.
+          </div>
+        </div>
+        <div class="p-4 border-t border-dhbw-border flex justify-end gap-2">
+          <button
+            class="px-3 py-2 rounded-md border border-dhbw-border"
+            onclick="closeNewModal()"
+          >
+            Abbrechen
+          </button>
+          <button
+            class="px-3 py-2 rounded-md bg-dhbw-red text-white"
+            onclick="createSet()"
+          >
+            Erstellen
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Learn Modal (demo) -->
+    <div
+      id="learn-backdrop"
+      class="fixed inset-0 bg-black/50 hidden z-40"
+    ></div>
+    <div
+      id="learn-modal"
+      class="fixed inset-0 z-50 hidden flex items-center justify-center p-4"
+    >
+      <div
+        class="w-full max-w-2xl rounded-lg border border-dhbw-border bg-dhbw-panel"
+      >
+        <div
+          class="flex items-center justify-between p-4 border-b border-dhbw-border"
+        >
+          <h3 class="text-base font-bold" id="learn-title">Lernmodus</h3>
+          <button
+            class="text-dhbw-icon hover:text-dhbw-text-primary"
+            onclick="closeLearn()"
+          >
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+        <div class="p-6">
+          <div
+            id="card"
+            class="rounded-lg border border-dhbw-border bg-dhbw-bg p-6 text-center cursor-pointer select-none"
+            onclick="flipCard()"
+          >
+            <p class="text-lg" id="card-text">Frage…</p>
+          </div>
+          <div class="mt-4 flex justify-between">
+            <button
+              class="px-3 py-2 rounded-md border border-dhbw-border"
+              onclick="prevCard()"
+            >
+              Zurück
+            </button>
+            <div class="flex gap-2">
+              <button
+                class="px-3 py-2 rounded-md bg-dhbw-success text-white"
+                onclick="markKnown()"
+              >
+                Gewusst
+              </button>
+              <button
+                class="px-3 py-2 rounded-md bg-dhbw-red text-white"
+                onclick="markUnknown()"
+              >
+                Nicht gewusst
+              </button>
+            </div>
+            <button
+              class="px-3 py-2 rounded-md border border-dhbw-border"
+              onclick="nextCard()"
+            >
+              Weiter
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Demo data
+      const mySets = [
+        {
+          id: "s1",
+          title: "Mathe – Analysis I",
+          desc: "Grenzwerte, Ableitungen, Reihen",
+          cards: [
+            [
+              "Was ist ein Grenzwert?",
+              "Eine Annäherung eines Funktionswertes an einen festen Wert.",
+            ],
+            ["Ableitung von x^2", "2x"],
+            [
+              "Kriterium für Konvergenz von Reihen?",
+              "z.B. Quotientenkriterium",
+            ],
+          ],
+        },
+        {
+          id: "s2",
+          title: "BWL – Grundlagen",
+          desc: "Kosten, Märkte, Unternehmensformen",
+          cards: [
+            [
+              "Fixkosten vs. variable Kosten?",
+              "Fixe bleiben konstant, variable hängen von Menge ab.",
+            ],
+            ["Oligopol?", "Marktform mit wenigen Anbietern."],
+          ],
+        },
+      ];
+
+      const discoverSets = [
+        {
+          id: "d1",
+          title: "Informatik – Datenbanken",
+          desc: "SQL, Normalformen, ACID",
+          author: "Max",
+          cards: [
+            ["Was ist 3NF?", "Dritte Normalform"],
+            ["ACID?", "Atomicity, Consistency, Isolation, Durability"],
+          ],
+        },
+        {
+          id: "d2",
+          title: "Englisch – Vokabeln B2",
+          desc: "Alltag, Business, Redewendungen",
+          author: "Lea",
+          cards: [
+            ["ubiquitous", "allgegenwärtig"],
+            ["to leverage", "nutzen / einsetzen"],
+          ],
+        },
+        {
+          id: "d3",
+          title: "Mathe – Stochastik",
+          desc: "Wahrscheinlichkeiten, Verteilungen",
+          author: "Tim",
+          cards: [
+            ["Binomialverteilung – Parameter?", "n und p"],
+            ["Erwartungswert?", "Mittelwert einer Zufallsvariable"],
+          ],
+        },
+      ];
+
+      // Tab & render logic
+      const elMine = document.getElementById("mine");
+      const elDiscover = document.getElementById("discover");
+      const searchWrap = document.getElementById("discover-search-wrap");
+      const searchInput = document.getElementById("discover-search");
+
+      function renderMySets() {
+        elMine.innerHTML = mySets.map((s) => cardSet(s, true)).join("");
+      }
+      function renderDiscoverSets(filter = "") {
+        const q = filter.trim().toLowerCase();
+        const items = discoverSets.filter(
+          (s) =>
+            s.title.toLowerCase().includes(q) ||
+            s.desc.toLowerCase().includes(q) ||
+            (s.author || "").toLowerCase().includes(q)
+        );
+        elDiscover.innerHTML =
+          items.map((s) => cardSet(s, false)).join("") ||
+          '<p class="text-sm text-dhbw-text-secondary">Keine Treffer</p>';
+      }
+      function cardSet(s, isMine) {
+        return `
+        <div class="rounded-lg border border-dhbw-border bg-dhbw-panel p-4 flex flex-col gap-3">
+          <div class="flex-1">
+            <h3 class="text-base font-semibold">${s.title}</h3>
+            <p class="text-sm text-dhbw-text-secondary">${s.desc || ""}</p>
+            ${
+              s.author
+                ? `<p class=\"mt-1 text-xs text-dhbw-text-secondary\">von ${s.author}</p>`
+                : ""
+            }
+          </div>
+          <div class="flex items-center justify-between">
+            <span class="text-xs text-dhbw-text-secondary">${
+              (s.cards || []).length
+            } Karten</span>
+            <div class="flex gap-2">
+              <button class="px-2 py-1 rounded-md border border-dhbw-border text-xs" onclick="startLearn('${
+                s.id
+              }', ${isMine})">Lernen</button>
+              ${
+                isMine
+                  ? `<button class=\"px-2 py-1 rounded-md border border-dhbw-border text-xs\" onclick=\"editSet('${s.id}')\">Bearbeiten</button>`
+                  : `<button class=\"px-2 py-1 rounded-md bg-dhbw-red text-white text-xs\" onclick=\"addToMySets('${s.id}')\">Hinzufügen</button>`
+              }
+            </div>
+          </div>
+        </div>`;
+      }
+
+      // Tabs
+      document.getElementById("tab-mine").addEventListener("click", () => {
+        setActiveTab("mine");
+      });
+      document.getElementById("tab-discover").addEventListener("click", () => {
+        setActiveTab("discover");
+      });
+      function setActiveTab(name) {
+        document.getElementById("mine").style.display =
+          name === "mine" ? "" : "none";
+        document.getElementById("discover").style.display =
+          name === "discover" ? "" : "none";
+        searchWrap.style.display = name === "discover" ? "" : "none";
+        document
+          .querySelectorAll(".tab")
+          .forEach((t) => t.classList.remove("bg-dhbw-focus", "active"));
+        document
+          .getElementById(name === "mine" ? "tab-mine" : "tab-discover")
+          .classList.add("bg-dhbw-focus", "active");
+      }
+
+      // Search discover
+      searchInput.addEventListener("input", () =>
+        renderDiscoverSets(searchInput.value)
+      );
+
+      // Create new set
+      document
+        .getElementById("btn-new-set")
+        .addEventListener("click", () => openNewModal());
+      function openNewModal() {
+        document.getElementById("modal-backdrop").classList.remove("hidden");
+        document.getElementById("modal-new").classList.remove("hidden");
+        document.getElementById("new-title").value = "";
+        document.getElementById("new-desc").value = "";
+        document.getElementById("new-title").focus();
+        document.addEventListener("keydown", escNew);
+        document.getElementById("modal-backdrop").onclick = closeNewModal;
+      }
+      function closeNewModal() {
+        document.getElementById("modal-backdrop").classList.add("hidden");
+        document.getElementById("modal-new").classList.add("hidden");
+        document.removeEventListener("keydown", escNew);
+      }
+      function escNew(e) {
+        if (e.key === "Escape") closeNewModal();
+      }
+      function createSet() {
+        const title = document.getElementById("new-title").value.trim();
+        const desc = document.getElementById("new-desc").value.trim();
+        if (!title) {
+          alert("Bitte Titel angeben");
+          return;
+        }
+        const id = "s" + Date.now();
+        mySets.push({ id, title, desc, cards: [] });
+        renderMySets();
+        closeNewModal();
+      }
+
+      // Upload (JSON/CSV minimal)
+      document
+        .getElementById("file-upload")
+        .addEventListener("change", handleUpload);
+      function handleUpload(e) {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = () => {
+          try {
+            if (file.name.endsWith(".json")) {
+              const data = JSON.parse(reader.result);
+              const title = data.title || file.name.replace(/\.[^/.]+$/, "");
+              const cards = Array.isArray(data.cards) ? data.cards : [];
+              mySets.push({
+                id: "s" + Date.now(),
+                title,
+                desc: data.desc || "",
+                cards,
+              });
+            } else if (file.name.endsWith(".csv")) {
+              // expect CSV with two columns: question,answer
+              const lines = reader.result.split(/\r?\n/).filter(Boolean);
+              const cards = lines.map((line) => {
+                const [q, a] = line.split(",");
+                return [q?.trim() || "", a?.trim() || ""];
+              });
+              mySets.push({
+                id: "s" + Date.now(),
+                title: file.name.replace(/\.[^/.]+$/, ""),
+                desc: "Importiert (CSV)",
+                cards,
+              });
+            } else {
+              alert("Nur .json oder .csv unterstützt");
+              return;
+            }
+            renderMySets();
+            alert("Set importiert: " + file.name);
+          } catch (err) {
+            console.error(err);
+            alert("Import fehlgeschlagen");
+          } finally {
+            e.target.value = "";
+          }
+        };
+        reader.onerror = () => alert("Datei konnte nicht gelesen werden");
+        reader.readAsText(file);
+      }
+
+      // Add from discover to my sets (demo)
+      function addToMySets(id) {
+        const s = discoverSets.find((x) => x.id === id);
+        if (!s) return;
+        mySets.push({
+          id: "s" + Date.now(),
+          title: s.title,
+          desc: s.desc + ` (von ${s.author})`,
+          cards: s.cards,
+        });
+        renderMySets();
+        alert('Zu "Meine Sets" hinzugefügt');
+      }
+
+      // Edit (demo stub)
+      function editSet(id) {
+        alert("Bearbeiten (Demo) – Karteneditor könnte hier folgen.");
+      }
+
+      // Learn modal
+      let learn = { idx: 0, face: "q", cards: [], title: "" };
+      function startLearn(id, isMine) {
+        const src = isMine ? mySets : discoverSets;
+        const s = src.find((x) => x.id === id);
+        if (!s) {
+          alert("Set nicht gefunden");
+          return;
+        }
+        learn = { idx: 0, face: "q", cards: s.cards.slice(), title: s.title };
+        document.getElementById("learn-title").textContent =
+          "Lernmodus – " + s.title;
+        document.getElementById("card-text").textContent =
+          s.cards[0]?.[0] || "Keine Karten";
+        openLearn();
+      }
+      function openLearn() {
+        document.getElementById("learn-backdrop").classList.remove("hidden");
+        document.getElementById("learn-modal").classList.remove("hidden");
+        document.addEventListener("keydown", escLearn);
+        document.getElementById("learn-backdrop").onclick = closeLearn;
+      }
+      function closeLearn() {
+        document.getElementById("learn-backdrop").classList.add("hidden");
+        document.getElementById("learn-modal").classList.add("hidden");
+        document.removeEventListener("keydown", escLearn);
+      }
+      function escLearn(e) {
+        if (e.key === "Escape") closeLearn();
+      }
+      function flipCard() {
+        if (!learn.cards.length) return;
+        const [q, a] = learn.cards[learn.idx];
+        const isQ = learn.face === "q";
+        document.getElementById("card-text").textContent = isQ ? a : q;
+        learn.face = isQ ? "a" : "q";
+      }
+      function nextCard() {
+        if (!learn.cards.length) return;
+        learn.idx = (learn.idx + 1) % learn.cards.length;
+        learn.face = "q";
+        document.getElementById("card-text").textContent =
+          learn.cards[learn.idx][0];
+      }
+      function prevCard() {
+        if (!learn.cards.length) return;
+        learn.idx = (learn.idx - 1 + learn.cards.length) % learn.cards.length;
+        learn.face = "q";
+        document.getElementById("card-text").textContent =
+          learn.cards[learn.idx][0];
+      }
+      function markKnown() {
+        nextCard();
+      }
+      function markUnknown() {
+        nextCard();
+      }
+
+      // Init
+      renderMySets();
+      renderDiscoverSets("");
+      setActiveTab("mine");
+    </script>
+  </body>
+</html>

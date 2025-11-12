@@ -121,6 +121,12 @@
           <a
             class="nav-link text-sm font-medium text-dhbw-text-secondary hover:text-dhbw-text-primary"
             href="javascript:void(0)"
+            onclick="showPage('karteikarten')"
+            >Karteikarten</a
+          >
+          <a
+            class="nav-link text-sm font-medium text-dhbw-text-secondary hover:text-dhbw-text-primary"
+            href="javascript:void(0)"
             onclick="showPage('qa')"
             >Q&A</a
           >
@@ -240,6 +246,12 @@
             class="block rounded-md px-3 py-2 text-sm hover:bg-dhbw-focus"
             onclick="showPage('groups'); closeMobileMenu();"
             >Gruppen</a
+          >
+          <a
+            href="javascript:void(0)"
+            class="block rounded-md px-3 py-2 text-sm hover:bg-dhbw-focus"
+            onclick="showPage('karteikarten'); closeMobileMenu();"
+            >Karteikarten</a
           >
           <a
             href="javascript:void(0)"
@@ -412,6 +424,9 @@
             break;
           case "groups":
             iframe.src = "groups_directory/code.html";
+            break;
+          case "karteikarten":
+            iframe.src = "karteikarten/code.html";
             break;
           case "qa":
             iframe.src = "frage_&_antwort_plattform/code.html";
