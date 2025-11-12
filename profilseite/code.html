@@ -155,6 +155,29 @@
 </div>
 </div>
 </section>
+<section class="px-4">
+    <h2 class="text-dhbw-text-primary text-lg font-semibold pb-2 pt-4">Rolle &amp; Gruppen</h2>
+    <div class="flex flex-col gap-0.5 rounded-lg bg-dhbw-panel overflow-hidden">
+        <div class="flex items-center gap-4 px-3 py-2.5 min-h-14 justify-between">
+            <div class="flex items-center gap-3">
+                <div class="flex size-8 shrink-0 items-center justify-center text-dhbw-icon">
+                    <span class="material-symbols-outlined text-2xl">admin_panel_settings</span>
+                </div>
+                <p class="flex-1 truncate text-sm font-normal text-dhbw-text-primary">Rolle auswählen</p>
+            </div>
+            <div class="shrink-0">
+                <select id="role-select" class="bg-dhbw-bg-main border border-dhbw-border rounded-md px-3 py-2 text-sm text-dhbw-text-primary">
+                    <option value="user">Nutzer</option>
+                    <option value="group-admin">Gruppen-Admin</option>
+                    <option value="system-admin">System-Admin</option>
+                </select>
+            </div>
+        </div>
+        <div class="px-3 pb-3 text-xs text-dhbw-text-secondary">
+            Die Auswahl steuert, welche Admin-Seiten in der Navigation sichtbar sind (Demo).
+        </div>
+    </div>
+</section>
 </main>
 <footer class="fixed bottom-0 left-0 w-full border-t border-dhbw-border bg-dhbw-bg-main p-4">
 <div class="mx-auto flex max-w-lg flex-col gap-3">
@@ -163,5 +186,19 @@
 </div>
 </footer>
 </main>
+<script>
+    (function initRole(){
+        const sel = document.getElementById('role-select');
+        const saved = sessionStorage.getItem('DHBW_ROLE') || 'user';
+        sel.value = saved;
+        window.DHBW_ROLE = saved;
+        sel.addEventListener('change', ()=>{
+            sessionStorage.setItem('DHBW_ROLE', sel.value);
+            window.DHBW_ROLE = sel.value;
+            // Optional Hinweis
+            alert('Rolle gesetzt auf: ' + sel.value + '\nDie Navigation aktualisiert sich beim nächsten Öffnen.');
+        });
+    })();
+</script>
 
 </body></html>

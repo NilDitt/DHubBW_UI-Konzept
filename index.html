@@ -130,6 +130,20 @@
             onclick="showPage('admin')"
             >Admin</a
           >
+          <a
+            id="nav-group-admin"
+            class="nav-link text-sm font-medium text-dhbw-text-secondary hover:text-dhbw-text-primary hidden"
+            href="javascript:void(0)"
+            onclick="showPage('group-admin')"
+            >Group Admin</a
+          >
+          <a
+            id="nav-system-admin"
+            class="nav-link text-sm font-medium text-dhbw-text-secondary hover:text-dhbw-text-primary hidden"
+            href="javascript:void(0)"
+            onclick="showPage('system-admin')"
+            >System Admin</a
+          >
         </nav>
       </div>
 
@@ -239,6 +253,20 @@
             onclick="showPage('admin'); closeMobileMenu();"
             >Admin</a
           >
+          <a
+            id="nav-group-admin-mobile"
+            href="javascript:void(0)"
+            class="hidden block rounded-md px-3 py-2 text-sm hover:bg-dhbw-focus"
+            onclick="showPage('group-admin'); closeMobileMenu();"
+            >Group Admin</a
+          >
+          <a
+            id="nav-system-admin-mobile"
+            href="javascript:void(0)"
+            class="hidden block rounded-md px-3 py-2 text-sm hover:bg-dhbw-focus"
+            onclick="showPage('system-admin'); closeMobileMenu();"
+            >System Admin</a
+          >
           <!-- <div class="mt-4 border-t border-dhbw-border pt-2">
             <a href="javascript:void(0)" class="flex items-center gap-3 rounded-md px-3 py-2 text-sm hover:bg-dhbw-focus" onclick="showPage('profile'); closeMobileMenu();">
               <img alt="Profile Avatar" class="h-6 w-6 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuChdHtZhjrNnRwmzFIbSthq5njGjE1VSLAcbteBNhzFiAKltSoGBsklJwTyH2cKMLmE4en-qwdid1WwUrBangAVrIA-mzk0cq77DYxuKUojXOZJIggoY4TnVgtLfAChxPVNYeBQckrDvL1gcowGtopbe7D9ZGUoXXXEc2DUwl6UlOUSBf3UQsATpXAFJRThDWtJo9nlzsak7VA1lp0kxkPfocs28_oIVesBXBNHeZBjSV0PzWB-8RC9epbbhd_tM0WKwD1R4Wzcsik" />
@@ -256,6 +284,51 @@
         class="w-full h-[calc(100vh-4rem)] border-0"
         src="dashboard_overview/code.html"
       ></iframe>
+    </div>
+
+    <!-- Onboarding: Gruppe beitreten (Demo) -->
+    <div
+      id="onboard-backdrop"
+      class="fixed inset-0 bg-black/50 hidden z-40"
+    ></div>
+    <div
+      id="onboard-modal"
+      class="fixed inset-0 z-50 hidden flex items-center justify-center p-4"
+    >
+      <div
+        class="w-full max-w-xl rounded-lg border border-dhbw-border bg-dhbw-panel"
+      >
+        <div
+          class="flex items-center justify-between p-4 border-b border-dhbw-border"
+        >
+          <h3 class="text-base font-bold">Gruppe beitreten</h3>
+          <button
+            class="text-dhbw-icon hover:text-dhbw-text-primary"
+            onclick="closeOnboarding()"
+          >
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+        <div class="p-4 space-y-3">
+          <label class="block text-sm text-dhbw-text-secondary"
+            >Gruppe suchen</label
+          >
+          <input
+            id="onboard-search"
+            type="text"
+            placeholder="z.B. TINF22B4"
+            class="w-full rounded-md border border-dhbw-border bg-dhbw-bg px-3 py-2 text-sm text-dhbw-text-primary placeholder:text-dhbw-text-secondary focus:outline-none focus:ring-1 focus:ring-dhbw-red"
+          />
+          <div id="onboard-results" class="divide-y divide-dhbw-border">
+            <!-- Ergebnisse per JS gefüllt -->
+          </div>
+        </div>
+        <div
+          class="p-4 border-t border-dhbw-border text-right text-xs text-dhbw-text-secondary"
+        >
+          Nur Demo – keine Speicherung.
+        </div>
+      </div>
     </div>
 
     <script>
@@ -346,6 +419,12 @@
           case "admin":
             iframe.src = "admin/stuv_announcements/code.html";
             break;
+          case "group-admin":
+            iframe.src = "groups_directory/group_admin/code.html";
+            break;
+          case "system-admin":
+            iframe.src = "admin/system_admin/code.html";
+            break;
           case "profile":
             iframe.src = "profilseite/code.html";
             break;
@@ -353,8 +432,83 @@
       }
 
       // Initialize with dashboard page
+      function updateRoleNav() {
+        const role = sessionStorage.getItem("DHBW_ROLE") || "user";
+        const entries = [
+          document.getElementById("nav-group-admin"),
+          document.getElementById("nav-group-admin-mobile"),
+        ];
+        const entriesSys = [
+          document.getElementById("nav-system-admin"),
+          document.getElementById("nav-system-admin-mobile"),
+        ];
+        // reset
+        entries.forEach((el) => el?.classList.add("hidden"));
+        entriesSys.forEach((el) => el?.classList.add("hidden"));
+        // apply
+        if (role === "group-admin" || role === "system-admin")
+          entries.forEach((el) => el?.classList.remove("hidden"));
+        if (role === "system-admin")
+          entriesSys.forEach((el) => el?.classList.remove("hidden"));
+      }
       document.addEventListener("DOMContentLoaded", function () {
         showPage("dashboard");
+        updateRoleNav();
+
+        // Onboarding (once per session)
+        if (!sessionStorage.getItem("DHBW_ONBOARD_SHOWN")) {
+          openOnboarding();
+          sessionStorage.setItem("DHBW_ONBOARD_SHOWN", "1");
+        }
+      });
+
+      // Onboarding modal logic
+      const GROUPS = ["TINF22B4", "TINF22B3", "WWI22A", "WWI22B", "AI23A"];
+      function renderOnboardResults(filter = "") {
+        const wrap = document.getElementById("onboard-results");
+        const q = filter.trim().toLowerCase();
+        const items = GROUPS.filter((g) => g.toLowerCase().includes(q));
+        wrap.innerHTML =
+          items
+            .map(
+              (g) => `
+          <div class="flex items-center justify-between py-3 px-1">
+            <div>
+              <p class="text-sm text-dhbw-text-primary">${g}</p>
+              <p class="text-xs text-dhbw-text-secondary">Mitglieder: ${
+                20 + Math.floor(Math.random() * 20)
+              }</p>
+            </div>
+            <button class="text-xs px-2 py-1 rounded-md bg-dhbw-red text-white" onclick="alert('Zugang zu ${g} angefragt (Demo)')">Zugang anfragen</button>
+          </div>
+        `
+            )
+            .join("") ||
+          '<p class="text-xs text-dhbw-text-secondary py-3">Keine Treffer</p>';
+      }
+      function openOnboarding() {
+        document.getElementById("onboard-backdrop")?.classList.remove("hidden");
+        document.getElementById("onboard-modal")?.classList.remove("hidden");
+        renderOnboardResults("");
+        const input = document.getElementById("onboard-search");
+        input.value = "";
+        input.focus();
+        input.oninput = () => renderOnboardResults(input.value);
+        document.addEventListener("keydown", escClose);
+        document.getElementById("onboard-backdrop").onclick = closeOnboarding;
+      }
+      function closeOnboarding() {
+        document.getElementById("onboard-backdrop")?.classList.add("hidden");
+        document.getElementById("onboard-modal")?.classList.add("hidden");
+        document.removeEventListener("keydown", escClose);
+      }
+      function escClose(e) {
+        if (e.key === "Escape") closeOnboarding();
+      }
+
+      // React to role changes from profile (sessionStorage updates in iframe)
+      window.addEventListener("storage", (e) => {
+        if (e.key === "DHBW_ROLE") updateRoleNav();
       });
 
       // Global Search Toggle Logic

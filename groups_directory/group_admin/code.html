@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html class="dark" lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Gruppenverwaltung - DHubBW</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "dhbw-bg": "#121315",
+              "dhbw-panel": "#1A1C1F",
+              "dhbw-border": "#2A2D31",
+              "dhbw-primary": "#C8102E",
+              "dhbw-primary-muted": "#992029",
+              "dhbw-text-primary": "#F2F2F5",
+              "dhbw-text-secondary": "#A8ADB5",
+              "dhbw-icon": "#5C6068",
+              "dhbw-hover": "#26292D",
+              "dhbw-success": "#3EA05B",
+              "dhbw-warning": "#EBCB70",
+              "dhbw-error": "#E03140",
+            },
+            fontFamily: { display: ["Inter", "sans-serif"] },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        min-height: max(884px, 100dvh);
+      }
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+      }
+    </style>
+  </head>
+  <body class="bg-dhbw-bg font-display text-dhbw-text-primary">
+    <main class="p-4 md:p-6 lg:p-8">
+      <h1 class="text-2xl font-bold mb-4">Gruppe: TINF22B4</h1>
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <section class="rounded-lg border border-dhbw-border bg-dhbw-panel">
+          <div class="p-4 border-b border-dhbw-border">
+            <h2 class="text-base font-bold">Gruppenübersicht</h2>
+          </div>
+          <div class="p-4 space-y-2 text-sm">
+            <p>
+              <span class="text-dhbw-text-secondary">Beschreibung:</span>
+              Informatikkurs 2022 B4
+            </p>
+            <p><span class="text-dhbw-text-secondary">Mitglieder:</span> 29</p>
+            <p>
+              <span class="text-dhbw-text-secondary">Gruppencode:</span>
+              TINF22B4-7QX
+            </p>
+          </div>
+        </section>
+        <section
+          class="lg:col-span-2 rounded-lg border border-dhbw-border bg-dhbw-panel"
+        >
+          <div
+            class="flex items-center justify-between p-4 border-b border-dhbw-border"
+          >
+            <h2 class="text-base font-bold">Mitglieder</h2>
+            <button
+              class="text-sm px-3 py-1.5 rounded-md border border-dhbw-border hover:bg-dhbw-hover"
+            >
+              Mitglied hinzufügen
+            </button>
+          </div>
+          <div class="p-3">
+            <div
+              class="grid grid-cols-12 text-xs text-dhbw-text-secondary px-2 py-2"
+            >
+              <div class="col-span-5">Name</div>
+              <div class="col-span-3">Rolle</div>
+              <div class="col-span-2">Beitritt</div>
+              <div class="col-span-2 text-right">Aktionen</div>
+            </div>
+            <div class="divide-y divide-dhbw-border">
+              <div class="grid grid-cols-12 items-center px-2 py-3">
+                <div class="col-span-5 text-sm">Erika Mustermann</div>
+                <div class="col-span-3 text-sm">Admin</div>
+                <div class="col-span-2 text-sm">2024-05-10</div>
+                <div class="col-span-2 flex items-center justify-end gap-2">
+                  <button
+                    class="text-xs px-2 py-1 rounded-md border border-dhbw-border"
+                  >
+                    Admin entfernen
+                  </button>
+                </div>
+              </div>
+              <div class="grid grid-cols-12 items-center px-2 py-3">
+                <div class="col-span-5 text-sm">Peter Schmidt</div>
+                <div class="col-span-3 text-sm">Mitglied</div>
+                <div class="col-span-2 text-sm">2024-04-18</div>
+                <div class="col-span-2 flex items-center justify-end gap-2">
+                  <button class="text-xs px-2 py-1 rounded-md bg-dhbw-hover">
+                    Zum Admin machen
+                  </button>
+                  <button
+                    class="text-xs px-2 py-1 rounded-md border border-dhbw-border"
+                  >
+                    Entfernen
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+      <section class="mt-6 rounded-lg border border-dhbw-border bg-dhbw-panel">
+        <div class="p-4 border-b border-dhbw-border">
+          <h2 class="text-base font-bold">Offene Beitrittsanfragen</h2>
+        </div>
+        <div class="p-4 divide-y divide-dhbw-border">
+          <div class="py-3 flex items-center justify-between">
+            <div>
+              <p class="text-sm">Lena S.</p>
+              <p class="text-xs text-dhbw-text-secondary">
+                Motivation: Wechsel aus WWI22A
+              </p>
+            </div>
+            <div class="flex items-center gap-2">
+              <button
+                class="text-xs px-2 py-1 rounded-md bg-dhbw-primary text-white"
+              >
+                Genehmigen
+              </button>
+              <button
+                class="text-xs px-2 py-1 rounded-md border border-dhbw-border"
+              >
+                Ablehnen
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
