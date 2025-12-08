@@ -1,0 +1,203 @@
+@startuml ProductionArchitecture
+' DHubBW – Production Architecture (React Native + Spring Boot)
+' Generated on 2025-11-14
+
+skinparam componentStyle rectangle
+skinparam defaultTextAlignment left
+skinparam shadowing false
+skinparam packageStyle rectangle
+skinparam wrapWidth 180
+skinparam maxMessageSize 200
+
+title DHubBW – Production Component Architecture
+
+' High-level layers: Mobile App, API Edge, Backend Services, Shared Infrastructure, External Systems
+
+package "Mobile App (React Native)" as MobileApp {
+  [RN App Shell] as RNApp
+  [Navigation Layer] as NavLayer
+  [State Management (Redux/RTK Query)] as StateMgmt
+  [Auth Module] as AuthModule
+  [Offline Cache / Persistence] as OfflineCache
+  [Push Notifications Handler] as PushHandler
+  package "Feature Modules" {
+    [Dashboard Feature]
+    [Files Feature]
+    [Calendar Feature]
+    [Mensa Feature]
+    [Polls Feature]
+    [Groups Feature]
+    [QnA Feature]
+    [Flashcards Feature]
+    [Profile Feature]
+    [Admin Feature]
+  }
+}
+
+package "API Edge" as ApiEdge {
+  [API Gateway / Reverse Proxy] as APIGateway
+  [Auth Server / Keycloak] as AuthServer
+  [Edge Rate Limiter] as RateLimiter
+}
+
+package "Backend (Spring Boot Microservices)" as BackendPkg {
+  package "Core Services" {
+    [User Service] as UserSvc
+    [Group Service] as GroupSvc
+    [Auth Adapter] as AuthAdapter
+    [Notification Service] as NotifSvc
+  }
+  package "Domain Services" {
+    [Calendar Service] as CalendarSvc
+    [Mensa Service] as MensaSvc
+    [Polls Service] as PollsSvc
+    [Files Service] as FilesSvc
+    [QnA Service] as QnASvc
+    [Flashcards Service] as FlashcardsSvc
+    [Admin Service] as AdminSvc
+  }
+  package "Integration Adapters" {
+    [Rapla ICS Adapter] as RaplaAdapter
+    [Studierendenwerk Adapter] as MensaAdapter
+    [Storage Adapter] as StorageAdapter
+    [Messaging Adapter] as MessagingAdapter
+    [Search Adapter] as SearchAdapter
+  }
+  [API Composition Layer] as Composition
+}
+
+package "Shared Infrastructure" as SharedInfra {
+  [PostgreSQL Cluster] as PostgreSQL
+  [Object Storage (S3/Azure Blob)] as ObjStorage
+  [Redis Cache]
+  [Elasticsearch / OpenSearch] as SearchEngine
+  [Message Broker (Kafka)] as Kafka
+  [API Metrics / OpenTelemetry Collector] as OTEL
+}
+
+package "External Systems" as ExternalSys {
+  [Rapla ICS Source]
+  [Studierendenwerk API]
+  [Identity Provider (OIDC/SAML)] as IdP
+  [Email/SMS Provider]
+  [Push Notification Provider (FCM/APNs)] as PushProvider
+}
+
+' Mobile App dependencies
+RNApp --> NavLayer
+NavLayer --> StateMgmt
+StateMgmt --> OfflineCache
+AuthModule --> StateMgmt
+PushHandler --> StateMgmt
+
+' Feature modules consume API through state/query layer (use aliases for clarity)
+[Dashboard Feature] as DashboardF
+[Files Feature] as FilesF
+[Calendar Feature] as CalendarF
+[Mensa Feature] as MensaF
+[Polls Feature] as PollsF
+[Groups Feature] as GroupsF
+[QnA Feature] as QnAF
+[Flashcards Feature] as FlashcardsF
+[Profile Feature] as ProfileF
+[Admin Feature] as AdminF
+
+DashboardF --> StateMgmt
+FilesF --> StateMgmt
+CalendarF --> StateMgmt
+MensaF --> StateMgmt
+PollsF --> StateMgmt
+GroupsF --> StateMgmt
+QnAF --> StateMgmt
+FlashcardsF --> StateMgmt
+ProfileF --> StateMgmt
+AdminF --> StateMgmt
+
+StateMgmt --> APIGateway : "HTTPS/JSON (REST)\\n(Option: GraphQL)"
+AuthModule --> AuthServer : OIDC/OAuth2
+PushHandler --> PushProvider
+OfflineCache --> "Redis Cache" : "sync (background)"
+
+' API Edge routing
+APIGateway --> RateLimiter
+APIGateway --> Composition
+AuthServer --> UserSvc
+
+' Composition layer to services
+Composition --> UserSvc
+Composition --> GroupSvc
+Composition --> CalendarSvc
+Composition --> MensaSvc
+Composition --> PollsSvc
+Composition --> FilesSvc
+Composition --> QnASvc
+Composition --> FlashcardsSvc
+Composition --> AdminSvc
+Composition --> NotifSvc
+
+' Services to data stores
+UserSvc --> PostgreSQL
+GroupSvc --> PostgreSQL
+CalendarSvc --> PostgreSQL
+MensaSvc --> PostgreSQL
+PollsSvc --> PostgreSQL
+FilesSvc --> ObjStorage
+QnASvc --> PostgreSQL
+FlashcardsSvc --> PostgreSQL
+AdminSvc --> PostgreSQL
+NotifSvc --> Kafka
+NotifSvc --> OTEL
+
+' Caching / search
+CalendarSvc --> "Redis Cache"
+MensaSvc --> "Redis Cache"
+PollsSvc --> "Redis Cache"
+QnASvc --> SearchEngine
+FilesSvc --> ObjStorage
+FlashcardsSvc --> "Redis Cache"
+
+' Integration adapters outward
+RaplaAdapter --> "Rapla ICS Source" : "ICS fetch"
+MensaAdapter --> "Studierendenwerk API" : "HTML/JSON parse"
+AuthAdapter --> IdP : "OIDC/SAML"
+StorageAdapter --> ObjStorage
+MessagingAdapter --> Kafka
+SearchAdapter --> SearchEngine
+
+' Domain services use adapters
+CalendarSvc --> RaplaAdapter
+MensaSvc --> MensaAdapter
+FilesSvc --> StorageAdapter
+QnASvc --> SearchAdapter
+AdminSvc --> AuthAdapter
+NotifSvc --> MessagingAdapter
+
+' Telemetry
+UserSvc --> OTEL
+GroupSvc --> OTEL
+CalendarSvc --> OTEL
+MensaSvc --> OTEL
+PollsSvc --> OTEL
+FilesSvc --> OTEL
+QnASvc --> OTEL
+FlashcardsSvc --> OTEL
+AdminSvc --> OTEL
+
+' Security flows
+AuthModule --> AuthServer
+AuthServer --> IdP
+APIGateway --> AuthServer : "token introspection / JWKS"
+
+note top of MobileApp
+RN App Shell hosts navigation & global providers\nOffline first: local storage + background sync
+end note
+
+note right of BackendPkg
+Services follow clean architecture: controllers -> app layer -> domain -> adapters
+end note
+
+note bottom of SharedInfra
+Kafka for async events (e.g., new poll, updated mensa menu)\nRedis for hot caches and rate counters\nSearchEngine for full text (QnA, files metadata)
+end note
+
+@enduml

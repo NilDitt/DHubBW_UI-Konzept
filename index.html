@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="dark" lang="de">
+<html class="dark" data-theme="dark" lang="de">
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -17,6 +17,30 @@
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
       rel="stylesheet"
     />
+    <link rel="manifest" href="manifest.webmanifest" />
+    <meta name="theme-color" content="#121315" />
+    <script>
+      (function bootstrapTheme() {
+        const root = document.documentElement;
+        const metaTheme = document.querySelector('meta[name="theme-color"]');
+        let stored = "dark";
+        try {
+          stored = localStorage.getItem("DHBW_THEME") || "dark";
+        } catch {}
+        if (stored === "light") {
+          root.classList.remove("dark");
+          root.classList.add("light");
+        } else {
+          root.classList.add("dark");
+          root.classList.remove("light");
+        }
+        root.setAttribute("data-theme", stored);
+        metaTheme?.setAttribute(
+          "content",
+          stored === "light" ? "#f5f5f7" : "#121315"
+        );
+      })();
+    </script>
     <script>
       tailwind.config = {
         darkMode: "class",
@@ -50,14 +74,263 @@
         },
       };
     </script>
-    <style>
+    <style id="dhbw-theme-styles">
       .material-symbols-outlined {
         font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
       }
+      :root {
+        color-scheme: dark;
+        --dhbw-bg: #121315;
+        --dhbw-main-bg: #121315;
+        --dhbw-main-background: var(--dhbw-main-bg);
+        --dhbw-bg-main: var(--dhbw-main-bg);
+        --dhbw-panel: #1a1c1f;
+        --dhbw-panel-bg: var(--dhbw-panel);
+        --dhbw-border: #2a2d31;
+        --dhbw-border-strong: #353941;
+        --dhbw-text-primary: #f2f2f5;
+  --dhbw-text-secondary: #a8adb5;
+  --dhbw-icon: #5c6068;
+        --dhbw-icon-gray: #5c6068;
+        --dhbw-focus: #212327;
+        --dhbw-focus-gray: #26292d;
+        --dhbw-hover: #1f2227;
+        --dhbw-primary: #c8102e;
+        --dhbw-primary-muted: #992029;
+        --dhbw-primary-red: var(--dhbw-primary);
+        --dhbw-secondary-red: var(--dhbw-primary-muted);
+        --dhbw-red: var(--dhbw-primary);
+        --dhbw-success: #3ea05b;
+        --dhbw-warning: #ebcb70;
+        --dhbw-error: #e03140;
+      }
+      html[data-theme="light"] {
+        color-scheme: light;
+        --dhbw-bg: #f5f5f7;
+        --dhbw-main-bg: #f8f9fb;
+        --dhbw-main-background: var(--dhbw-main-bg);
+        --dhbw-bg-main: var(--dhbw-main-bg);
+        --dhbw-panel: #ffffff;
+        --dhbw-panel-bg: var(--dhbw-panel);
+        --dhbw-border: #d7dce3;
+        --dhbw-border-strong: #c2c8d1;
+        --dhbw-text-primary: #1d2939;
+        --dhbw-text-secondary: #475467;
+        --dhbw-icon: #667085;
+        --dhbw-icon-gray: #8c96a6;
+        --dhbw-focus: #f2f4f8;
+        --dhbw-focus-gray: #eef1f5;
+        --dhbw-hover: #eceef3;
+        --dhbw-primary: #c8102e;
+        --dhbw-primary-muted: #b50f2a;
+        --dhbw-primary-red: var(--dhbw-primary);
+        --dhbw-secondary-red: var(--dhbw-primary-muted);
+        --dhbw-red: var(--dhbw-primary);
+        --dhbw-success: #0f9d58;
+        --dhbw-warning: #f4b740;
+        --dhbw-error: #db3a25;
+      }
+      html:not([data-theme="light"]) {
+        color-scheme: dark;
+      }
       body {
         min-height: max(884px, 100dvh);
+        background-color: var(--dhbw-main-bg);
+        color: var(--dhbw-text-primary);
+      }
+      .bg-dhbw-bg,
+      .bg-dhbw-main-bg,
+      .bg-dhbw-bg-main,
+      .bg-dhbw-main-background {
+        background-color: var(--dhbw-main-bg) !important;
+      }
+      .bg-dhbw-panel,
+      .bg-dhbw-panel-bg {
+        background-color: var(--dhbw-panel) !important;
+      }
+      .bg-dhbw-border {
+        background-color: var(--dhbw-border) !important;
+      }
+      .bg-dhbw-focus {
+        background-color: var(--dhbw-focus) !important;
+        color: var(--dhbw-text-primary) !important;
+      }
+      .bg-dhbw-focus-gray {
+        background-color: var(--dhbw-focus-gray) !important;
+      }
+      .bg-dhbw-hover {
+        background-color: var(--dhbw-hover) !important;
+      }
+      .bg-dhbw-hover\/30 {
+        background-color: color-mix(in srgb, var(--dhbw-hover) 30%, transparent) !important;
+      }
+      .bg-dhbw-bg\/40 {
+        background-color: color-mix(in srgb, var(--dhbw-main-bg) 40%, transparent) !important;
+      }
+      .bg-dhbw-bg\/60 {
+        background-color: color-mix(in srgb, var(--dhbw-main-bg) 60%, transparent) !important;
+      }
+      .bg-dhbw-border\/50 {
+        background-color: color-mix(in srgb, var(--dhbw-border) 50%, transparent) !important;
+      }
+      .bg-dhbw-main-background\/\[\.85\] {
+        background-color: color-mix(in srgb, var(--dhbw-main-background) 85%, transparent) !important;
+      }
+      .bg-dhbw-primary,
+      .bg-dhbw-primary-red,
+      .bg-dhbw-red {
+        background-color: var(--dhbw-primary) !important;
+        color: #fff !important;
+      }
+      .bg-dhbw-red\/20 {
+        background-color: color-mix(in srgb, var(--dhbw-primary) 20%, transparent) !important;
+      }
+      .bg-dhbw-red\/80 {
+        background-color: color-mix(in srgb, var(--dhbw-primary) 80%, transparent) !important;
+      }
+      .bg-dhbw-primary-muted,
+      .bg-dhbw-secondary-red {
+        background-color: var(--dhbw-primary-muted) !important;
+      }
+      .bg-dhbw-primary-muted\/20,
+      .bg-dhbw-secondary-red\/20 {
+        background-color: color-mix(
+          in srgb,
+          var(--dhbw-primary-muted) 20%,
+          transparent
+        ) !important;
+      }
+      .bg-dhbw-success {
+        background-color: var(--dhbw-success) !important;
+      }
+      .bg-dhbw-success\/20 {
+        background-color: color-mix(in srgb, var(--dhbw-success) 20%, transparent) !important;
+      }
+      .bg-dhbw-success\/80 {
+        background-color: color-mix(in srgb, var(--dhbw-success) 80%, transparent) !important;
+      }
+      .bg-dhbw-warning {
+        background-color: var(--dhbw-warning) !important;
+      }
+      .bg-dhbw-warning\/20 {
+        background-color: color-mix(in srgb, var(--dhbw-warning) 20%, transparent) !important;
+      }
+      .bg-dhbw-warning\/80 {
+        background-color: color-mix(in srgb, var(--dhbw-warning) 80%, transparent) !important;
+      }
+      .bg-dhbw-error {
+        background-color: var(--dhbw-error) !important;
+      }
+      .bg-dhbw-text-secondary {
+        background-color: var(--dhbw-text-secondary) !important;
+      }
+      .border-dhbw-border {
+        border-color: var(--dhbw-border) !important;
+      }
+      .border-dhbw-primary,
+      .border-dhbw-primary-red,
+      .border-dhbw-red {
+        border-color: var(--dhbw-primary) !important;
+      }
+      .border-dhbw-primary\/50 {
+        border-color: color-mix(in srgb, var(--dhbw-primary) 50%, transparent) !important;
+      }
+      .border-dhbw-red\/60 {
+        border-color: color-mix(in srgb, var(--dhbw-primary) 60%, transparent) !important;
+      }
+      .border-dhbw-red\/70 {
+        border-color: color-mix(in srgb, var(--dhbw-primary) 70%, transparent) !important;
+      }
+      .divide-dhbw-border > :not([hidden]) ~ :not([hidden]) {
+        border-color: var(--dhbw-border) !important;
+      }
+      .text-dhbw-text-primary {
+        color: var(--dhbw-text-primary) !important;
+      }
+      .text-dhbw-text-secondary {
+        color: var(--dhbw-text-secondary) !important;
+      }
+      .text-dhbw-icon {
+        color: var(--dhbw-icon) !important;
+      }
+      .text-dhbw-icon-gray {
+        color: var(--dhbw-icon-gray) !important;
+      }
+      .text-dhbw-primary,
+      .text-dhbw-red,
+      .text-dhbw-primary-red {
+        color: var(--dhbw-primary) !important;
+      }
+      .text-dhbw-secondary-red,
+      .text-dhbw-primary-muted {
+        color: var(--dhbw-primary-muted) !important;
+      }
+      .text-dhbw-success {
+        color: var(--dhbw-success) !important;
+      }
+      .text-dhbw-warning {
+        color: var(--dhbw-warning) !important;
+      }
+      .text-dhbw-error {
+        color: var(--dhbw-error) !important;
+      }
+      .ring-dhbw-border {
+        --tw-ring-color: var(--dhbw-border) !important;
+      }
+      .ring-dhbw-primary,
+      .ring-dhbw-primary-red,
+      .ring-dhbw-red {
+        --tw-ring-color: var(--dhbw-primary) !important;
+      }
+      .ring-dhbw-primary\/50 {
+        --tw-ring-color: color-mix(in srgb, var(--dhbw-primary) 50%, transparent) !important;
+      }
+      .ring-offset-dhbw-panel {
+        --tw-ring-offset-color: var(--dhbw-panel) !important;
+      }
+      .placeholder\:text-dhbw-text-secondary::placeholder {
+        color: var(--dhbw-text-secondary) !important;
+      }
+      .notes-empty-state {
+        color: var(--dhbw-text-secondary) !important;
       }
     </style>
+    <script>
+      window.__dhbwThemeCSS =
+        document.getElementById("dhbw-theme-styles")?.textContent || "";
+      window.__dhbwThemeBridgeScript = `
+(function(){
+  if (window.__dhbwThemeBridgeLoaded) return;
+  window.__dhbwThemeBridgeLoaded = true;
+  const THEME_KEY = "DHBW_THEME";
+  function applyTheme(theme) {
+    const root = document.documentElement;
+    if (!root) return;
+    root.classList.toggle("dark", theme !== "light");
+    root.classList.toggle("light", theme === "light");
+    root.setAttribute("data-theme", theme);
+  }
+  function currentTheme() {
+    try {
+      return localStorage.getItem(THEME_KEY) || "dark";
+    } catch {
+      return "dark";
+    }
+  }
+  applyTheme(currentTheme());
+  window.addEventListener("storage", (event) => {
+    if (event.key === THEME_KEY) {
+      applyTheme(event.newValue || "dark");
+    }
+  });
+  window.addEventListener("message", (event) => {
+    if (event?.data?.type === "DHBW_THEME_SYNC" && event.data.theme) {
+      applyTheme(event.data.theme);
+    }
+  });
+})();
+      `;
+    </script>
   </head>
   <body class="bg-dhbw-bg font-display text-dhbw-text-primary">
     <!-- Navigation Header -->
@@ -78,7 +351,7 @@
         </button>
 
         <!-- Update Logo (vereinheitlicht, größer) -->
-        <img alt="DHubBW Logo" class="h-10 w-auto" src="UpdateLogo 1.png" />
+        <img alt="DHubBW Logo" class="h-12 w-auto" src="Logo.png" />
 
         <!-- Navigation Menu -->
         <nav class="hidden md:flex items-center gap-4">
@@ -130,6 +403,12 @@
             onclick="showPage('qa')"
             >Q&A</a
           >
+            <a
+              class="nav-link text-sm font-medium text-dhbw-text-secondary hover:text-dhbw-text-primary"
+              href="javascript:void(0)"
+              onclick="showPage('dualis')"
+              >Dualis</a
+            >
           <a
             class="nav-link text-sm font-medium text-dhbw-text-secondary hover:text-dhbw-text-primary"
             href="javascript:void(0)"
@@ -154,6 +433,21 @@
       </div>
 
       <div class="flex items-center gap-4">
+        <button
+          id="pwa-install-btn"
+          class="hidden text-dhbw-icon hover:text-dhbw-text-primary border border-dhbw-border rounded-md px-2 py-1 text-xs md:inline-flex items-center gap-1"
+          title="App installieren"
+        >
+          <span class="material-symbols-outlined text-base">download</span>
+          Installieren
+        </button>
+        <button
+          id="notes-toggle-btn"
+          class="text-dhbw-icon hover:text-dhbw-text-primary hidden md:inline-flex"
+          title="Notizen (Cmd/Ctrl+J)"
+        >
+          <span class="material-symbols-outlined">sticky_note_2</span>
+        </button>
         <div id="global-search" class="relative flex items-center">
           <input
             id="global-search-input"
@@ -169,6 +463,16 @@
             <span class="material-symbols-outlined">search</span>
           </button>
         </div>
+        <button
+          id="theme-toggle-btn"
+          class="flex items-center gap-1 text-dhbw-icon hover:text-dhbw-text-primary"
+          aria-label="Hell- oder Dunkelmodus umschalten"
+          title="Hell-/Dunkelmodus"
+        >
+          <span class="material-symbols-outlined" data-theme-icon
+            >light_mode</span
+          >
+        </button>
         <button class="text-dhbw-icon hover:text-dhbw-text-primary">
           <span class="material-symbols-outlined">notifications</span>
         </button>
@@ -199,7 +503,7 @@
           class="flex items-center justify-between h-16 px-4 border-b border-dhbw-border"
         >
           <div class="flex items-center gap-2">
-            <img alt="DHubBW Logo" class="h-8 w-auto" src="UpdateLogo 1.png" />
+            <img alt="DHubBW Logo" class="h-8 w-auto" src="Logo.png" />
             <span class="text-sm font-semibold">Menü</span>
           </div>
           <button
@@ -262,6 +566,12 @@
           <a
             href="javascript:void(0)"
             class="block rounded-md px-3 py-2 text-sm hover:bg-dhbw-focus"
+            onclick="showPage('dualis'); closeMobileMenu();"
+            >Dualis</a
+          >
+          <a
+            href="javascript:void(0)"
+            class="block rounded-md px-3 py-2 text-sm hover:bg-dhbw-focus"
             onclick="showPage('admin'); closeMobileMenu();"
             >Admin</a
           >
@@ -287,6 +597,88 @@
           </div> -->
         </nav>
       </aside>
+    </div>
+
+    <!-- Notes Sidebar -->
+    <div class="md:hidden">
+      <div
+        id="notes-backdrop"
+        class="fixed inset-0 bg-black/50 hidden z-40"
+      ></div>
+    </div>
+    <aside
+      id="notes-panel"
+      class="fixed right-0 top-0 h-full w-[28rem] max-w-[90%] bg-dhbw-panel border-l border-dhbw-border z-50 transform translate-x-full transition-transform duration-200 ease-out"
+    >
+      <div
+        class="flex items-center justify-between h-16 px-4 border-b border-dhbw-border"
+      >
+        <div class="flex items-center gap-2">
+          <span class="material-symbols-outlined text-dhbw-icon"
+            >sticky_note_2</span
+          >
+          <span class="text-sm font-semibold">Notizen</span>
+        </div>
+        <div class="flex items-center gap-2 text-xs text-dhbw-text-secondary">
+          <span class="hidden md:inline">Cmd/Ctrl+J</span>
+          <button
+            class="text-dhbw-icon hover:text-dhbw-text-primary"
+            aria-label="Notizen schließen"
+            onclick="closeNotes()"
+          >
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+      </div>
+      <div class="p-4 space-y-3">
+        <div class="flex items-center gap-2">
+          <input
+            id="notes-input"
+            type="text"
+            placeholder="Schnelle Notiz hinzufügen…"
+            class="flex-1 rounded-md border border-dhbw-border bg-dhbw-bg px-3 py-2 text-sm text-dhbw-text-primary placeholder:text-dhbw-text-secondary focus:outline-none focus:ring-1 focus:ring-dhbw-red"
+          />
+          <button
+            id="notes-add-btn"
+            class="px-3 py-2 rounded-md bg-dhbw-red text-white text-sm"
+          >
+            Hinzufügen
+          </button>
+        </div>
+        <div class="text-xs text-dhbw-text-secondary">
+          Seitenkontext:
+          <span id="notes-page-label" class="text-dhbw-text-primary">-</span>
+        </div>
+        <div id="notes-list" class="divide-y divide-dhbw-border"></div>
+      </div>
+      <div
+        class="p-3 border-t border-dhbw-border text-xs text-dhbw-text-secondary"
+      >
+        Nur lokal auf diesem Gerät gespeichert.
+      </div>
+    </aside>
+
+    <!-- Command Palette -->
+    <div id="cmdp-backdrop" class="fixed inset-0 bg-black/50 hidden z-50"></div>
+    <div
+      id="cmdp-modal"
+      class="fixed inset-0 z-[60] hidden p-4 flex items-start justify-center"
+    >
+      <div
+        class="w-full max-w-2xl rounded-lg border border-dhbw-border bg-dhbw-panel shadow-xl"
+      >
+        <div class="flex items-center gap-2 p-2 border-b border-dhbw-border">
+          <span class="material-symbols-outlined text-dhbw-icon">search</span>
+          <input
+            id="cmdp-input"
+            type="text"
+            placeholder="Befehl suchen… (z.B. Kalender, Karteikarten, Rolle: system-admin)"
+            class="w-full bg-transparent outline-none text-sm py-2"
+          />
+          <span class="text-[10px] text-dhbw-text-secondary">Esc</span>
+        </div>
+        <div id="cmdp-list" class="max-h-[60vh] overflow-auto"></div>
+      </div>
     </div>
 
     <!-- Content Container -->
@@ -367,6 +759,96 @@
       document.addEventListener("keydown", (e) => {
         if (e.key === "Escape") closeMobileMenu();
       });
+      const THEME_KEY = "DHBW_THEME";
+      const THEME_STYLE_ID = "dhbw-theme-styles";
+      const THEME_RUNTIME_ID = "dhbw-theme-runtime";
+      const THEME_EVENT = "DHBW_THEME_SYNC";
+      function getStoredTheme() {
+        try {
+          return localStorage.getItem(THEME_KEY) || "dark";
+        } catch {
+          return "dark";
+        }
+      }
+      function ensureThemeStyles(doc) {
+        if (!doc) return;
+        if (doc.getElementById(THEME_STYLE_ID)) return;
+        const style = doc.createElement("style");
+        style.id = THEME_STYLE_ID;
+        style.textContent = window.__dhbwThemeCSS || "";
+        doc.head?.appendChild(style);
+      }
+      function ensureThemeRuntime(doc) {
+        if (!doc || doc === document) return;
+        if (doc.getElementById(THEME_RUNTIME_ID)) return;
+        const script = doc.createElement("script");
+        script.id = THEME_RUNTIME_ID;
+        script.textContent = window.__dhbwThemeBridgeScript || "";
+        doc.head?.appendChild(script);
+      }
+      function ensureThemeInfrastructure(doc) {
+        ensureThemeStyles(doc);
+        ensureThemeRuntime(doc);
+      }
+      function applyThemeToDocument(doc, theme) {
+        if (!doc) return;
+        const root = doc.documentElement;
+        if (!root) return;
+        root.classList.toggle("dark", theme !== "light");
+        root.classList.toggle("light", theme === "light");
+        root.setAttribute("data-theme", theme);
+        if (doc === document) {
+          const metaTheme = document.querySelector('meta[name="theme-color"]');
+          metaTheme?.setAttribute(
+            "content",
+            theme === "light" ? "#f5f5f7" : "#121315"
+          );
+        }
+      }
+      function updateThemeToggleUI(theme) {
+        const icon = document.querySelector("[data-theme-icon]");
+        if (icon)
+          icon.textContent = theme === "light" ? "dark_mode" : "light_mode";
+        const toggleBtn = document.getElementById("theme-toggle-btn");
+        if (toggleBtn) {
+          toggleBtn.setAttribute(
+            "aria-pressed",
+            theme === "light" ? "true" : "false"
+          );
+          toggleBtn.setAttribute(
+            "title",
+            theme === "light"
+              ? "Dunkelmodus aktivieren"
+              : "Hellmodus aktivieren"
+          );
+        }
+      }
+      function applyThemeToIframe(iframe, theme) {
+        if (!iframe) return false;
+        const doc = iframe.contentDocument;
+        if (!doc) return false;
+        ensureThemeInfrastructure(doc);
+        applyThemeToDocument(doc, theme);
+        iframe.contentWindow?.postMessage({ type: THEME_EVENT, theme }, "*");
+        return true;
+      }
+      function syncIframeTheme(theme) {
+        const iframe = document.getElementById("content-frame");
+        applyThemeToIframe(iframe, theme);
+      }
+      function applyTheme(theme) {
+        ensureThemeInfrastructure(document);
+        applyThemeToDocument(document, theme);
+        updateThemeToggleUI(theme);
+        syncIframeTheme(theme);
+      }
+      function toggleTheme() {
+        const next = getStoredTheme() === "light" ? "dark" : "light";
+        try {
+          localStorage.setItem(THEME_KEY, next);
+        } catch {}
+        applyTheme(next);
+      }
       function showPage(page) {
         // Remove active state from all nav links
         document.querySelectorAll(".nav-link").forEach((link) => {
@@ -431,6 +913,9 @@
           case "qa":
             iframe.src = "frage_&_antwort_plattform/code.html";
             break;
+          case "dualis":
+            iframe.src = "dualis_integration/code.html";
+            break;
           case "admin":
             iframe.src = "admin/stuv_announcements/code.html";
             break;
@@ -444,6 +929,9 @@
             iframe.src = "profilseite/code.html";
             break;
         }
+        try {
+          localStorage.setItem("DHBW_LAST_PAGE", page);
+        } catch {}
       }
 
       // Initialize with dashboard page
@@ -467,7 +955,30 @@
           entriesSys.forEach((el) => el?.classList.remove("hidden"));
       }
       document.addEventListener("DOMContentLoaded", function () {
-        showPage("dashboard");
+        const frame = document.getElementById("content-frame");
+        frame?.addEventListener("load", () => {
+          const doc = frame.contentDocument;
+          ensureThemeInfrastructure(doc);
+          applyThemeToDocument(doc, getStoredTheme());
+          frame.contentWindow?.postMessage(
+            { type: THEME_EVENT, theme: getStoredTheme() },
+            "*"
+          );
+        });
+        // In case the iframe already finished loading before the listener was attached
+        applyThemeToIframe(frame, getStoredTheme());
+        applyTheme(getStoredTheme());
+        document
+          .getElementById("theme-toggle-btn")
+          ?.addEventListener("click", toggleTheme);
+        const last = (() => {
+          try {
+            return localStorage.getItem("DHBW_LAST_PAGE");
+          } catch {
+            return null;
+          }
+        })();
+        showPage(last || "dashboard");
         updateRoleNav();
 
         // Onboarding (once per session)
@@ -526,6 +1037,38 @@
         if (e.key === "DHBW_ROLE") updateRoleNav();
       });
 
+      // PWA: Service Worker & Install Prompt
+      (function initPWA() {
+        if ("serviceWorker" in navigator) {
+          window.addEventListener("load", () => {
+            navigator.serviceWorker
+              .register("sw.js")
+              .catch((err) => console.warn("SW register failed", err));
+          });
+        }
+        let deferredPrompt = null;
+        const btn = document.getElementById("pwa-install-btn");
+        window.addEventListener("beforeinstallprompt", (e) => {
+          e.preventDefault();
+          deferredPrompt = e;
+          btn?.classList.remove("hidden");
+        });
+        window.addEventListener("appinstalled", () => {
+          deferredPrompt = null;
+          btn?.classList.add("hidden");
+        });
+        btn?.addEventListener("click", async () => {
+          if (!deferredPrompt) return;
+          deferredPrompt.prompt();
+          await deferredPrompt.userChoice.catch(() => {});
+          deferredPrompt = null;
+          btn?.classList.add("hidden");
+        });
+        // expose for command palette
+        window.__pwaCanInstall = () => !!deferredPrompt;
+        window.__pwaTriggerInstall = () => btn?.click();
+      })();
+
       // Global Search Toggle Logic
       (function initGlobalSearch() {
         const toggleBtn = document.getElementById("global-search-toggle");
@@ -554,6 +1097,383 @@
         document.addEventListener("mousedown", (e) => {
           if (open && !e.target.closest("#global-search")) closeSearch();
         });
+      })();
+
+      // Command Palette logic
+      const CMDP = { open: false, items: [], sel: 0 };
+      const cmdpBackdrop = document.getElementById("cmdp-backdrop");
+      const cmdpModal = document.getElementById("cmdp-modal");
+      const cmdpInput = document.getElementById("cmdp-input");
+      const cmdpList = document.getElementById("cmdp-list");
+
+      function openCmdP() {
+        if (CMDP.open) return;
+        CMDP.open = true;
+        cmdpBackdrop.classList.remove("hidden");
+        cmdpModal.classList.remove("hidden");
+        document.body.classList.add("overflow-hidden");
+        cmdpInput.value = "";
+        renderCmdP("");
+        setTimeout(() => cmdpInput.focus(), 0);
+      }
+      function closeCmdP() {
+        if (!CMDP.open) return;
+        CMDP.open = false;
+        cmdpBackdrop.classList.add("hidden");
+        cmdpModal.classList.add("hidden");
+        document.body.classList.remove("overflow-hidden");
+      }
+      cmdpBackdrop.addEventListener("click", closeCmdP);
+      document.addEventListener("keydown", (e) => {
+        const isMac = navigator.platform.toUpperCase().includes("MAC");
+        if (
+          (isMac && e.metaKey && e.key.toLowerCase() === "k") ||
+          (!isMac && e.ctrlKey && e.key.toLowerCase() === "k")
+        ) {
+          e.preventDefault();
+          openCmdP();
+        }
+        if (!CMDP.open) return;
+        if (e.key === "Escape") {
+          e.preventDefault();
+          closeCmdP();
+        }
+        if (e.key === "ArrowDown") {
+          e.preventDefault();
+          CMDP.sel = Math.min(CMDP.sel + 1, CMDP.items.length - 1);
+          paintCmdP();
+        }
+        if (e.key === "ArrowUp") {
+          e.preventDefault();
+          CMDP.sel = Math.max(CMDP.sel - 1, 0);
+          paintCmdP();
+        }
+        if (e.key === "Enter") {
+          e.preventDefault();
+          runSelectedCmd();
+        }
+      });
+      cmdpInput.addEventListener("input", () => {
+        renderCmdP(cmdpInput.value);
+      });
+
+      function runSelectedCmd() {
+        const item = CMDP.items[CMDP.sel];
+        if (!item) return;
+        closeCmdP();
+        try {
+          item.action();
+        } catch (err) {
+          console.error(err);
+        }
+      }
+      function renderCmdP(q) {
+        const all = buildCommands(q);
+        const query = q.trim().toLowerCase();
+        let filtered = all;
+        if (query) {
+          const parts = query.split(/\s+/);
+          filtered = all.filter((it) =>
+            parts.every(
+              (p) =>
+                it.title.toLowerCase().includes(p) ||
+                (it.subtitle || "").toLowerCase().includes(p)
+            )
+          );
+        }
+        CMDP.items = filtered.slice(0, 20);
+        CMDP.sel = 0;
+        paintCmdP();
+      }
+      function paintCmdP() {
+        cmdpList.innerHTML =
+          CMDP.items
+            .map(
+              (it, idx) =>
+                `<button class="w-full text-left px-3 py-2 flex items-center gap-3 hover:bg-dhbw-focus ${
+                  idx === CMDP.sel ? "bg-dhbw-focus" : ""
+                }" data-i="${idx}"><span class="material-symbols-outlined text-dhbw-icon">${
+                  it.icon || "arrow_right"
+                }</span><div class="flex-1"><div class="text-sm">${
+                  it.title
+                }</div>${
+                  it.subtitle
+                    ? `<div class=\"text-xs text-dhbw-text-secondary\">${it.subtitle}</div>`
+                    : ""
+                }</div></button>`
+            )
+            .join("") ||
+          '<div class="px-3 py-4 text-sm text-dhbw-text-secondary">Keine Befehle</div>';
+        cmdpList.querySelectorAll("button[data-i]").forEach((btn) => {
+          btn.onclick = () => {
+            CMDP.sel = Number(btn.getAttribute("data-i"));
+            runSelectedCmd();
+          };
+        });
+      }
+      function buildCommands(q) {
+        const role = sessionStorage.getItem("DHBW_ROLE") || "user";
+        const cmds = [];
+        const navs = [
+          { k: "dashboard", t: "Dashboard öffnen", i: "dashboard" },
+          { k: "files", t: "Dateien öffnen", i: "folder" },
+          { k: "calendar", t: "Kalender öffnen", i: "calendar_month" },
+          { k: "mensa", t: "Mensa öffnen", i: "restaurant" },
+          { k: "polls", t: "Umfragen öffnen", i: "poll" },
+          { k: "groups", t: "Gruppen öffnen", i: "group" },
+          { k: "karteikarten", t: "Karteikarten öffnen", i: "style" },
+          { k: "qa", t: "Q&A öffnen", i: "help" },
+          { k: "dualis", t: "Dualis öffnen", i: "grading" },
+          { k: "admin", t: "StuV Admin öffnen", i: "campaign" },
+        ];
+        navs.forEach((n) =>
+          cmds.push({ title: n.t, icon: n.i, action: () => showPage(n.k) })
+        );
+        if (role === "group-admin" || role === "system-admin")
+          cmds.push({
+            title: "Group Admin öffnen",
+            icon: "shield_person",
+            action: () => showPage("group-admin"),
+          });
+        if (role === "system-admin")
+          cmds.push({
+            title: "System Admin öffnen",
+            icon: "security",
+            action: () => showPage("system-admin"),
+          });
+        cmds.push({
+          title: "Profil öffnen",
+          icon: "account_circle",
+          action: () => showPage("profile"),
+        });
+        cmds.push({
+          title: "Suche in Kopfzeile umschalten",
+          icon: "search",
+          action: () => {
+            document.getElementById("global-search-toggle")?.click();
+          },
+        });
+        cmds.push({
+          title: "Onboarding anzeigen",
+          icon: "person_add",
+          action: () => openOnboarding(),
+        });
+        cmds.push({
+          title: "Rolle: Nutzer",
+          subtitle: "Navigation entsprechend reduzieren",
+          icon: "person",
+          action: () => {
+            sessionStorage.setItem("DHBW_ROLE", "user");
+            updateRoleNav();
+          },
+        });
+        cmds.push({
+          title: "Rolle: Gruppen-Admin",
+          subtitle: "Group Admin Links anzeigen",
+          icon: "shield_person",
+          action: () => {
+            sessionStorage.setItem("DHBW_ROLE", "group-admin");
+            updateRoleNav();
+          },
+        });
+        cmds.push({
+          title: "Rolle: System-Admin",
+          subtitle: "Alle Admin Links anzeigen",
+          icon: "security",
+          action: () => {
+            sessionStorage.setItem("DHBW_ROLE", "system-admin");
+            updateRoleNav();
+          },
+        });
+        cmds.push({
+          title: "Karteikarten: Neues Set",
+          icon: "note_add",
+          action: () =>
+            openKarteikartenAndPost({ type: "karteikarten:openNew" }),
+        });
+        const qv = q?.trim();
+        if (qv && qv.length > 2)
+          cmds.push({
+            title: `Karteikarten: Entdecken suchen nach "${qv}"`,
+            icon: "travel_explore",
+            action: () =>
+              openKarteikartenAndPost({
+                type: "karteikarten:discover",
+                query: qv,
+              }),
+          });
+        cmds.push({
+          title: "Design: Hellmodus aktivieren",
+          icon: "light_mode",
+          action: () => {
+            try {
+              localStorage.setItem(THEME_KEY, "light");
+            } catch {}
+            applyTheme("light");
+          },
+        });
+        cmds.push({
+          title: "Design: Dunkelmodus aktivieren",
+          icon: "dark_mode",
+          action: () => {
+            try {
+              localStorage.setItem(THEME_KEY, "dark");
+            } catch {}
+            applyTheme("dark");
+          },
+        });
+        // PWA Install command (only if available)
+        try {
+          if (window.__pwaCanInstall && window.__pwaCanInstall()) {
+            cmds.push({
+              title: "App installieren (PWA)",
+              subtitle: "Als App auf diesem Gerät installieren",
+              icon: "download",
+              action: () =>
+                window.__pwaTriggerInstall && window.__pwaTriggerInstall(),
+            });
+          }
+        } catch {}
+        return cmds;
+      }
+      function openKarteikartenAndPost(message) {
+        const iframe = document.getElementById("content-frame");
+        const targetSrc = "karteikarten/code.html";
+        const post = () => {
+          try {
+            iframe.contentWindow?.postMessage(message, "*");
+          } catch (e) {
+            console.warn("postMessage failed", e);
+          }
+        };
+        if (!iframe.src.endsWith(targetSrc)) {
+          iframe.addEventListener("load", function handler() {
+            iframe.removeEventListener("load", handler);
+            setTimeout(post, 50);
+          });
+          showPage("karteikarten");
+        } else {
+          post();
+        }
+      }
+    </script>
+    <script>
+      // Notes feature: sidebar with localStorage persistence and shortcut
+      (function initNotes() {
+        const notesBtn = document.getElementById("notes-toggle-btn");
+        const panel = document.getElementById("notes-panel");
+        const backdrop = document.getElementById("notes-backdrop");
+        const input = document.getElementById("notes-input");
+        const addBtn = document.getElementById("notes-add-btn");
+        const list = document.getElementById("notes-list");
+        const pageLabel = document.getElementById("notes-page-label");
+
+        function currentPageKey() {
+          let page = "dashboard";
+          try {
+            page = localStorage.getItem("DHBW_LAST_PAGE") || "dashboard";
+          } catch {}
+          return `notes:${page}`;
+        }
+        function currentPageLabel() {
+          try {
+            return localStorage.getItem("DHBW_LAST_PAGE") || "dashboard";
+          } catch {
+            return "dashboard";
+          }
+        }
+        function loadNotes() {
+          try {
+            const raw = localStorage.getItem(currentPageKey());
+            return raw ? JSON.parse(raw) : [];
+          } catch {
+            return [];
+          }
+        }
+        function saveNotes(arr) {
+          try {
+            localStorage.setItem(currentPageKey(), JSON.stringify(arr));
+          } catch {}
+        }
+        function render() {
+          pageLabel.textContent = currentPageLabel();
+          const items = loadNotes();
+          list.innerHTML = items.length
+            ? items
+                .map(
+                  (n, idx) => `
+            <div class="py-2 flex items-start gap-2">
+              <div class="flex-1">
+                <div class="text-sm">${escapeHtml(n.text)}</div>
+                <div class="text-[10px] text-dhbw-text-secondary">${new Date(
+                  n.ts
+                ).toLocaleString()}</div>
+              </div>
+              <button class="text-dhbw-icon hover:text-dhbw-text-primary" title="Löschen" data-i="${idx}"><span class="material-symbols-outlined text-sm">delete</span></button>
+            </div>
+          `
+                )
+                .join("")
+            : '<div class="py-6 text-xs text-dhbw-text-secondary notes-empty-state">Noch keine Notizen für diese Seite.</div>';
+          list.querySelectorAll("button[data-i]").forEach((btn) => {
+            btn.onclick = () => {
+              const i = Number(btn.getAttribute("data-i"));
+              const arr = loadNotes();
+              arr.splice(i, 1);
+              saveNotes(arr);
+              render();
+            };
+          });
+        }
+        function openNotes() {
+          panel.classList.remove("translate-x-full");
+          backdrop?.classList.remove("hidden");
+          render();
+          setTimeout(() => input?.focus(), 0);
+        }
+        function closeNotes() {
+          panel.classList.add("translate-x-full");
+          backdrop?.classList.add("hidden");
+        }
+        window.openNotes = openNotes;
+        window.closeNotes = closeNotes;
+        notesBtn?.addEventListener("click", () => {
+          if (panel.classList.contains("translate-x-full")) openNotes();
+          else closeNotes();
+        });
+        backdrop?.addEventListener("click", closeNotes);
+        addBtn?.addEventListener("click", () => {
+          const val = (input?.value || "").trim();
+          if (!val) return;
+          const arr = loadNotes();
+          arr.unshift({ text: val, ts: Date.now() });
+          saveNotes(arr);
+          input.value = "";
+          render();
+        });
+        input?.addEventListener("keydown", (e) => {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            addBtn?.click();
+          }
+        });
+        document.addEventListener("keydown", (e) => {
+          const isMac = navigator.platform.toUpperCase().includes("MAC");
+          if (
+            (isMac && e.metaKey && e.key.toLowerCase() === "j") ||
+            (!isMac && e.ctrlKey && e.key.toLowerCase() === "j")
+          ) {
+            e.preventDefault();
+            if (panel.classList.contains("translate-x-full")) openNotes();
+            else closeNotes();
+          }
+        });
+        function escapeHtml(str) {
+          return str
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;");
+        }
       })();
     </script>
   </body>

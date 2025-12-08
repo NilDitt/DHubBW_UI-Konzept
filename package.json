@@ -1,0 +1,13 @@
+{
+  "name": "dhubbw-ui-konzept",
+  "private": true,
+  "version": "0.1.0",
+  "scripts": {
+    "puml:png": "docker run --rm -v \"$PWD\":/data plantuml/plantuml -tpng docs/architecture/component-diagram.puml",
+    "puml:svg": "docker run --rm -v \"$PWD\":/data plantuml/plantuml -tsvg docs/architecture/component-diagram.puml",
+    "puml:prod:png": "docker run --rm -v \"$PWD\":/data plantuml/plantuml -tpng docs/architecture/component-diagram-production.puml",
+    "puml:prod:svg": "docker run --rm -v \"$PWD\":/data plantuml/plantuml -tsvg docs/architecture/component-diagram-production.puml",
+    "puml:uml:png": "docker run --rm -v \"$PWD\":/data plantuml/plantuml -tpng docs/architecture/component-diagram-uml.puml",
+    "puml:uml:svg": "docker run --rm -v \"$PWD\":/data plantuml/plantuml -tsvg docs/architecture/component-diagram-uml.puml"
+  }
+}

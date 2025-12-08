@@ -6,21 +6,7 @@
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
-<style type="text/tailwindcss">
-    :root {
-      --bg: #121315;
-      --panel: #1A1C1F;
-      --border: #2A2D31;
-      --primary: #C8102E;
-      --primary-muted: #992029;
-      --text-primary: #F2F2F5;
-      --text-secondary: #A8ADB5;
-      --icon: #5C6068;
-      --focus-hover: #26292D;
-      --success: #3EA05B;
-      --warning: #EBCB70;
-      --error: #E03140;
-    }
+<style>
     .material-symbols-outlined {
         font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
     }
@@ -34,18 +20,18 @@
         theme: {
           extend: {
             colors: {
-              "dh-bg": "var(--bg)",
-              "dh-panel": "var(--panel)",
-              "dh-border": "var(--border)",
-              "dh-primary": "var(--primary)",
-              "dh-primary-muted": "var(--primary-muted)",
-              "dh-text-primary": "var(--text-primary)",
-              "dh-text-secondary": "var(--text-secondary)",
-              "dh-icon": "var(--icon)",
-              "dh-focus-hover": "var(--focus-hover)",
-              "dh-success": "var(--success)",
-              "dh-warning": "var(--warning)",
-              "dh-error": "var(--error)",
+              "dh-bg": "var(--dhbw-main-bg)",
+              "dh-panel": "var(--dhbw-panel)",
+              "dh-border": "var(--dhbw-border)",
+              "dh-primary": "var(--dhbw-primary)",
+              "dh-primary-muted": "var(--dhbw-primary-muted)",
+              "dh-text-primary": "var(--dhbw-text-primary)",
+              "dh-text-secondary": "var(--dhbw-text-secondary)",
+              "dh-icon": "var(--dhbw-icon)",
+              "dh-focus-hover": "var(--dhbw-focus)",
+              "dh-success": "var(--dhbw-success)",
+              "dh-warning": "var(--dhbw-warning)",
+              "dh-error": "var(--dhbw-error)",
             },
             fontFamily: {
               "display": ["Inter", "Roboto", "sans-serif"]

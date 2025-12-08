@@ -1,0 +1,12 @@
+{
+  "name": "DHubBW",
+  "short_name": "DHubBW",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#121315",
+  "theme_color": "#C8102E",
+  "description": "Das zentrale DHBW Dashboard – offlinefähig.",
+  "icons": [
+    { "src": "UpdateLogo 1.png", "sizes": "192x192", "type": "image/png" }
+  ]
+}

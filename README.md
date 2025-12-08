@@ -40,6 +40,8 @@ Dieses Repository ist ein reines **UI / Design Konzept** (Prototyp). Alle Inhalt
 │   └── code.html                 # Dateiverwaltung (ohne Header)
 ├── polls_management/
 │   └── code.html                 # Umfragenverwaltung (ohne Header)
+├── dualis_integration/
+│   └── code.html                 # Dualis-Notenübersicht (Konzept)
 ├── groups_directory/
 │   └── code.html                 # Gruppen-Verzeichnis (ohne Header)
 └── admin/stuv_announcements/
@@ -51,7 +53,7 @@ Dieses Repository ist ein reines **UI / Design Konzept** (Prototyp). Alle Inhalt
 | Bereich                                                                             | Status          | Art                         |
 | ----------------------------------------------------------------------------------- | --------------- | --------------------------- |
 | Navigation / Layout                                                                 | Fertig          | Statisch (iframe)           |
-| Seiten (Dashboard, Kalender, Dateien, Umfragen, Gruppen, Admin, Mensa, Q&A, Profil) | Layout fertig   | Inhalt beispielhaft / Dummy |
+| Seiten (Dashboard, Kalender, Dateien, Umfragen, Gruppen, Admin, Mensa, Q&A, Profil, Dualis) | Layout fertig   | Inhalt beispielhaft / Dummy |
 | Responsives Grundlayout                                                             | Teilweise       | Basis-Anpassungen vorhanden |
 | Interaktion (Klick-Navigation)                                                      | Minimal         | Nur Iframe-Wechsel          |
 | Daten / Backend                                                                     | Nicht vorhanden | Platzhalter                 |
@@ -93,6 +95,8 @@ Dieses Repository ist ein reines **UI / Design Konzept** (Prototyp). Alle Inhalt
 - Active States mit Background-Highlighting
 - Notification Badges
 - Smooth Animations
+- Umschaltbare Light/Dark-Themes (persistenter Toggle im Header)
+- Dualis-Konzeptseite mit Statuskarten, Tabellen und technischen Leitplanken
 
 ### 🔧 Technischer Rahmen
 
@@ -134,6 +138,7 @@ Einfach `index.html` direkt im Browser öffnen (lokal). Es sind **keine** Instal
 7. **Mensa** – Statischer Speiseplan (Beispieldaten)
 8. **Q&A + Detailansicht** – Fragenliste & Artikelseite (statisch)
 9. **Profil** – Formular- und Anzeige-Komponenten (ohne Speicherung)
+10. **Dualis-Integration** – Soll-Konzept für Noten-/Prüfungsabruf via Dualis
 
 ## Design-Details
 

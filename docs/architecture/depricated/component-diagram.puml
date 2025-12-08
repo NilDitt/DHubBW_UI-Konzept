@@ -1,0 +1,157 @@
+@startuml
+' DHubBW – Component Diagram (Web/PWA)
+' Generated on 2025-11-14
+
+skinparam componentStyle rectangle
+skinparam defaultTextAlignment left
+skinparam shadowing false
+skinparam packageStyle rectangle
+
+title DHubBW – Component Diagram (Web/PWA)
+
+package "UI" {
+  [AppShell] as AppShell
+  [Header/Nav/Search] as Header
+  [CommandPalette] as CmdP
+  [MobileMenu] as MobileMenu
+  [OnboardingModal] as Onboarding
+  [NotesSidebar] as NotesUI
+  [IframeRouter] as RouterUI
+  package "Feature Views (iframes)" {
+    [Dashboard]
+    [Dateien]
+    [Kalender]
+    [Mensa]
+    [Umfragen]
+    [Gruppenverzeichnis]
+    [GroupAdmin]
+    [Admin_StuV]
+    [SystemAdmin]
+    [QnA]
+    [Karteikarten]
+    [Profil]
+  }
+  [PostMessageBridge] as PMB
+}
+
+package "Application/Core" {
+  [Router] as Router
+  [RoleManager]
+  [CommandDispatcher] as Dispatcher
+  [PWAManager]
+  [NotesManager]
+}
+
+package "Domain Services" {
+  interface FlashcardsSpecification
+  interface CalendarFetcherSpecification
+  interface MensaFetcherSpecification
+  interface QADataSpecification
+  interface PollsSpecification
+  interface FilesSpecification
+  interface GroupsDirectorySpecification
+
+  [FlashcardsService] as Flashcards
+  [CalendarService] as CalendarSvc
+  [MensaService] as MensaSvc
+  [QnAService] as QnASvc
+  [PollsService] as PollsSvc
+  [FilesService] as FilesSvc
+  [GroupsService] as GroupsSvc
+
+  Flashcards -u-|> FlashcardsSpecification
+  CalendarSvc -u-|> CalendarFetcherSpecification
+  MensaSvc -u-|> MensaFetcherSpecification
+  QnASvc -u-|> QADataSpecification
+  PollsSvc -u-|> PollsSpecification
+  FilesSvc -u-|> FilesSpecification
+  GroupsSvc -u-|> GroupsDirectorySpecification
+}
+
+package "Persistence" {
+  [LocalStorageRepo] as LStorage
+  [SessionStorageRepo] as SStorage
+  [CacheStorage (Service Worker)] as SWCache
+}
+
+package "Integration APIs" {
+  [RaplaICSClient]
+  [StudierendenwerkClient]
+  [FilesMediator]
+  [AuthClient]
+  [NotificationsClient]
+}
+
+package "External Sources" {
+  [DHBW Rapla (ICS)]
+  [Studierendenwerk (Mensa)]
+  [Identity Provider (OIDC/SAML)]
+  [Cloud Storage]
+  [CDNs (Tailwind/Fonts/Icons)]
+  [Static Hosting (GitHub Pages)]
+}
+
+' wiring (UI)
+AppShell --> Header
+AppShell --> RouterUIåå
+AppShell --> CmdP
+AppShell --> MobileMenu
+AppShell --> Onboarding
+AppShell --> NotesUI
+RouterUI --> Dashboard
+RouterUI --> Dateien
+RouterUI --> Kalender
+RouterUI --> Mensa
+RouterUI --> Umfragen
+RouterUI --> Gruppenverzeichnis
+RouterUI --> GroupAdmin
+RouterUI --> Admin_StuV
+RouterUI --> SystemAdmin
+RouterUI --> QnA
+RouterUI --> Karteikarten
+RouterUI --> Profil
+AppShell --> PMB
+
+' palette & routing
+CmdP --> Dispatcher
+Dispatcher --> Router
+Dispatcher --> RoleManager
+Dispatcher --> PMB : deep-link\n(Karteikarten)
+NotesUI --> NotesManager
+
+' core to services
+Karteikarten --> Flashcards
+Kalender --> CalendarSvc
+Mensa --> MensaSvc
+QnA --> QnASvc
+Umfragen --> PollsSvc
+Dateien --> FilesSvc
+Gruppenverzeichnis --> GroupsSvc
+GroupAdmin --> GroupsSvc
+Admin_StuV --> GroupsSvc
+Profil --> RoleManager
+
+' persistence
+Flashcards --> LStorage
+NotesManager --> LStorage : notes:<page>
+Router --> LStorage : DHBW_LAST_PAGE
+RoleManager --> SStorage : DHBW_ROLE
+PWAManager --> SWCache
+AppShell --> PWAManager
+
+' integrations
+CalendarSvc --> RaplaICSClient
+MensaSvc --> StudierendenwerkClient
+FilesSvc --> FilesMediator
+GroupsSvc --> AuthClient
+Dispatcher --> NotificationsClient : future\n(push)
+
+' external links
+RaplaICSClient --> [DHBW Rapla (ICS)]
+StudierendenwerkClient --> [Studierendenwerk (Mensa)]
+AuthClient --> [Identity Provider (OIDC/SAML)]
+FilesMediator --> [Cloud Storage]
+AppShell --> [CDNs (Tailwind/Fonts/Icons)]
+AppShell --> [Static Hosting (GitHub Pages)]
+
+@enduml

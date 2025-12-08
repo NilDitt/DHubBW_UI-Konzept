@@ -23,19 +23,19 @@
         theme: {
           extend: {
             colors: {
-              // DHBW Color Palette
-              "dhbw-bg": "#121315",
-              "dhbw-panel": "#1A1C1F",
-              "dhbw-border": "#2A2D31",
-              "dhbw-red": "#C8102E",
-              "dhbw-red-muted": "#992029",
-              "dhbw-text-primary": "#F2F2F5",
-              "dhbw-text-secondary": "#A8ADB5",
-              "dhbw-icon": "#5C6068",
-              "dhbw-focus": "#26292D",
-              "dhbw-success": "#3EA05B",
-              "dhbw-warning": "#EBCB70",
-              "dhbw-error": "#E03140",
+              // DHBW Color Palette mapped to shared theme tokens
+              "dhbw-bg": "var(--dhbw-main-bg)",
+              "dhbw-panel": "var(--dhbw-panel)",
+              "dhbw-border": "var(--dhbw-border)",
+              "dhbw-red": "var(--dhbw-primary)",
+              "dhbw-red-muted": "var(--dhbw-primary-muted)",
+              "dhbw-text-primary": "var(--dhbw-text-primary)",
+              "dhbw-text-secondary": "var(--dhbw-text-secondary)",
+              "dhbw-icon": "var(--dhbw-icon)",
+              "dhbw-focus": "var(--dhbw-focus)",
+              "dhbw-success": "var(--dhbw-success)",
+              "dhbw-warning": "var(--dhbw-warning)",
+              "dhbw-error": "var(--dhbw-error)",
             },
             fontFamily: {
               display: ["Inter", "Roboto", "sans-serif"],

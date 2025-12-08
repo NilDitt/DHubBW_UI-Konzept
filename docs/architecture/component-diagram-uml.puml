@@ -1,0 +1,126 @@
+@startuml DHubBW_UML_Component
+' DHubBW – UML-style Component Diagram (VM + Docker, Spring Boot, PostgreSQL)
+' Focus: Logical structure, interfaces (use/implement), external sources
+
+skinparam componentStyle rectangle
+skinparam defaultTextAlignment left
+skinparam shadowing false
+skinparam packageStyle rectangle
+skinparam wrapWidth 180
+skinparam maxMessageSize 200
+
+' Legend for connectors (when icons not available):
+' - Provided interface (lollipop): <<provides>>
+' - Required interface (socket): <<requires>>
+' - Protocol annotated on link label
+
+' Top-level layout similar to reference: UI at top, Core in middle, Persistence bottom-left, External right
+
+package "UI" as UI {
+  [DashboardScreen]
+  [FilesScreen]
+  [CalendarScreen]
+  [MensaScreen]
+  [PollsScreen]
+  [GroupsScreen]
+  [QnAScreen]
+  [FlashcardsScreen]
+  [ProfileScreen]
+  [AdminScreens]
+}
+
+' Specifications (interfaces) the Core offers to UI
+interface CoreSpecification
+interface CalendarFetcherSpecification
+interface MensaFetcherSpecification
+interface FilesSpecification
+interface PollsSpecification
+interface GroupsSpecification
+interface QASpecification
+interface FlashcardsSpecification
+
+package "Core" as CorePkg {
+  [Core] as Core
+}
+
+' Domain Services implementing specifications
+[CalendarService] -u-|> CalendarFetcherSpecification
+[MensaService] -u-|> MensaFetcherSpecification
+[FilesService] -u-|> FilesSpecification
+[PollsService] -u-|> PollsSpecification
+[GroupsService] -u-|> GroupsSpecification
+[QAService] -u-|> QASpecification
+[FlashcardsService] -u-|> FlashcardsSpecification
+
+' Persistence layer
+package "Persistence" as PersistencePkg {
+  [Persistence]
+  [UserAuthStore]
+  [NotesStore]
+}
+
+component "PostgreSQL" as PostgreSQL
+
+' External Sources
+package "External_Sources" as External {
+  [DHBW_Rapla]
+  [StudierendenWerkKarlsruhe_Mensa]
+}
+
+' API/Adapter layer (hiding concrete tech); Spring Boot services provide these
+package "Adapters / APIs" as Adapters {
+  [RaplaAPI] <<adapter>>
+  [MensaAPI] <<adapter>>
+}
+
+' Provided/Required interfaces
+CoreSpecification -[hidden]- Core
+Core -down- CoreSpecification
+CoreSpecification <.. UI : <<uses>>
+
+CalendarFetcherSpecification <.. UI : <<uses>>
+MensaFetcherSpecification <.. UI : <<uses>>
+FilesSpecification <.. UI : <<uses>>
+PollsSpecification <.. UI : <<uses>>
+GroupsSpecification <.. UI : <<uses>>
+QASpecification <.. UI : <<uses>>
+FlashcardsSpecification <.. UI : <<uses>>
+
+' Core delegates to services (which implement the specs)
+Core ..> CalendarFetcherSpecification : <<requires>>
+Core ..> MensaFetcherSpecification : <<requires>>
+Core ..> FilesSpecification : <<requires>>
+Core ..> PollsSpecification : <<requires>>
+Core ..> GroupsSpecification : <<requires>>
+Core ..> QASpecification : <<requires>>
+Core ..> FlashcardsSpecification : <<requires>>
+
+' Services use Persistence and Adapters
+CalendarService ..> RaplaAPI : <<uses>> (HTTPS/ICS) [symbol: required-socket]
+MensaService ..> MensaAPI : <<uses>> (HTTPS/JSON|HTML) [symbol: required-socket]
+RaplaAPI ..> DHBW_Rapla : <<connects>> (HTTPS/ICS fetch)
+MensaAPI ..> StudierendenWerkKarlsruhe_Mensa : <<connects>> (HTTPS/JSON or HTML scrape)
+
+Persistence <.. Core : <<uses>> [symbol: required-socket]
+Persistence <.. CalendarService : <<uses>>
+Persistence <.. MensaService : <<uses>>
+Persistence <.. FilesService : <<uses>>
+Persistence <.. PollsService : <<uses>>
+Persistence <.. GroupsService : <<uses>>
+Persistence <.. QAService : <<uses>>
+Persistence <.. FlashcardsService : <<uses>>
+
+' Data stores
+PersistencePkg ..> PostgreSQL : JDBC [symbol: DB-connector]
+
+' Deployment/infra note
+note right of PostgreSQL
+Runs in Docker on VM
+end note
+
+note right of Adapters
+Spring Boot backend provides these adapters and services.
+Frontend communicates only via specifications exposed by Core.
+end note
+
+@enduml
